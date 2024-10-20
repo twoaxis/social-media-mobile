@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/screens/login_page.dart';
 
 void main() {
   runApp(const SocialMedia());
 }
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-
 
 class SocialMedia extends StatelessWidget {
   const SocialMedia({super.key});
@@ -15,10 +14,7 @@ class SocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-
-    
-      home: Scaffold(),
-
+      home: LoginPage(),
     );
   }
 }

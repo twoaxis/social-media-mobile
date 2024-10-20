@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
-  final Icon icon;
+  final IconData icon;
   final TextInputAction? textInputAction;
   final bool isPassword;
   const CustomTextFormField({
@@ -39,9 +39,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     });
                   })
               : null,
-          border: const OutlineInputBorder(),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
           labelText: widget.labelText,
-          prefixIcon: widget.icon,
+          prefixIcon: Icon(widget.icon),
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
