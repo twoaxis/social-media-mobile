@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/screens/login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const SocialMedia());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  // This widget is the root of your application.
+class SocialMedia extends StatelessWidget {
+  const SocialMedia({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-
-        ),
-      ),
+      home: LoginPage(),
     );
   }
 }
