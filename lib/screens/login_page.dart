@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:social_media_mobile/widgets/color.dart';
+import 'package:social_media_mobile/componant/color.dart';
+
 import '../widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -38,7 +39,7 @@ class LoginPage extends StatelessWidget {
                 const CustomTextFormField(
                   labelText: 'Password',
                   isPassword: true,
-                  icon: Icons.password,
+                  icon: Icons.lock,
                   textInputAction: TextInputAction.done,
                 ),
                 const SizedBox(
