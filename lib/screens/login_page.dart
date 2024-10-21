@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media_mobile/componant/color.dart';
 
 import '../widgets/custom_text_form_field.dart';
@@ -16,7 +15,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 100,
+                  height: 130,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -76,52 +75,16 @@ class LoginPage extends StatelessWidget {
                         width: 130,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: secondarycolor,
+                            backgroundColor: primarycolor,
                           ),
                           onPressed: () {},
                           child: const Text(
                             'Sign up',
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.white,
+                              color: Colors.black
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Text(
-                  'or',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: secondarycolor,
-                  ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          FontAwesomeIcons.google,
-                          size: 40,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          FontAwesomeIcons.facebook,
-                          size: 40,
-                          color: Colors.blue,
                         ),
                       ),
                     ],
