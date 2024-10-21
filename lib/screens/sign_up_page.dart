@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:social_media_mobile/componant/color.dart';
 import 'package:social_media_mobile/widgets/custom_button.dart';
 import 'package:social_media_mobile/widgets/sign_up_form.dart';
 
@@ -21,16 +21,12 @@ class SignUpPage extends StatelessWidget {
                 height: 32,
               ),
               const Text(
-                'Sign Up',
+                'Create New Account',
                 style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24,
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              const Text('create new account with email'),
               const SizedBox(
                 height: 16,
               ),
@@ -43,47 +39,31 @@ class SignUpPage extends StatelessWidget {
                 children: [
                   const Text(
                     'Already have an account?',
-                    style: TextStyle(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(
-                    width: 16,
+                    width: 40,
                   ),
                   CustomButton(
                     onPressed: () {},
-                    width: 10,
+                    width: 50,
                     text: 'Log in',
+                    sizetext: 18,
+                    bgcolor: primarycolor,
+                    textcolor: Colors.black,
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 16,
+              SizedBox(
+                height: 60
               ),
-              const Text('or continue with'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.facebook,
-                      color: Color(0xff0866ff),
-                      size: 40,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      FontAwesomeIcons.google,
-                      size: 32,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
+              Text(
+                '(c) TwoAxis 2024.All rights reserved.',
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
               ),
             ],
           ),
