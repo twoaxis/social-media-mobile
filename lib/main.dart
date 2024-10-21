@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/screens/sign_up_page.dart';
 import 'package:social_media_mobile/screens/login_page.dart';
 
 void main() {
