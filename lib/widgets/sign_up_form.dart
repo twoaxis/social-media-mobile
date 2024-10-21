@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media_mobile/widgets/custom_button.dart';
 import 'package:social_media_mobile/widgets/custom_text_form_field.dart';
 
+import '../componant/color.dart';
+
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
     super.key,
@@ -29,7 +31,7 @@ class _SignUpFormState extends State<SignUpForm> {
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(
-            height: 8,
+            height: 20,
           ),
           const CustomTextFormField(
             labelText: 'Email',
@@ -37,7 +39,7 @@ class _SignUpFormState extends State<SignUpForm> {
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(
-            height: 8,
+            height: 20,
           ),
           const CustomTextFormField(
             labelText: 'Password',
@@ -46,7 +48,7 @@ class _SignUpFormState extends State<SignUpForm> {
             isPassword: true,
           ),
           const SizedBox(
-            height: 8,
+            height: 20,
           ),
           const CustomTextFormField(
             labelText: 'Repeat Password',
@@ -55,7 +57,7 @@ class _SignUpFormState extends State<SignUpForm> {
             isPassword: true,
           ),
           const SizedBox(
-            height: 16,
+            height: 30,
           ),
           CustomButton(
             onPressed: () {
@@ -67,9 +69,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 });
               }
             },
-            width: 40,
+            width: 140,
+            height: 5,
             text: 'Sign Up',
-          )
+            sizetext: 24,
+            bgcolor: secondarycolor,
+            textcolor: Colors.white,
+          ),
         ],
       ),
     );
