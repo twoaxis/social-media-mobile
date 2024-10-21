@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/screens/sign_up_page.dart';
+import 'package:social_media_mobile/screens/login_page.dart';
 
 void main() {
   runApp(const SocialMedia());
@@ -14,7 +15,7 @@ class SocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpPage(),
+      home: LoginPage(),
     );
   }
 }
