@@ -1,19 +1,39 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../componant/color.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  Dio dio = Dio();
+
+  var autovalidateMode = AutovalidateMode.disabled;
+  late String email;
+  late String password;
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CustomTextFormField(
+          CustomTextFormField(
+            onSaved: (value) {
+              email = value!;
+            },
             labelText: 'Email',
             icon: Icon(Icons.email),
             textInputAction: TextInputAction.next,
@@ -21,7 +41,10 @@ class LoginForm extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const CustomTextFormField(
+          CustomTextFormField(
+            onSaved: (value) {
+              password = value!;
+            },
             labelText: 'Password',
             isPassword: true,
             icon: Icon(Icons.lock),
@@ -31,7 +54,55 @@ class LoginForm extends StatelessWidget {
             height: 30,
           ),
           CustomButton(
-            onPressed: () {},
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                try {
+                  Response response = await dio.post(
+                    'http://18.193.81.175/auth/login',
+                    data: {'email': email, 'password': password},
+                  );
+                  if (response.statusCode == 200) {
+                    String token = response.data['token'];
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setString('authToken', token);
+                    Fluttertoast.showToast(
+                      msg: "Logged into your account",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.grey[800],
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                  }
+                } on DioException catch (e) {
+                  if (e.response?.statusCode == 400) {
+                    Fluttertoast.showToast(
+                      msg: "Missing or incorrect fields.",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.grey[800],
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                  } else if (e.response?.statusCode == 401) {
+                    Fluttertoast.showToast(
+                      msg: "Invalid email or password.",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.grey[800],
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                  }
+                }
+              } else {
+                setState(() {
+                  autovalidateMode = AutovalidateMode.onUnfocus;
+                });
+              }
+            },
             width: 140,
             height: 5,
             text: 'Login',

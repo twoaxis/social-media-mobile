@@ -5,12 +5,15 @@ class CustomTextFormField extends StatefulWidget {
   final Icon icon;
   final TextInputAction? textInputAction;
   final bool isPassword;
+  final Function(String? value)? onSaved;
+
   const CustomTextFormField({
     super.key,
     required this.labelText,
     required this.icon,
     this.textInputAction,
     this.isPassword = false,
+    this.onSaved,
   });
 
   @override
@@ -25,6 +28,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextFormField(
+        onSaved: widget.onSaved,
         obscureText: widget.isPassword && obscureText,
         textInputAction: widget.textInputAction,
         decoration: InputDecoration(
@@ -34,10 +38,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     obscureText ? Icons.visibility : Icons.visibility_off,
                   ),
                   onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                    });
-                  })
+                    setState(
+                      () {
+                        obscureText = !obscureText;
+                      },
+                    );
+                  },
+                )
               : null,
           border: OutlineInputBorder(
             borderSide: BorderSide(

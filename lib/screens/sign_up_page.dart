@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/componant/color.dart';
+import 'package:social_media_mobile/screens/login_page.dart';
 import 'package:social_media_mobile/widgets/custom_button.dart';
 import 'package:social_media_mobile/widgets/sign_up_form.dart';
 
@@ -47,7 +48,14 @@ class SignUpPage extends StatelessWidget {
                     width: 40,
                   ),
                   CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    },
                     width: 50,
                     text: 'Log in',
                     sizetext: 18,
