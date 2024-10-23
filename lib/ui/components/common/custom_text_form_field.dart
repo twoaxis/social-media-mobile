@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
-
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
-  final IconData icon;
+  final Icon icon;
   final TextInputAction? textInputAction;
   final bool isPassword;
+  final Function(String? value)? onSaved;
+  final Function(String value)? onChange;
+  final String? Function(String? value)? validator;
+  final AutovalidateMode? autovalidateMode;
+
   const CustomTextFormField({
     super.key,
     required this.labelText,
     required this.icon,
     this.textInputAction,
     this.isPassword = false,
+    this.onSaved,
+    this.validator,
+    this.onChange,
+    this.autovalidateMode = AutovalidateMode.disabled,
   });
 
   @override
@@ -25,6 +33,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextFormField(
+        onSaved: widget.onSaved,
+        onChanged: (value) {
+          if (widget.onChange != null) widget.onChange!(value);
+          Form.of(context).validate();
+        },
+        validator: widget.validator,
         obscureText: widget.isPassword && obscureText,
         textInputAction: widget.textInputAction,
         decoration: InputDecoration(
@@ -34,21 +48,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     obscureText ? Icons.visibility : Icons.visibility_off,
                   ),
                   onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                    });
-                  })
+                    setState(
+                      () {
+                        obscureText = !obscureText;
+                      },
+                    );
+                  },
+                )
               : null,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 0.5,
+            ),
+            borderRadius: BorderRadius.circular(15.0),
+          ),
           labelText: widget.labelText,
-          prefixIcon: Icon(widget.icon),
+          prefixIcon: (widget.icon),
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
       ),
     );
   }
