@@ -1,27 +1,30 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:social_media_mobile/ui/components/common/custom_button.dart';
+import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
+import 'package:social_media_mobile/data/color.dart';
 
-import '../componant/color.dart';
-import 'custom_button.dart';
-import 'custom_text_form_field.dart';
-
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({
+    super.key,
+  });
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  Dio dio = Dio();
-
   var autovalidateMode = AutovalidateMode.disabled;
+  Dio dio = Dio();
   late String email;
+  late String name;
+  late String username;
   late String password;
-
+  late String confirmpassword;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -30,6 +33,28 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          CustomTextFormField(
+            onSaved: (value) {
+              name = value!;
+            },
+            labelText: 'Name',
+            icon: Icon(FontAwesomeIcons.at),
+            textInputAction: TextInputAction.next,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextFormField(
+            onSaved: (value) {
+              username = value!;
+            },
+            labelText: 'Username',
+            icon: Icon(FontAwesomeIcons.at),
+            textInputAction: TextInputAction.next,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           CustomTextFormField(
             onSaved: (value) {
               email = value!;
@@ -46,9 +71,21 @@ class _LoginFormState extends State<LoginForm> {
               password = value!;
             },
             labelText: 'Password',
+            icon: Icon(Icons.lock),
+            textInputAction: TextInputAction.next,
             isPassword: true,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextFormField(
+            onSaved: (value) {
+              confirmpassword = value!;
+            },
+            labelText: 'Repeat Password',
             icon: Icon(Icons.lock),
             textInputAction: TextInputAction.done,
+            isPassword: true,
           ),
           const SizedBox(
             height: 30,
@@ -59,8 +96,13 @@ class _LoginFormState extends State<LoginForm> {
                 _formKey.currentState!.save();
                 try {
                   Response response = await dio.post(
-                    'http://18.193.81.175/auth/login',
-                    data: {'email': email, 'password': password},
+                    'http://18.193.81.175/auth/signup',
+                    data: {
+                      'name': name,
+                      'username': username,
+                      'email': email,
+                      'password': password
+                    },
                   );
                   if (response.statusCode == 200) {
                     String token = response.data['token'];
@@ -68,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                         await SharedPreferences.getInstance();
                     prefs.setString('authToken', token);
                     Fluttertoast.showToast(
-                      msg: "Logged into your account",
+                      msg: "Account created",
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,
                       backgroundColor: Colors.grey[800],
@@ -79,16 +121,16 @@ class _LoginFormState extends State<LoginForm> {
                 } on DioException catch (e) {
                   if (e.response?.statusCode == 400) {
                     Fluttertoast.showToast(
-                      msg: "Missing or incorrect fields.",
+                      msg: "$name must be English letters only.",
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,
                       backgroundColor: Colors.grey[800],
                       textColor: Colors.white,
                       fontSize: 16.0,
                     );
-                  } else if (e.response?.statusCode == 401) {
+                  } else if (e.response?.statusCode == 409) {
                     Fluttertoast.showToast(
-                      msg: "Invalid email or password.",
+                      msg: "E-mail or username taken.",
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,
                       backgroundColor: Colors.grey[800],
@@ -99,13 +141,14 @@ class _LoginFormState extends State<LoginForm> {
                 }
               } else {
                 setState(() {
-                  autovalidateMode = AutovalidateMode.onUnfocus;
-                });
+                    autovalidateMode = AutovalidateMode.onUnfocus;
+                  },
+                );
               }
             },
             width: 140,
             height: 5,
-            text: 'Login',
+            text: 'Sign Up',
             sizetext: 24,
             bgcolor: secondarycolor,
             textcolor: Colors.white,

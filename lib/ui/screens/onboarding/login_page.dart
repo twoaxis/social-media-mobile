@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/componant/color.dart';
-import 'package:social_media_mobile/screens/sign_up_page.dart';
-import 'package:social_media_mobile/widgets/login_form.dart';
+import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/ui/screens/onboarding/sign_up_page.dart';
+import 'package:social_media_mobile/ui/components/onboarding/login_form.dart';
 
-import '../widgets/custom_button.dart';
+import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
