@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/exceptions/auth/InvalidCredentialsException.dart';
+import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
 import 'package:social_media_mobile/ui/components/common/errorbox.dart';
@@ -85,13 +87,9 @@ class _LoginFormState extends State<LoginForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 try {
-                  Response response = await dio.post(
-                    'http://18.193.81.175/auth/login',
-                    data: {'email': email, 'password': password},
-                  );
-                  if (response.statusCode == 200) {
-                    String token = response.data['token'];
-                    SharedPreferences prefs =
+                  String token = await AuthService().logIn(email, password);
+
+                  SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setString('authToken', token);
                     setState(
@@ -99,22 +97,13 @@ class _LoginFormState extends State<LoginForm> {
                         error = 'Logged into your account.';
                       },
                     );
-                  }
-                } on DioException catch (e) {
-                  if (e.response?.statusCode == 400) {
-                    setState(
-                      () {
-                        error = 'Missing or incorrect fields.';
-                      },
-                    );
-                  } else if (e.response?.statusCode == 401) {
-                    setState(
+                } on InvalidCredentialsExceptions catch (e) {
+                  setState(
                       () {
                         error = 'Invalid email or password.';
                       },
                     );
                   }
-                }
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.onUnfocus;

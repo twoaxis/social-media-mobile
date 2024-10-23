@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/exceptions/auth/CredentialTakenException.dart';
+import 'package:social_media_mobile/exceptions/auth/NameNotEnglishException.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
@@ -156,33 +158,29 @@ class _SignUpFormState extends State<SignUpForm> {
 
                   var authService = AuthService();
 
-                  Response response = await authService.signUp(name, username, email, password);
+                  String token = await authService.signUp(name, username, email, password);
 
-                  if (response.statusCode == 200) {
-                    String token = response.data['token'];
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.setString('authToken', token);
-                    setState(
-                      () {
-                        error = 'Account created';
-                      },
-                    );
-                  }
-                } on DioException catch (e) {
-                  if (e.response?.statusCode == 400) {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  prefs.setString('authToken', token);
+
+                  setState(
+                    () {
+                      error = 'Account created';
+                    },
+                  );
+                } on NameNotEnglishException catch (e) {
                     setState(
                       () {
                         error = '$name must be English letters only.';
                       },
                     );
-                  } else if (e.response?.statusCode == 409) {
-                    setState(
-                      () {
-                        error = 'E-mail or username taken.';
-                      },
-                    );
-                  }
+                }
+                on CredentialTakenException catch (e) {
+                  setState(
+                        () {
+                      error = 'Username or E-mail taken.';
+                    },
+                  );
                 }
               } else {
                 setState(() {
