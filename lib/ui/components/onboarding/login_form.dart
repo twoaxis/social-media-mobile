@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
+import 'package:social_media_mobile/ui/components/common/errorbox.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -20,6 +20,7 @@ class _LoginFormState extends State<LoginForm> {
   var autovalidateMode = AutovalidateMode.disabled;
   late String email;
   late String password;
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,12 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (error.isNotEmpty)
+            Errorbox(content: error)
+          else
+            const SizedBox(
+              height: 0,
+            ),
           CustomTextFormField(
             onSaved: (value) {
               email = value!;
@@ -87,40 +94,32 @@ class _LoginFormState extends State<LoginForm> {
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setString('authToken', token);
-                    Fluttertoast.showToast(
-                      msg: "Logged into your account",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.grey[800],
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    setState(
+                      () {
+                        error = 'Logged into your account.';
+                      },
                     );
                   }
                 } on DioException catch (e) {
                   if (e.response?.statusCode == 400) {
-                    Fluttertoast.showToast(
-                      msg: "Missing or incorrect fields.",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.grey[800],
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    setState(
+                      () {
+                        error = 'Missing or incorrect fields.';
+                      },
                     );
                   } else if (e.response?.statusCode == 401) {
-                    Fluttertoast.showToast(
-                      msg: "Invalid email or password.",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.grey[800],
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    setState(
+                      () {
+                        error = 'Invalid email or password.';
+                      },
                     );
                   }
                 }
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.onUnfocus;
-                });
+                  },
+                );
               }
             },
             width: 140,

@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
+import 'package:social_media_mobile/ui/components/common/errorbox.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -23,8 +24,9 @@ class _SignUpFormState extends State<SignUpForm> {
   late String email;
   late String name;
   late String username;
-  String? password;
-  String? confirmpassword;
+  late String password;
+  late String confirmpassword;
+  String error = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -33,6 +35,12 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (error.isNotEmpty)
+            Errorbox(content: error)
+          else
+            SizedBox(
+              height: 0,
+            ),
           CustomTextFormField(
             onSaved: (value) {
               name = value!;
@@ -84,7 +92,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 return 'Please Enter Email.';
               } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                   .hasMatch(value)) {
-                return 'Enter a valid email address';
+                return 'valid email address';
               }
               return null;
             },
@@ -145,47 +153,34 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 try {
-                  Response response = await dio.post(
-                    'http://18.193.81.175/auth/signup',
-                    data: {
-                      'name': name,
-                      'username': username,
-                      'email': email,
-                      'password': password
-                    },
-                  );
+
+                  var authService = AuthService();
+
+                  Response response = await authService.signUp(name, username, email, password);
+
                   if (response.statusCode == 200) {
                     String token = response.data['token'];
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setString('authToken', token);
-                    Fluttertoast.showToast(
-                      msg: "Account created",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.grey[800],
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    setState(
+                      () {
+                        error = 'Account created';
+                      },
                     );
                   }
                 } on DioException catch (e) {
                   if (e.response?.statusCode == 400) {
-                    Fluttertoast.showToast(
-                      msg: "$name must be English letters only.",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.grey[800],
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    setState(
+                      () {
+                        error = '$name must be English letters only.';
+                      },
                     );
                   } else if (e.response?.statusCode == 409) {
-                    Fluttertoast.showToast(
-                      msg: "E-mail or username taken.",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.grey[800],
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    setState(
+                      () {
+                        error = 'E-mail or username taken.';
+                      },
                     );
                   }
                 }
