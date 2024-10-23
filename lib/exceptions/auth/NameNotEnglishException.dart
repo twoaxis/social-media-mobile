@@ -1,0 +1,1 @@
+class NameNotEnglishException implements Exception {}
