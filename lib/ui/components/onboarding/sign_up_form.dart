@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
-import 'package:social_media_mobile/data/color.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -23,8 +23,8 @@ class _SignUpFormState extends State<SignUpForm> {
   late String email;
   late String name;
   late String username;
-  late String password;
-  late String confirmpassword;
+  String? password;
+  String? confirmpassword;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -37,8 +37,17 @@ class _SignUpFormState extends State<SignUpForm> {
             onSaved: (value) {
               name = value!;
             },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Name.';
+              } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value)) {
+                return 'Name must be English Letters';
+              }
+              return null;
+            },
             labelText: 'Name',
-            icon: Icon(FontAwesomeIcons.at),
+            icon: Icon(FontAwesomeIcons.user),
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(
@@ -51,6 +60,13 @@ class _SignUpFormState extends State<SignUpForm> {
             labelText: 'Username',
             icon: Icon(FontAwesomeIcons.at),
             textInputAction: TextInputAction.next,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter UserName';
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 20,
@@ -62,30 +78,64 @@ class _SignUpFormState extends State<SignUpForm> {
             labelText: 'Email',
             icon: Icon(Icons.email),
             textInputAction: TextInputAction.next,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Email.';
+              } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                  .hasMatch(value)) {
+                return 'Enter a valid email address';
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 20,
           ),
           CustomTextFormField(
-            onSaved: (value) {
-              password = value!;
+            onChange: (value) {
+              setState(
+                () {
+                  password = value;
+                },
+              );
             },
             labelText: 'Password',
             icon: Icon(Icons.lock),
             textInputAction: TextInputAction.next,
             isPassword: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Password';
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 20,
           ),
           CustomTextFormField(
-            onSaved: (value) {
-              confirmpassword = value!;
+            onChange: (value) {
+              setState(
+                () {
+                  confirmpassword = value;
+                },
+              );
             },
             labelText: 'Repeat Password',
             icon: Icon(Icons.lock),
             textInputAction: TextInputAction.done,
             isPassword: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please confirm your password';
+              } else if (value != password) {
+                return 'Passwords do not match';
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 30,

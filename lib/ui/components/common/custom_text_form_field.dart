@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
   final Icon icon;
   final TextInputAction? textInputAction;
   final bool isPassword;
   final Function(String? value)? onSaved;
+  final Function(String value)? onChange;
+  final String? Function(String? value)? validator;
+  final AutovalidateMode? autovalidateMode;
 
   const CustomTextFormField({
     super.key,
@@ -14,6 +16,9 @@ class CustomTextFormField extends StatefulWidget {
     this.textInputAction,
     this.isPassword = false,
     this.onSaved,
+    this.validator,
+    this.onChange,
+    this.autovalidateMode = AutovalidateMode.disabled,
   });
 
   @override
@@ -29,6 +34,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextFormField(
         onSaved: widget.onSaved,
+        onChanged: (value) {
+          if (widget.onChange != null) widget.onChange!(value);
+          Form.of(context).validate();
+        },
+        validator: widget.validator,
         obscureText: widget.isPassword && obscureText,
         textInputAction: widget.textInputAction,
         decoration: InputDecoration(
@@ -55,12 +65,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           labelText: widget.labelText,
           prefixIcon: (widget.icon),
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
       ),
     );
   }

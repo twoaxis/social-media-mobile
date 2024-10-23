@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
@@ -37,18 +36,39 @@ class _LoginFormState extends State<LoginForm> {
             labelText: 'Email',
             icon: Icon(Icons.email),
             textInputAction: TextInputAction.next,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Email.';
+              } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                  .hasMatch(value)) {
+                return 'Enter a valid email address';
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 20,
           ),
           CustomTextFormField(
-            onSaved: (value) {
-              password = value!;
+            onChange: (value) {
+              setState(
+                () {
+                  password = value;
+                },
+              );
             },
             labelText: 'Password',
-            isPassword: true,
             icon: Icon(Icons.lock),
-            textInputAction: TextInputAction.done,
+            textInputAction: TextInputAction.next,
+            isPassword: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Password';
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 30,
