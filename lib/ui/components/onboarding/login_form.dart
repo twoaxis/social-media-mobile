@@ -97,6 +97,7 @@ class _LoginFormState extends State<LoginForm> {
                         error = 'Logged into your account.';
                       },
                     );
+                // ignore: unused_catch_clause
                 } on InvalidCredentialsExceptions catch (e) {
                   setState(
                       () {

@@ -168,13 +168,14 @@ class _SignUpFormState extends State<SignUpForm> {
                       error = 'Account created';
                     },
                   );
-                } on NameNotEnglishException catch (e) {
+                } on NameNotEnglishException {
                     setState(
                       () {
                         error = '$name must be English letters only.';
                       },
                     );
                 }
+                // ignore: unused_catch_clause
                 on CredentialTakenException catch (e) {
                   setState(
                         () {
