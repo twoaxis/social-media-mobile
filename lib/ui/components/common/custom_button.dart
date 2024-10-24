@@ -24,18 +24,22 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        minimumSize: Size(width, height),
         backgroundColor: bgcolor,
-        padding:  EdgeInsets.symmetric(
-          horizontal: width,
-          vertical: height,
-        ),
       ),
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: sizetext,
-          color: textcolor,
+      child: Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          style: TextStyle(
+            overflow: TextOverflow.ellipsis,
+            fontSize: sizetext,
+            color: textcolor,
+          ),
         ),
       ),
     );

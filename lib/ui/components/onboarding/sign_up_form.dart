@@ -61,7 +61,7 @@ class _SignUpFormState extends State<SignUpForm> {
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onSaved: (value) {
@@ -79,7 +79,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onSaved: (value) {
@@ -100,7 +100,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           CustomTextFormField(
             onChange: (value) {
@@ -123,7 +123,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onChange: (value) {
@@ -148,7 +148,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 30,
+            height: 13,
           ),
           CustomButton(
             onPressed: () async {
@@ -189,8 +189,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 );
               }
             },
-            width: 140,
-            height: 5,
+            width: 280,
+            height: 40,
             text: 'Sign Up',
             sizetext: 24,
             bgcolor: secondarycolor,
