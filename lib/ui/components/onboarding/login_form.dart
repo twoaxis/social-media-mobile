@@ -97,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
                         error = 'Logged into your account.';
                       },
                     );
-                } on InvalidCredentialsExceptions catch (e) {
+                } on InvalidCredentialsExceptions {
                   setState(
                       () {
                         error = 'Invalid email or password.';

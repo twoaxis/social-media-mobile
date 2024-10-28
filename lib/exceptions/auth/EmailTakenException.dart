@@ -1,0 +1,1 @@
+class EmailTakenException implements Exception {}

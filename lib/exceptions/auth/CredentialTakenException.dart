@@ -1,1 +1,0 @@
-class CredentialTakenException implements Exception {}

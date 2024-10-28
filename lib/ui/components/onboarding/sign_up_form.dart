@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/exceptions/auth/CredentialTakenException.dart';
+import 'package:social_media_mobile/exceptions/auth/EmailTakenException.dart';
 import 'package:social_media_mobile/exceptions/auth/NameNotEnglishException.dart';
+import 'package:social_media_mobile/exceptions/auth/UserNameTakenException.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
@@ -168,17 +169,22 @@ class _SignUpFormState extends State<SignUpForm> {
                       error = 'Account created';
                     },
                   );
-                } on NameNotEnglishException catch (e) {
-                    setState(
-                      () {
-                        error = '$name must be English letters only.';
-                      },
-                    );
-                }
-                on CredentialTakenException catch (e) {
+                } on NameNotEnglishException {
                   setState(
-                        () {
-                      error = 'Username or E-mail taken.';
+                    () {
+                      error = '$name must be English letters only.';
+                    },
+                    );
+                } on EmailTakenException {
+                  setState(
+                    () {
+                      error = 'Email Taken';
+                    },
+                  );
+                } on UserNameTakenException {
+                  setState(
+                    () {
+                      error = 'Username Taken';
                     },
                   );
                 }
