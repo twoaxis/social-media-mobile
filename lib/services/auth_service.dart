@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:social_media_mobile/exceptions/auth/EmailTakenException.dart';
+import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/InvalidCredentialsException.dart';
 import 'package:social_media_mobile/exceptions/auth/NameNotEnglishException.dart';
-import 'package:social_media_mobile/exceptions/auth/UserNameTakenException.dart';
+import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.dart';
 
 Dio dio = Dio();
 
