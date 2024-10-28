@@ -57,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onChange: (value) {
@@ -80,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           CustomButton(
             onPressed: () async {
@@ -97,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
                         error = 'Logged into your account.';
                       },
                     );
-                } on InvalidCredentialsExceptions catch (e) {
+                } on InvalidCredentialsExceptions {
                   setState(
                       () {
                         error = 'Invalid email or password.';
@@ -111,8 +111,8 @@ class _LoginFormState extends State<LoginForm> {
                 );
               }
             },
-            width: 140,
-            height: 5,
+            width: 280,
+            height: 40,
             text: 'Login',
             sizetext: 24,
             bgcolor: secondarycolor,

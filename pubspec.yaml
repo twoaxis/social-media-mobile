@@ -40,6 +40,9 @@ dependencies:
   dio: ^5.7.0
   shared_preferences: ^2.3.2
   fluttertoast: ^8.2.1
+  fluentui_system_icons: ^1.1.260
+  
+  
 
 
 dev_dependencies:

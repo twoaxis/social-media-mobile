@@ -4,6 +4,7 @@ import 'package:social_media_mobile/ui/screens/onboarding/sign_up_page.dart';
 void main() {
   runApp(const SocialMedia());
 }
+
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 class SocialMedia extends StatelessWidget {

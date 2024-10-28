@@ -39,10 +39,10 @@ class LoginPage extends StatelessWidget {
               ),
               LoginForm(),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -61,7 +61,8 @@ class LoginPage extends StatelessWidget {
                           ),
                         );
                       },
-                      width: 50,
+                      width: 80,
+                      height: 40,
                       text: 'Sign up',
                       sizetext: 18,
                       bgcolor: primarycolor,
