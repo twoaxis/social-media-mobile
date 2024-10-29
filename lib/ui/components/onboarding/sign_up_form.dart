@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
+
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.dart';
@@ -170,12 +171,14 @@ class _SignUpFormState extends State<SignUpForm> {
                     },
                   );
                 } on NameNotEnglishException {
+
                   setState(
                     () {
                       error = '$name must be English letters only.';
                     },
                     );
                 } on EmailTakenException {
+
                   setState(
                     () {
                       error = 'Email Taken';

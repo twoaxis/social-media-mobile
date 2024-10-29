@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 import 'package:social_media_mobile/exceptions/auth/invalid_credentials_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
