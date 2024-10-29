@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/exceptions/auth/credential_taken_exception.dart';
+
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
+import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
+import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
@@ -61,7 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onSaved: (value) {
@@ -79,7 +81,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onSaved: (value) {
@@ -100,7 +102,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           CustomTextFormField(
             onChange: (value) {
@@ -123,7 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 13,
           ),
           CustomTextFormField(
             onChange: (value) {
@@ -148,7 +150,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 30,
+            height: 13,
           ),
           CustomButton(
             onPressed: () async {
@@ -169,17 +171,23 @@ class _SignUpFormState extends State<SignUpForm> {
                     },
                   );
                 } on NameNotEnglishException {
-                    setState(
-                      () {
-                        error = '$name must be English letters only.';
-                      },
-                    );
-                }
-                // ignore: unused_catch_clause
-                on CredentialTakenException catch (e) {
+
                   setState(
-                        () {
-                      error = 'Username or E-mail taken.';
+                    () {
+                      error = '$name must be English letters only.';
+                    },
+                    );
+                } on EmailTakenException {
+
+                  setState(
+                    () {
+                      error = 'Email Taken';
+                    },
+                  );
+                } on UserNameTakenException {
+                  setState(
+                    () {
+                      error = 'Username Taken';
                     },
                   );
                 }
@@ -190,8 +198,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 );
               }
             },
-            width: 140,
-            height: 5,
+            width: 280,
+            height: 40,
             text: 'Sign Up',
             sizetext: 24,
             bgcolor: secondarycolor,

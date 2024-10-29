@@ -1,0 +1,2 @@
+class UserNameTakenException implements Exception {
+}
