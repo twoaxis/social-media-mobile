@@ -5,7 +5,6 @@ void main() {
   runApp(const SocialMedia());
 }
 
-
 class SocialMedia extends StatelessWidget {
   const SocialMedia({super.key});
 

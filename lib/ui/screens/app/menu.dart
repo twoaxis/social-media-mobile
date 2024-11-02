@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/components/common/custom_bottomnavbar.dart';
+import 'package:social_media_mobile/ui/components/common/custom_bottom_navbar.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -18,7 +18,7 @@ class Menu extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomnavbar.bottomNavBar(),
+      bottomNavigationBar: CustomBottomNavbar.bottomNavBar(),
     );
   }
 }

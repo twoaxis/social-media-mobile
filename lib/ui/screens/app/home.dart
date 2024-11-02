@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/post.dart';
+import 'package:social_media_mobile/ui/components/common/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/components/common/post_tile.dart';
+import 'package:social_media_mobile/ui/components/common/custom_sliver_app_bar.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return PostTile(
-            post: Post(
-              commentCount: 23,
-              likeCount: 10,
-              postContent: 'Hello World',
-              profileImageUrl:
-                  'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
-              userName: 'John Doe',
-            ),
-          );
-        },
-        itemCount: 10,
-      ),
-    );
+	return Scaffold(
+	  body: CustomScrollView(
+		slivers: [
+		  CustomSliverAppBar(),
+		  SliverList(
+			delegate: SliverChildBuilderDelegate(
+			  childCount: 10,
+			  (context, index) => PostTile(
+				post: Post(
+				
+				  commentCount: 10,
+				  likeCount: 10,
+				  profileImageUrl: 'https://picsum.photos/200/300',
+				  userName: 'John Doe',
+				  postContent: 'Hello World',
+				),
+			  ),
+			),
+		  )
+		],
+	  ),
+	  bottomNavigationBar: CustomBottomNavbar.bottomNavBar(),
+	);
   }
 }
