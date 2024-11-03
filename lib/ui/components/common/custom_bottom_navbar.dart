@@ -1,20 +1,20 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 
-class CustomBottomnavbar extends StatefulWidget {
-  const CustomBottomnavbar.bottomNavBar({super.key});
+class CustomBottomNavbar extends StatefulWidget {
+  const CustomBottomNavbar.bottomNavBar({super.key});
 
   @override
-  State<CustomBottomnavbar> createState() => _CustomBottomnavbarState();
+  State<CustomBottomNavbar> createState() => _CustomBottomNavbarState();
 }
 
 int currentPageIndex = 1;
 List<String> bottomNavItems = ['Profile', 'Home', 'Friends', 'Notifications'];
 
-class _CustomBottomnavbarState extends State<CustomBottomnavbar> {
+class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   @override
   Widget build(BuildContext context) {
-    void navBarOntap(int index) {
+    void navBarOnTap(int index) {
       setState(() {
         currentPageIndex = index;
       });
@@ -23,7 +23,7 @@ class _CustomBottomnavbarState extends State<CustomBottomnavbar> {
     return SizedBox(
       height: 77.5,
       child: BottomNavigationBar(
-          onTap: navBarOntap,
+          onTap: navBarOnTap,
           currentIndex: currentPageIndex,
           type: BottomNavigationBarType.fixed,
           backgroundColor: const Color.fromARGB(237, 219, 219, 219),
@@ -90,7 +90,7 @@ class _CustomBottomnavbarState extends State<CustomBottomnavbar> {
                   ? const Icon(FluentIcons.alert_12_filled)
                   : const Icon(FluentIcons.alert_12_regular),
             ),
-          ]),
+          ],),
     );
   }
 }
