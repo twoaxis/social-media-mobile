@@ -17,7 +17,8 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
     void navBarOnTap(int index) {
       setState(() {
         currentPageIndex = index;
-      });
+        },
+      );
     }
 
     return SizedBox(

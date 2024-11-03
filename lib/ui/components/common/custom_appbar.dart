@@ -70,9 +70,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   );
                 },
                 iconSize: 25,
-                icon: const Icon(FluentIcons.search_16_filled),
+              icon: const Icon(
+                FluentIcons.search_16_filled,
               ),
-            )),
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(right: 5),
           child: Container(
