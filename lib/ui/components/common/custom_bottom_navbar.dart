@@ -1,5 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/ui/screens/app/home.dart';
+import 'package:social_media_mobile/ui/screens/app/notification_page.dart';
+import 'package:social_media_mobile/ui/screens/app/profile.dart';
 
 class CustomBottomNavbar extends StatefulWidget {
   const CustomBottomNavbar.bottomNavBar({super.key});
@@ -8,8 +11,8 @@ class CustomBottomNavbar extends StatefulWidget {
   State<CustomBottomNavbar> createState() => _CustomBottomNavbarState();
 }
 
-int currentPageIndex = 1;
-List<String> bottomNavItems = ['Profile', 'Home', 'Friends', 'Notifications'];
+int currentPageIndex = 0;
+List<String> bottomNavItems = ['Home', 'Profile', 'Friends', 'Notifications'];
 
 class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   @override
@@ -19,8 +22,21 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
         currentPageIndex = index;
         },
       );
-    }
 
+      final List<Widget> pages = [
+        Home(),
+        Profile(),
+        Text('data'),
+        NotificationPage(),
+      ];
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => pages[index],
+        ),
+      );
+    }
     return SizedBox(
       height: 77.5,
       child: BottomNavigationBar(
@@ -34,9 +50,15 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
           selectedIconTheme: const IconThemeData(size: 30),
           items: [
-            BottomNavigationBarItem(
-                label: bottomNavItems[0],
-                icon: currentPageIndex == 0
+          BottomNavigationBarItem(
+            label: bottomNavItems[0],
+            icon: currentPageIndex == 0
+                ? const Icon(FluentIcons.home_12_filled)
+                : const Icon(FluentIcons.home_12_regular),
+          ),
+          BottomNavigationBarItem(
+                label: bottomNavItems[1],
+                icon: currentPageIndex == 1
                     ? Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -73,13 +95,7 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                 //     ? const Icon(FluentIcons.person_12_filled)
                 //     : const Icon(FluentIcons.person_12_regular),
                 ),
-            BottomNavigationBarItem(
-              label: bottomNavItems[1],
-              icon: currentPageIndex == 1
-                  ? const Icon(FluentIcons.home_12_filled)
-                  : const Icon(FluentIcons.home_12_regular),
-            ),
-            BottomNavigationBarItem(
+          BottomNavigationBarItem(
               label: bottomNavItems[2],
               icon: currentPageIndex == 2
                   ? const Icon(FluentIcons.people_12_filled)
