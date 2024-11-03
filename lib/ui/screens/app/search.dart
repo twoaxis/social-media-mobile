@@ -12,7 +12,8 @@ class Search extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Back')),
+          child: Text('Back'),
+        ),
       ),
     );
   }
