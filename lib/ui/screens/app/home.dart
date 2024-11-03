@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/ui/components/common/custom_bottom_navbar.dart';
-import 'package:social_media_mobile/ui/components/common/post_tile.dart';
 import 'package:social_media_mobile/ui/components/common/custom_sliver_app_bar.dart';
+import 'package:social_media_mobile/ui/components/common/post_tile.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -27,8 +27,8 @@ class Home extends StatelessWidget {
 				),
 			  ),
 			),
-		  )
-		],
+          ),
+        ],
 	  ),
 	  bottomNavigationBar: CustomBottomNavbar.bottomNavBar(),
 	);
