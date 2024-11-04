@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/ui/screens/app/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search.dart';
 
+import 'custom_bottom_navbar.dart';
+
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  final int currentIndex;
-  const CustomAppbar({required this.currentIndex, super.key});
+  final int currentIndex = 0;
+
+  const CustomAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
     List<String> appBarTitles = [
-      'Profile',
       'Home',
+      'Profile',
       'Friends',
       'Notifications',
-      'Menu',
-      'Search',
     ];
     return AppBar(
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
@@ -28,25 +29,25 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           'assets/images/logo.png',
         ),
       ),
-      // title: Text(
-      //   appBarTitles[currentPageIndex],
-      //   style: const TextStyle(
-      //     fontWeight: FontWeight.bold,
-      //     fontSize: 20,
-      //     color: Color.fromARGB(255, 179, 44, 44),
-      //   ),
-      // ),
-      // centerTitle: true,
+      title: Text(
+        appBarTitles[currentPageIndex],
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
+          color: Colors.black,
+        ),
+      ),
+      centerTitle: true,
       actions: [
         Padding(
-            padding: const EdgeInsets.only(right: 5),
-            child: Container(
+          padding: const EdgeInsets.only(right: 5),
+          child: Container(
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color.fromARGB(255, 151, 150, 149)
-                      .withOpacity(0.05)),
-              child: IconButton(
-                onPressed: () {
+              shape: BoxShape.circle,
+              color: const Color.fromARGB(255, 151, 150, 149).withOpacity(0.05),
+            ),
+            child: IconButton(
+              onPressed: () {
                   Navigator.push(
                     context,
                     PageRouteBuilder(

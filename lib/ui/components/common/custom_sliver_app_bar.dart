@@ -1,7 +1,16 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/screens/app/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search.dart';
+import 'custom_bottom_navbar.dart';
+
+List<String> appBarTitles = [
+  'Home',
+  'Profile',
+  'Friends',
+  'Notifications',
+];
 
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
@@ -20,6 +29,14 @@ class CustomSliverAppBar extends StatelessWidget {
         padding: const EdgeInsets.only(left: 25),
         child: Image.asset(
           'assets/images/logo.png',
+        ),
+      ),
+      title: Text(
+        appBarTitles[currentPageIndex],
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: secondarycolor,
         ),
       ),
       centerTitle: true,

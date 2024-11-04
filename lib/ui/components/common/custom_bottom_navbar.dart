@@ -1,5 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/ui/screens/app/friend_page.dart';
 import 'package:social_media_mobile/ui/screens/app/home.dart';
 import 'package:social_media_mobile/ui/screens/app/notification_page.dart';
 import 'package:social_media_mobile/ui/screens/app/profile.dart';
@@ -17,18 +18,18 @@ List<String> bottomNavItems = ['Home', 'Profile', 'Friends', 'Notifications'];
 class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      Home(),
+      Profile(),
+      FriendPage(),
+      NotificationPage(),
+    ];
     void navBarOnTap(int index) {
-      setState(() {
-        currentPageIndex = index;
+      setState(
+        () {
+          currentPageIndex = index;
         },
       );
-
-      final List<Widget> pages = [
-        Home(),
-        Profile(),
-        Text('data'),
-        NotificationPage(),
-      ];
 
       Navigator.pushReplacement(
         context,
@@ -37,10 +38,11 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
         ),
       );
     }
+
     return SizedBox(
       height: 77.5,
       child: BottomNavigationBar(
-          onTap: navBarOnTap,
+        onTap: navBarOnTap,
           currentIndex: currentPageIndex,
           type: BottomNavigationBarType.fixed,
           backgroundColor: const Color.fromARGB(237, 219, 219, 219),
@@ -57,7 +59,7 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                 : const Icon(FluentIcons.home_12_regular),
           ),
           BottomNavigationBarItem(
-                label: bottomNavItems[1],
+              label: bottomNavItems[1],
                 icon: currentPageIndex == 1
                     ? Container(
                         decoration: BoxDecoration(
@@ -90,13 +92,9 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                           backgroundColor:
                               const Color.fromARGB(255, 179, 44, 44),
                         ),
-                      )
-                // icon: currentPageIndex == 0
-                //     ? const Icon(FluentIcons.person_12_filled)
-                //     : const Icon(FluentIcons.person_12_regular),
-                ),
+                    )),
           BottomNavigationBarItem(
-              label: bottomNavItems[2],
+            label: bottomNavItems[2],
               icon: currentPageIndex == 2
                   ? const Icon(FluentIcons.people_12_filled)
                   : const Icon(FluentIcons.people_12_regular),
@@ -107,7 +105,8 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                   ? const Icon(FluentIcons.alert_12_filled)
                   : const Icon(FluentIcons.alert_12_regular),
             ),
-          ],),
+        ],
+      ),
     );
   }
 }
