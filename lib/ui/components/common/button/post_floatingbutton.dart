@@ -1,9 +1,9 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/screens/app/posting.dart';
+import 'package:social_media_mobile/ui/components/common/posting.dart';
 
-class PostFloatingbutton extends StatelessWidget {
-  const PostFloatingbutton({super.key});
+class PostFloatingButton extends StatelessWidget {
+  const PostFloatingButton({super.key});
 
   @override
   Widget build(BuildContext context) {

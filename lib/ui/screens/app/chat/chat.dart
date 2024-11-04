@@ -5,7 +5,7 @@ class Chat extends StatefulWidget {
   const Chat({super.key});
 
   @override
-  _ChatState createState() => _ChatState();
+  State<Chat> createState() => _ChatState();
 }
 
 class _ChatState extends State<Chat> {
@@ -57,7 +57,7 @@ class _ChatState extends State<Chat> {
               onTap: () {},
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   // color: Colors.red,
                   height: 70,
                   child: Row(
@@ -71,44 +71,42 @@ class _ChatState extends State<Chat> {
                         width: 10,
                       ),
                       Expanded(
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Username',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18,
-                                      color: black,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 130,
-                                  ),
-                                  Text(
-                                    'Today',
-                                    style: TextStyle(color: black),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                width: 200,
-                                child: Text(
-                                  'Hello world ekljnfsdklnghfjhkfgjdhfgfhfklenlf',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: false,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Username',
                                   style: TextStyle(
-                                    color: gray,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18,
+                                    color: black,
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                                SizedBox(
+                                  width: 130,
+                                ),
+                                Text(
+                                  'Today',
+                                  style: TextStyle(color: black),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                'Hello world',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                softWrap: false,
+                                style: TextStyle(
+                                  color: gray,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
@@ -120,7 +118,7 @@ class _ChatState extends State<Chat> {
               onTap: () {},
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   // color: Colors.red,
                   height: 70,
                   child: Row(
@@ -134,44 +132,42 @@ class _ChatState extends State<Chat> {
                         width: 10,
                       ),
                       Expanded(
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Username',
-                                    style: TextStyle(
-                                      color: black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 130,
-                                  ),
-                                  Text(
-                                    'Today',
-                                    style: TextStyle(color: black),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                width: 200,
-                                child: Text(
-                                  'Hello world ekljnfsdklnghfjhkfgjdhfgfhfklenlf',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: false,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Username',
                                   style: TextStyle(
-                                    color: gray,
+                                    color: black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18,
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                                SizedBox(
+                                  width: 130,
+                                ),
+                                Text(
+                                  'Today',
+                                  style: TextStyle(color: black),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                'Hello world',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                softWrap: false,
+                                style: TextStyle(
+                                  color: gray,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
