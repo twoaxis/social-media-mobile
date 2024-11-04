@@ -1,8 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/screens/app/home.dart';
-import 'package:social_media_mobile/ui/screens/app/notification_page.dart';
-import 'package:social_media_mobile/ui/screens/app/profile.dart';
+import 'package:social_media_mobile/ui/screens/app/home/home.dart';
+import 'package:social_media_mobile/ui/screens/app/notification/notification_page.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class CustomBottomNavbar extends StatefulWidget {
   const CustomBottomNavbar.bottomNavBar({super.key});

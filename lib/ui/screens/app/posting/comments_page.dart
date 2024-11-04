@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/comment_tile.dart';
+import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
 
 class CommentsPage extends StatefulWidget {
   const CommentsPage({super.key});
