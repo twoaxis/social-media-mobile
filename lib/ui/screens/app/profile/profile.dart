@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/custom_bottom_navbar.dart';
-import 'package:social_media_mobile/ui/components/common/custom_sliver_app_bar.dart';
+import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow.dart';
+import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,9 +11,10 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => _ProfileState();
 }
 
+bool isFriendAdded = false;
+bool isFollow = false;
+
 class _ProfileState extends State<Profile> {
-  bool isFriendAdded = false;
-  bool isFollow = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +59,7 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10.0,
-                                vertical: 8.0,
-                              ),
+                              padding: EdgeInsets.all(10.0),
                               child: CircleAvatar(
                                 radius: 45,
                                 backgroundImage:
@@ -123,8 +121,9 @@ class _ProfileState extends State<Profile> {
                                         backgroundColor: gray),
                                     child: Text(
                                       isFollow ? 'unfollow' : 'follow',
-                                      style:
-                                          const TextStyle(color: primarycolor),
+                                      style: const TextStyle(
+                                        color: primarycolor,
+                                      ),
                                     ),
                                   ),
                                 ),

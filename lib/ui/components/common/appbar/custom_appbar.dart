@@ -1,9 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/screens/app/menu.dart';
-import 'package:social_media_mobile/ui/screens/app/search.dart';
-
-import 'custom_bottom_navbar.dart';
+import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
+import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
+import 'package:social_media_mobile/ui/screens/app/search/search.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final int currentIndex = 0;
@@ -12,6 +11,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     List<String> appBarTitles = [
       'Home',
       'Profile',

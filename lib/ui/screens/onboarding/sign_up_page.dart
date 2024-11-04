@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/custom_button.dart';
+import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
 import 'package:social_media_mobile/ui/components/onboarding/sign_up_form.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 

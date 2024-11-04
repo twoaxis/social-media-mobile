@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/exceptions/auth/invalid_credentials_exception.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
-import 'package:social_media_mobile/ui/components/common/custom_button.dart';
-import 'package:social_media_mobile/ui/components/common/custom_text_form_field.dart';
-import 'package:social_media_mobile/ui/components/common/errorbox.dart';
+import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
+import 'package:social_media_mobile/ui/components/common/input_fields/custom_text_form_field.dart';
+import 'package:social_media_mobile/ui/components/common/misc/errorbox.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
