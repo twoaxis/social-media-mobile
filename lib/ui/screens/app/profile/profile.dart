@@ -3,9 +3,11 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow.dart';
 import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  final ProfileModel? profile;
+  const Profile({super.key, this.profile});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -66,10 +68,10 @@ class _ProfileState extends State<Profile> {
                                     AssetImage('assets/images/icon-user.png'),
                               ),
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.symmetric(vertical: 7),
                               child: Text(
-                                '@Username',
+                                widget.profile?.username ?? 'username',
                                 style: TextStyle(
                                   color: primarycolor,
                                   fontSize: 15,

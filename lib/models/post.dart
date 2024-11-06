@@ -1,17 +1,38 @@
+import 'package:social_media_mobile/models/user.dart';
+
 class Post {
-  final String profileImageUrl;
+  int id;
   final String userName;
-  final String postContent;
+  final String content;
   final int likeCount;
   final int commentCount;
   final String imageUrl;
+  DateTime createdAt;
+  User author;
 
   Post({
-    required this.profileImageUrl,
     required this.userName,
-    required this.postContent,
-    required this.likeCount,
-    required this.commentCount,
-     this.imageUrl = '',
+    required this.content,
+    this.likeCount = 10,
+    this.commentCount = 10,
+    this.imageUrl = '',
+    required this.id,
+    required this.createdAt,
+    required this.author,
   });
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+
+      id: json['id'],
+      content: json['content'],
+      createdAt: DateTime.parse(json['createdAt']),
+      author: User.fromJson(json['author']),
+      
+      userName: json['userName'],
+      likeCount: json['likeCount'],
+      commentCount: json['commentCount'],
+      imageUrl: json['imageUrl'],
+    );
+  }
 }

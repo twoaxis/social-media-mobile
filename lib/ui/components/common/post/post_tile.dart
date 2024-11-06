@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/post.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
+import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/comments_page.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/full_screen_image.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class PostTile extends StatefulWidget {
   final Post post;
@@ -39,28 +44,42 @@ class _PostTileState extends State<PostTile> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              SizedBox(width: 10),
-              CircleAvatar(
-                radius: 21,
-                backgroundColor: secondarycolor,
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(widget.post.profileImageUrl),
+          GestureDetector(
+            onTap: () async {
+              Map<String, dynamic> profile = await getProfile('ahmed');
+              log(profile.toString());
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(
+                      profile: ProfileModel.fromJson(profile),
+                    ),
+                  ));
+            },
+            child: Row(
+              children: [
+                SizedBox(width: 10),
+                CircleAvatar(
+                  radius: 21,
+                  backgroundColor: secondarycolor,
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: AssetImage('assets/images/icon-user.png'),
+                  ),
                 ),
-              ),
-              SizedBox(width: 10),
-              Text(widget.post.userName,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
+                SizedBox(width: 10),
+                Text(
+                  widget.post.userName,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              widget.post.postContent,
+              widget.post.content,
               overflow: TextOverflow.fade,
             ),
           ),
