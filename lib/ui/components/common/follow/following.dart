@@ -6,7 +6,10 @@ class Following extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 8,
+      ),
       constraints: BoxConstraints(
         minHeight: 100,
       ),
