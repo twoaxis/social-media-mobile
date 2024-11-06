@@ -245,7 +245,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                       showModalBottomSheet(
                                         context: context,
                                         builder: (c) => SizedBox(
-                                          height: constraints.maxHeight * 0.45,
+                                          height: constraints.maxHeight * 0.5,
                                           child: Column(
                                             children: [
                                               Padding(
@@ -346,7 +346,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: maxWidth * 0.1),
+                              padding: EdgeInsets.only(left: maxWidth * 0.105),
                               child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
@@ -385,12 +385,12 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
               ),
               //   ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 75),
+                padding: EdgeInsets.only(bottom: maxheight * 0.08),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(
-                    width: 150,
-                    height: 45,
+                    width: maxWidth * 0.4,
+                    height: maxheight * 0.0485,
                     child: FloatingActionButton(
                       splashColor: const Color.fromARGB(34, 179, 44, 44),
                       shape: RoundedRectangleBorder(
