@@ -46,6 +46,7 @@ dependencies:
   bloc: ^8.1.4
   meta: ^1.15.0
   scroll_to_hide: ^2.1.0
+  image_picker: ^1.1.2
   
   
 
