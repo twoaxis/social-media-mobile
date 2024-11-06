@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
-import 'package:social_media_mobile/ui/components/common/follow.dart';
+import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
 import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 
 class Profile extends StatefulWidget {
@@ -36,7 +36,7 @@ class _ProfileState extends State<Profile> {
                         right: 8,
                         child: IconButton(
                           onPressed: () {
-                            Follow(context);
+                            follow(context);
                           },
                           color: primarycolor,
                           icon: const Icon(
