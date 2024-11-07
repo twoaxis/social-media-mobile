@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/models/user.dart';
 
 class Following extends StatelessWidget {
-  const Following({super.key});
+  final User user;
+
+  const Following({
+    super.key,
+    required this.user,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +44,7 @@ class Following extends StatelessWidget {
             ),
           ),
           Text(
-            'Ahmed Helmy',
+            user.name,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,

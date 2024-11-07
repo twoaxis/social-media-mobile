@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/models/user.dart';
 
-bool isfollow = true;
+bool isFollow = true;
 
 class Followers extends StatefulWidget {
-  const Followers({super.key});
+  final User user;
+
+  const Followers({
+    super.key,
+    required this.user,
+  });
 
   @override
   State<Followers> createState() => _FollowersState();
@@ -42,15 +48,13 @@ class _FollowersState extends State<Followers> {
             ),
           ),
           Text(
-            'Ahmed Helmy',
+            widget.user.name,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
-            width: 40,
-          ),
+          Spacer(),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(
@@ -65,16 +69,19 @@ class _FollowersState extends State<Followers> {
             onPressed: () {
               setState(
                 () {
-                  isfollow = !isfollow;
+                  isFollow = !isFollow;
                 },
               );
             },
             child: Text(
-              isfollow ? 'unfollow' : 'follow',
+              isFollow ? 'unfollow' : 'follow',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
+          ),
+          SizedBox(
+            width: 20,
           ),
         ],
       ),
