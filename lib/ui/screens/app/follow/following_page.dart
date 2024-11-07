@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/follow/following.dart';
+import 'package:social_media_mobile/models/user.dart';
+import 'package:social_media_mobile/ui/components/common/follow/following_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class FollowingPage extends StatelessWidget {
@@ -37,7 +38,7 @@ class FollowingPage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return Following();
+          return Following(user: User(username: '', name: 'Hegazy', id: 2),);
         },
         itemCount: 10,
       ),

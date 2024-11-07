@@ -3,7 +3,7 @@ import 'package:social_media_mobile/exceptions/users/User_not_found_exception.da
 import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields_exception.dart';
 
 class Api {
-  Future<dynamic> get(String url) async {
+  static Future<dynamic> get(String url) async {
     var dio = Dio();
     try {
       var response = await dio.get(
@@ -14,7 +14,7 @@ class Api {
           },
         ),
       );
-      return response.data as Map<String,dynamic>;
+      return response.data;
     } on DioException catch (e) {
       if (e.response?.statusCode == 400) {
         throw MissingOrIncorrectFieldsException();

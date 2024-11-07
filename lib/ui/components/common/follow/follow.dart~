@@ -48,7 +48,6 @@ void follow(BuildContext context) {
                   ),
                 ),
                 onPressed: () {
-                  following('ahmed');
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
