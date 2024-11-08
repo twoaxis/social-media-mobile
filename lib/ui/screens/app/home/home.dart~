@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           CustomSliverAppBar(
-            title: '',
+            title: 'Home',
             isCenter: true,
             image: 'assets/images/logo.png',
           ),

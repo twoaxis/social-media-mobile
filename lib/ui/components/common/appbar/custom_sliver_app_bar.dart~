@@ -29,20 +29,20 @@ class CustomSliverAppBar extends StatelessWidget {
               padding: const EdgeInsets.only(left: 25),
               child: Image.asset(image),
             )
-          : title == 'Following' || title == 'Followers'
-              ? IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    size: 30,
-                    Icons.arrow_back,
-                    color: Colors.black,
-                  ),
-                )
-              : null,
+          : null,
       title: Text(
-        title,
+        (title == 'Following' || title == 'Followers'
+            ? IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  size: 30,
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
+              )
+            : null) as String,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
@@ -69,6 +69,7 @@ class CustomSliverAppBar extends StatelessWidget {
               color: const Color.fromARGB(255, 151, 150, 149).withOpacity(0.05),
             ),
             child: IconButton(
+              alignment: Alignment.topLeft,
               onPressed: () {
                 Navigator.push(
                   context,

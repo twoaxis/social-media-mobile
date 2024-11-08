@@ -36,7 +36,11 @@ class _FriendPageState extends State<FriendPage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          CustomSliverAppBar(),
+          CustomSliverAppBar(
+            title: 'Friends',
+            image: '',
+            isCenter: false,
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: names.length,

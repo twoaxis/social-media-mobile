@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/user.dart';
+import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow/following_tile.dart';
-import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class FollowingPage extends StatelessWidget {
   const FollowingPage({super.key});
@@ -10,37 +9,26 @@ class FollowingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: red2,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Profile(),
+      body: CustomScrollView(
+        slivers: [
+          CustomSliverAppBar(
+            title: 'Following',
+            image: '',
+            isCenter: false,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 10,
+              (context, index) => Following(
+                user: User(
+                  username: '',
+                  name: 'Hegazy',
+                  id: 2,
+                ),
               ),
-            );
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+            ),
           ),
-        ),
-        title: Text(
-          'Following',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Following(user: User(username: '', name: 'Hegazy', id: 2),);
-        },
-        itemCount: 10,
+        ],
       ),
     );
   }

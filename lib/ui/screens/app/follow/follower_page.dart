@@ -11,7 +11,11 @@ class FollowerPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          CustomSliverAppBar(),
+          CustomSliverAppBar(
+            title: 'Followers',
+            isCenter: false,
+            image: '',
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: 10,

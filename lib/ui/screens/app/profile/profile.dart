@@ -22,7 +22,11 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          CustomSliverAppBar(),
+          CustomSliverAppBar(
+            title: 'Profile',
+            image: '',
+            isCenter: false,
+          ),
           SliverToBoxAdapter(
             child: Center(
               child: Column(
@@ -51,7 +55,7 @@ class _ProfileState extends State<Profile> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
                                 'Full name',
                                 style: TextStyle(
@@ -61,21 +65,18 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             const Padding(
-                              padding: EdgeInsets.all(10.0),
+                              padding: EdgeInsets.all(3.0),
                               child: CircleAvatar(
                                 radius: 45,
                                 backgroundImage:
                                     AssetImage('assets/images/icon-user.png'),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 7),
-                              child: Text(
-                                widget.profile?.username ?? 'username',
-                                style: TextStyle(
-                                  color: primarycolor,
-                                  fontSize: 15,
-                                ),
+                            Text(
+                              widget.profile?.username ?? 'username',
+                              style: TextStyle(
+                                color: primarycolor,
+                                fontSize: 15,
                               ),
                             ),
                             const Text(
@@ -114,7 +115,8 @@ class _ProfileState extends State<Profile> {
                                     onPressed: () {
                                       setState(() {
                                         isFollowed = !isFollowed;
-                                      });
+                                        },
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
