@@ -1,22 +1,21 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search/search.dart';
 
-List<String> appBarTitles = [
-  'Home',
-  'Profile',
-  'Friends',
-  'Notifications',
-];
 
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
     super.key,
+    required this.title,
+    this.image = 'assets/images/logo.png',
+    required this.isCenter,
   });
 
+  final String title;
+  final String image;
+  final bool isCenter;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -24,22 +23,34 @@ class CustomSliverAppBar extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       shadowColor: Colors.black,
       elevation: 3.5,
-      leadingWidth: 125,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 25),
-        child: Image.asset(
-          'assets/images/logo.png',
-        ),
-      ),
+      leadingWidth:  image.isNotEmpty ? 125 : 40,
+      automaticallyImplyLeading: false,
+      leading: image.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: Image.asset(image),
+            )
+          : title == 'Following' || title == 'Followers'
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    size: 25,
+                    Icons.arrow_back,
+                    color: Colors.black,
+                  ),
+                )
+              : null,
       title: Text(
-        appBarTitles[currentPageIndex],
+        title,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 23,
           color: secondarycolor,
         ),
       ),
-      centerTitle: true,
+      centerTitle: isCenter,
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 5),

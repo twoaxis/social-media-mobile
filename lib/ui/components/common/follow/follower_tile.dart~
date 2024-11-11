@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/user.dart';
 
-class Following extends StatelessWidget {
+bool isFollow = true;
+
+class Followers extends StatefulWidget {
   final User user;
 
-  const Following({
+  const Followers({
     super.key,
     required this.user,
   });
 
+  @override
+  State<Followers> createState() => _FollowersState();
+}
+
+class _FollowersState extends State<Followers> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +50,7 @@ class Following extends StatelessWidget {
                 vertical: 5.0,
               ),
               child: CircleAvatar(
-                radius: 35,
+                radius: 30,
                 backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
               ),
             ),
@@ -51,11 +58,40 @@ class Following extends StatelessWidget {
               width: 8,
             ),
             Text(
-              user.name,
+              widget.user.name,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 10,
+                ),
+                backgroundColor: const Color.fromARGB(255, 107, 171, 223),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: () {
+                setState(
+                  () {
+                    isFollow = !isFollow;
+                  },
+                );
+              },
+              child: Text(
+                isFollow ? 'unfollow' : 'follow',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 20,
             ),
           ],
         ),

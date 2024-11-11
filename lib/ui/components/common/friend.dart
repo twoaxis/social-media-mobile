@@ -40,9 +40,12 @@ class _FriendState extends State<Friend> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 5.0,
+            ),
             child: CircleAvatar(
-              radius: 38,
+              radius: 35,
               backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
             ),
           ),
@@ -73,7 +76,7 @@ class _FriendState extends State<Friend> {
                         ),
                         backgroundColor: secondarycolor,
                         padding: EdgeInsets.symmetric(
-                          horizontal: 25.0,
+                          horizontal: 18.0,
                           vertical: 8,
                         ),
                       ),
@@ -86,7 +89,7 @@ class _FriendState extends State<Friend> {
                         isFriendAdded ? 'Cancel Request' : 'Add Friend',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -100,7 +103,7 @@ class _FriendState extends State<Friend> {
                         ),
                         backgroundColor: Colors.grey,
                         padding: EdgeInsets.symmetric(
-                          horizontal: 25.0,
+                          horizontal: 18.0,
                           vertical: 8,
                         ),
                       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
+import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/components/common/notification/notification.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -11,7 +11,11 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          CustomSliverAppBar(),
+          CustomSliverAppBar(
+            title: 'Notifications',
+            isCenter: false,
+            image: '',
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: 10,
