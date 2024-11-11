@@ -23,7 +23,8 @@ class CustomSliverAppBar extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       shadowColor: Colors.black,
       elevation: 3.5,
-      leadingWidth: 125,
+      leadingWidth:  image.isNotEmpty ? 125 : 40,
+      automaticallyImplyLeading: false,
       leading: image.isNotEmpty
           ? Padding(
               padding: const EdgeInsets.only(left: 25),
@@ -35,7 +36,7 @@ class CustomSliverAppBar extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   icon: Icon(
-                    size: 30,
+                    size: 25,
                     Icons.arrow_back,
                     color: Colors.black,
                   ),
@@ -45,7 +46,7 @@ class CustomSliverAppBar extends StatelessWidget {
         title,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 23,
           color: secondarycolor,
         ),
       ),
