@@ -60,39 +60,10 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
           ),
           BottomNavigationBarItem(
               label: bottomNavItems[1],
-                icon: currentPageIndex == 1
-                    ? Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: const Color.fromARGB(255, 179, 44, 44),
-                              width: 1.75),
-                        ),
-                        child: CircleAvatar(
-                          radius: 18,
-                          foregroundImage: AssetImage(
-                            'assets/images/Sillycat.jpeg',
-                          ),
-                          backgroundColor:
-                              const Color.fromARGB(255, 179, 44, 44),
-                        ),
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: const Color.fromARGB(255, 111, 110, 110),
-                              width: 1.25),
-                        ),
-                        child: CircleAvatar(
-                          radius: 16,
-                          foregroundImage: AssetImage(
-                            'assets/images/Sillycat.jpeg',
-                          ),
-                          backgroundColor:
-                              const Color.fromARGB(255, 179, 44, 44),
-                        ),
-                    )),
+              icon: currentPageIndex == 1
+                  ? const Icon(Icons.person)
+                  : const Icon(Icons.person_outline),
+          ),
           BottomNavigationBarItem(
             label: bottomNavItems[2],
               icon: currentPageIndex == 2

@@ -47,7 +47,7 @@ class CustomSliverAppBar extends StatelessWidget {
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 23,
-          color: secondarycolor,
+          color: Colors.black,
         ),
       ),
       centerTitle: isCenter,
