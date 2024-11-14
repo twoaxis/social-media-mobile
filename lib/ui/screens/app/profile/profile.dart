@@ -55,17 +55,17 @@ class _ProfileState extends State<Profile> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
+                              padding: const EdgeInsets.only(top: 30.0),
                               child: Text(
                                 'Full name',
                                 style: TextStyle(
                                   color: primarycolor,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                 ),
                               ),
                             ),
                             const Padding(
-                              padding: EdgeInsets.all(3.0),
+                              padding: EdgeInsets.all(10.0),
                               child: CircleAvatar(
                                 radius: 45,
                                 backgroundImage:
@@ -73,14 +73,14 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             Text(
-                              widget.profile?.username ?? 'username',
+                              '@${widget.profile?.username ?? 'username'}',
                               style: TextStyle(
                                 color: primarycolor,
                                 fontSize: 15,
                               ),
                             ),
                             const Text(
-                              'Hello! This is our OS project.',
+                              'Hello! This is our OSS project.',
                               style: TextStyle(
                                 color: primarycolor,
                                 fontSize: 16,
@@ -125,7 +125,7 @@ class _ProfileState extends State<Profile> {
                                         ),
                                         backgroundColor: gray),
                                     child: Text(
-                                      isFollowed ? 'unfollow' : 'follow',
+                                      isFollowed ? 'Unfollow' : 'Follow',
                                       style: const TextStyle(
                                         color: primarycolor,
                                       ),
