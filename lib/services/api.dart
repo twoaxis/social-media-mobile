@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:social_media_mobile/exceptions/users/User_not_found_exception.dart';
+import 'package:social_media_mobile/exceptions/users/user_not_found_exception.dart';
 import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields_exception.dart';
 
 class Api {

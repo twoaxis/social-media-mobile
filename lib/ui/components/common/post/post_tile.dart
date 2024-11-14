@@ -40,7 +40,7 @@ class _PostTileState extends State<PostTile> {
           ),
         ],
       ),
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +58,6 @@ class _PostTileState extends State<PostTile> {
             },
             child: Row(
               children: [
-                SizedBox(width: 10),
                 CircleAvatar(
                   radius: 21,
                   backgroundColor: secondarycolor,
@@ -76,12 +75,9 @@ class _PostTileState extends State<PostTile> {
             ),
           ),
           SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              widget.post.content,
-              overflow: TextOverflow.fade,
-            ),
+          Text(
+            widget.post.content,
+            overflow: TextOverflow.fade,
           ),
           SizedBox(height: 10),
           widget.post.imageUrl.isNotEmpty
@@ -148,12 +144,7 @@ class _PostTileState extends State<PostTile> {
             color: Colors.grey.withOpacity(0.3),
             thickness: 1,
           ),
-          Row(
-            children: [
-              SizedBox(width: 16),
-              Expanded(child: CommentTile()),
-            ],
-          ),
+          CommentTile(),
         ],
       ),
     );

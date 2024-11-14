@@ -8,9 +8,8 @@ class CommentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(125, 207, 216, 220),
+        color: const Color.fromARGB(125, 225, 225, 225),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
