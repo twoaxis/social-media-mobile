@@ -22,11 +22,13 @@ class _CommentsPageState extends State<CommentsPage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListView.builder(
+              child: ListView.separated(
                 itemBuilder: (context, index) {
                   return CommentTile();
                 },
-                itemCount: 10,
+                itemCount: 10, separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(height: 10);
+                },
               ),
             ),
           ),
