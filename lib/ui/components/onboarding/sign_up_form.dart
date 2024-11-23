@@ -7,6 +7,7 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/custom_text_form_field.dart';
 import 'package:social_media_mobile/ui/components/common/misc/errorbox.dart';
+import 'package:social_media_mobile/ui/components/common/scaffold/main_scaffold.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -38,6 +39,16 @@ class _SignUpFormState extends State<SignUpForm> {
         if (state is SignUpSuccess) {
           error = state.message;
           setState(() {});
+          final navigator = Navigator.of(context);
+          Future.delayed(const Duration(seconds: 1), () {
+            if (mounted) {
+              navigator.pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const MainScaffold(),
+                ),
+              );
+            }
+          });
         }
       },
       child: Form(

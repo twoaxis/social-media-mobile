@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_mobile/cubits/log_in_cubit/log_in_cubit.dart';
@@ -27,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LogInCubit, LogInState>(
-      listener: (context, state) async {
+      listener: (context, state) {
         if (state is LogInError) {
           error = state.message;
           setState(() {});
@@ -35,9 +33,16 @@ class _LoginFormState extends State<LoginForm> {
         if (state is LogInSuccess) {
           error = state.message;
           setState(() {});
-          sleep(Duration(seconds: 3));
-          await Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => MainScaffold()));
+          final navigator = Navigator.of(context);
+          Future.delayed(const Duration(seconds: 1), () {
+            if (mounted) {
+              navigator.pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const MainScaffold(),
+                ),
+              );
+            }
+          });
         }
       },
       child: Form(
