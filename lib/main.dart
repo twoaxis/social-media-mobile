@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/ui/screens/app/home/home.dart';
 
 void main() {
-  runApp(const jioijoajogdaog());
+  runApp(const SocialMedia());
 }
 
 class SocialMedia extends StatelessWidget {
