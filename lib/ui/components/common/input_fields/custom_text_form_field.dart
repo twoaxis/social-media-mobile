@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
   final Icon icon;
@@ -8,7 +9,7 @@ class CustomTextFormField extends StatefulWidget {
   final Function(String value)? onChange;
   final String? Function(String? value)? validator;
   final AutovalidateMode? autovalidateMode;
-
+  final Function(String value)? onFieldSubmitted;
   const CustomTextFormField({
     super.key,
     required this.labelText,
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.onChange,
     this.autovalidateMode = AutovalidateMode.disabled,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -34,10 +36,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextFormField(
         onSaved: widget.onSaved,
-        onChanged: (value) {
-          if (widget.onChange != null) widget.onChange!(value);
-          Form.of(context).validate();
-        },
+        onChanged: widget.onChange,
         validator: widget.validator,
         obscureText: widget.isPassword && obscureText,
         textInputAction: widget.textInputAction,
@@ -65,6 +64,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           labelText: widget.labelText,
           prefixIcon: (widget.icon),
         ),
+        onFieldSubmitted: widget.onFieldSubmitted,
       ),
     );
   }

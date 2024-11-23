@@ -36,7 +36,7 @@ class Notificate extends StatelessWidget {
                 child: Text(
                   'New Friend Request',
                   style: TextStyle(
-                    color: secondarycolor,
+                    color: kSecondaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),

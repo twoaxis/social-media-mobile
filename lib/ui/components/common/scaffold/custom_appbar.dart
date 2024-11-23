@@ -1,65 +1,79 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search/search.dart';
 
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final int currentIndex = 0;
 
-class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({
-    super.key,
-    required this.title,
-    this.image = 'assets/images/logo.png',
-    required this.isCenter,
-  });
+  const CustomAppBar({super.key});
 
-  final String title;
-  final String image;
-  final bool isCenter;
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
+    // ignore: unused_local_variable
+    List<String> appBarTitles = [
+      'Home',
+      'Profile',
+      'Friends',
+      'Notifications',
+    ];
+    return AppBar(
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       shadowColor: Colors.black,
       elevation: 3.5,
-      leadingWidth:  image.isNotEmpty ? 125 : 40,
-      automaticallyImplyLeading: false,
-      leading: image.isNotEmpty
-          ? Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: Image.asset(image),
-            )
-          : title == 'Following' || title == 'Followers'
-              ? IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    size: 25,
-                    Icons.arrow_back,
-                    color: Colors.black,
-                  ),
-                )
-              : null,
+      leadingWidth: 125,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 25),
+        child: Image.asset(
+          'assets/images/logo.png',
+        ),
+      ),
       title: Text(
-        title,
+        appBarTitles[currentIndex],
         style: const TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: 23,
+          fontSize: 15,
           color: Colors.black,
         ),
       ),
-      centerTitle: isCenter,
+      centerTitle: true,
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 5),
           child: Container(
-            decoration: BoxDecoration(
+              decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: const Color.fromARGB(255, 151, 150, 149).withOpacity(0.05),
             ),
-            child: Search(),
+            child: IconButton(
+              onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const Search(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(1.0, 0);
+                        const end = Offset.zero;
+                        const curve = Curves.easeInOut;
+
+                        var tween = Tween(begin: begin, end: end)
+                            .chain(CurveTween(curve: curve));
+                        var offsetAnimation = animation.drive(tween);
+                        return SlideTransition(
+                          position: offsetAnimation,
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
+                iconSize: 25,
+              icon: const Icon(
+                FluentIcons.search_16_filled,
+              ),
+            ),
           ),
         ),
         Padding(
@@ -74,7 +88,7 @@ class CustomSliverAppBar extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimaiton) =>
+                    pageBuilder: (context, animation, secondaryAnimation) =>
                         const Menu(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
@@ -101,4 +115,7 @@ class CustomSliverAppBar extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -14,7 +14,7 @@ class PostFloatingButton extends StatelessWidget {
         Navigator.push(
           context,
           PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimaiton) =>
+            pageBuilder: (context, animation, secondaryAnimation) =>
                 const Posting(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
