@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/user.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
+import 'package:social_media_mobile/ui/components/common/scaffold/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow/following_tile.dart';
 
 class FollowingPage extends StatelessWidget {

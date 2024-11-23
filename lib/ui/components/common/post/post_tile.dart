@@ -46,9 +46,10 @@ class _PostTileState extends State<PostTile> {
         children: [
           GestureDetector(
             onTap: () async {
-              Map<String, dynamic> profile = await getProfile('ahmed');
+              Map<String, dynamic> profile = await getProfile('mhmaldyb510');
               log(profile.toString());
               Navigator.push(
+                  // ignore: use_build_context_synchronously
                   context,
                   MaterialPageRoute(
                     builder: (context) => Profile(
@@ -61,7 +62,7 @@ class _PostTileState extends State<PostTile> {
                 SizedBox(width: 10),
                 CircleAvatar(
                   radius: 21,
-                  backgroundColor: secondarycolor,
+                  backgroundColor: kSecondaryColor,
                   child: CircleAvatar(
                     radius: 20,
                     backgroundImage: AssetImage('assets/images/icon-user.png'),
@@ -118,7 +119,7 @@ class _PostTileState extends State<PostTile> {
                     },
                     icon: Icon(
                       Icons.favorite,
-                      color: isLiked ? secondarycolor : Colors.grey,
+                      color: isLiked ? kSecondaryColor : Colors.grey,
                     ),
                   ),
                   Text(isLiked

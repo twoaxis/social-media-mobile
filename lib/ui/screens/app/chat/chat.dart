@@ -27,9 +27,9 @@ class _ChatState extends State<Chat> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: primarycolor,
+        backgroundColor: kPrimaryColor,
       ),
-      backgroundColor: primarycolor,
+      backgroundColor: kPrimaryColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -102,7 +102,7 @@ class _ChatState extends State<Chat> {
                                 maxLines: 1,
                                 softWrap: false,
                                 style: TextStyle(
-                                  color: gray,
+                                  color: kGray,
                                 ),
                               ),
                             )
@@ -163,7 +163,7 @@ class _ChatState extends State<Chat> {
                                 maxLines: 1,
                                 softWrap: false,
                                 style: TextStyle(
-                                  color: gray,
+                                  color: kGray,
                                 ),
                               ),
                             )

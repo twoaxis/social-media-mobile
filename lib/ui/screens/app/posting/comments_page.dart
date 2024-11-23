@@ -56,7 +56,7 @@ class _CommentsPageState extends State<CommentsPage> {
                           Radius.circular(10),
                         ),
                         borderSide: BorderSide(
-                          color: secondarycolor,
+                          color: kSecondaryColor,
                         ),
                       ),
                     ),
@@ -67,7 +67,7 @@ class _CommentsPageState extends State<CommentsPage> {
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
                     padding: const EdgeInsets.all(10),
-                    backgroundColor: primarycolor,
+                    backgroundColor: kPrimaryColor,
                     elevation: 4,
                     shadowColor: Colors.grey,
                   ),
@@ -76,7 +76,7 @@ class _CommentsPageState extends State<CommentsPage> {
                   },
                   child: const Icon(
                     Icons.send,
-                    color: secondarycolor,
+                    color: kSecondaryColor,
                   ),
                 ),
               ],

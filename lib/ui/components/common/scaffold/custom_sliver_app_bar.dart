@@ -4,12 +4,11 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search/search.dart';
 
-
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
     super.key,
-    required this.title,
-    this.image = 'assets/images/logo.png',
+    this.title = '',
+    this.image = '',
     required this.isCenter,
   });
 
@@ -23,7 +22,7 @@ class CustomSliverAppBar extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       shadowColor: Colors.black,
       elevation: 3.5,
-      leadingWidth:  image.isNotEmpty ? 125 : 40,
+      leadingWidth: image.isNotEmpty ? 125 : 40,
       automaticallyImplyLeading: false,
       leading: image.isNotEmpty
           ? Padding(
@@ -47,7 +46,7 @@ class CustomSliverAppBar extends StatelessWidget {
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 23,
-          color: secondarycolor,
+          color: kSecondaryColor,
         ),
       ),
       centerTitle: isCenter,
@@ -74,7 +73,7 @@ class CustomSliverAppBar extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimaiton) =>
+                    pageBuilder: (context, animation, secondaryAnimation) =>
                         const Menu(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {

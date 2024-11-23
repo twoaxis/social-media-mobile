@@ -1,13 +1,12 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search/search.dart';
 
-class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final int currentIndex = 0;
 
-  const CustomAppbar({super.key});
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       title: Text(
-        appBarTitles[currentPageIndex],
+        appBarTitles[currentIndex],
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15,
@@ -51,7 +50,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimaiton) =>
+                      pageBuilder: (context, animation, secondaryAnimation) =>
                           const Search(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
@@ -89,7 +88,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.push(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimaiton) =>
+                    pageBuilder: (context, animation, secondaryAnimation) =>
                         const Menu(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/constants.dart';
 import 'package:social_media_mobile/models/user.dart';
-import 'package:social_media_mobile/services/api.dart';
+import 'package:social_media_mobile/helpers/api.dart';
 
 Future<List<User>> followers(String username) async {
   List<dynamic> jsonList = await Api.get(
