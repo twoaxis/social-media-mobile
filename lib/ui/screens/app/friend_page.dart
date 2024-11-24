@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/friend.dart';
-import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 
 class FriendPage extends StatefulWidget {
   const FriendPage({super.key});
@@ -33,14 +31,7 @@ class _FriendPageState extends State<FriendPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          CustomSliverAppBar(
-            title: 'Friends',
-            image: '',
-            isCenter: false,
-          ),
+    return 
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: names.length,
@@ -49,10 +40,6 @@ class _FriendPageState extends State<FriendPage> {
                 onRemove: () => removeFriend(index),
               ),
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: CustomBottomNavbar.bottomNavBar(),
-    );
+          );
   }
 }

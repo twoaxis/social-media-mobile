@@ -74,7 +74,7 @@ class _FriendState extends State<Friend> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        backgroundColor: secondarycolor,
+                        backgroundColor: kSecondaryColor,
                         padding: EdgeInsets.symmetric(
                           horizontal: 18.0,
                           vertical: 8,

@@ -42,6 +42,10 @@ dependencies:
   fluttertoast: ^8.2.1
   fluentui_system_icons: ^1.1.260
   modal_progress_hud_nsn: ^0.5.1
+  flutter_bloc: ^8.1.6
+  bloc: ^8.1.4
+  meta: ^1.15.0
+  scroll_to_hide: ^2.1.0
   
   
 
