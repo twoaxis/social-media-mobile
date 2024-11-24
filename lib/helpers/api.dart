@@ -3,7 +3,7 @@ import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/invalid_credentials_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.dart';
-import 'package:social_media_mobile/exceptions/users/User_not_found_exception.dart';
+import 'package:social_media_mobile/exceptions/users/user_not_found_exception.dart';
 import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields_exception.dart';
 
 class Api {
