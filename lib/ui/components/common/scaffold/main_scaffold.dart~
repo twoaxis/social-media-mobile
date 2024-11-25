@@ -31,7 +31,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Menu(),
+      drawer: Menu(),
       body: SafeArea(
         child: CustomScrollView(
           controller: _scrollController,
