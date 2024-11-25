@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/data/color.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
@@ -56,9 +57,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 )
               : null,
           border: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 0.5,
-            ),
+            borderSide: BorderSide(color: Color(0xFFB32C2C), width: 0.5),
             borderRadius: BorderRadius.circular(15.0),
           ),
           labelText: widget.labelText,

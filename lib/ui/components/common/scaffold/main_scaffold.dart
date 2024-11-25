@@ -2,6 +2,8 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_to_hide/scroll_to_hide.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/ui/components/common/button/post_floatingbutton.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/screens/app/friend_page.dart';
@@ -18,7 +20,7 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int _currentIndex = 0;
-  List<String> titles = ['Home', 'Profile', 'Friend', 'Notification'];
+  List<String> titles = ['Home', 'Profile', 'Friends', 'Notifications'];
   List<Widget> screens = [
     const Home(),
     const Profile(),
@@ -57,26 +59,14 @@ class _MainScaffoldState extends State<MainScaffold> {
                 : const Icon(FluentIcons.home_12_regular),
           ),
           BottomNavigationBarItem(
-            label: titles[1],
-            tooltip: titles[1],
-            icon: _currentIndex == 1
-                ? CircleAvatar(
-                    radius: 19.75,
-                    backgroundColor: kSecondaryColor,
-                    child: CircleAvatar(
-                      radius: 18,
-                      foregroundImage: const AssetImage(
-                        'assets/images/Sillycat.jpeg',
-                      ),
-                    ),
-                  )
-                : CircleAvatar(
-                    radius: 16,
-                    foregroundImage: const AssetImage(
-                      'assets/images/Sillycat.jpeg',
-                    ),
-                  ),
-          ),
+              label: titles[1],
+              tooltip: titles[1],
+              icon: _currentIndex == 1
+                  ? CircleAvatar(
+                      radius: 18.85,
+                      backgroundColor: kSecondaryColor,
+                      child: ProfileImage(17))
+                  : ProfileImage(14)),
           BottomNavigationBarItem(
             label: titles[2],
             tooltip: titles[2],
@@ -95,16 +85,10 @@ class _MainScaffoldState extends State<MainScaffold> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ScrollToHide(
-        hideDirection: Axis.vertical,
-        scrollController: _scrollController,
-        duration: const Duration(milliseconds: 400),
-        child: FloatingActionButton(
-          shape: const CircleBorder(),
-          onPressed: () {},
-          tooltip: 'Add New Post',
-          child: Icon(FluentIcons.add_12_filled),
-        ),
-      ),
+          hideDirection: Axis.vertical,
+          scrollController: _scrollController,
+          duration: const Duration(milliseconds: 400),
+          child: PostFloatingButton()),
     );
   }
 }

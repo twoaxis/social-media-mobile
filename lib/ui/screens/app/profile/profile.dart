@@ -1,7 +1,9 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
 
 class Profile extends StatefulWidget {
   final ProfileModel? profile;
@@ -37,6 +39,25 @@ class _ProfileState extends State<Profile> {
                     color: kPrimaryColor,
                     icon: const Icon(
                       Icons.more_vert,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  left: 8,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CustomizeProfile(),
+                        ),
+                      );
+                    },
+                    color: kPrimaryColor,
+                    icon: Icon(
+                      FluentIcons.edit_24_regular,
                       color: kPrimaryColor,
                     ),
                   ),

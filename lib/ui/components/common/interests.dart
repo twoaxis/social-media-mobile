@@ -42,6 +42,6 @@ final List<String> availableInterests = [
 ];
 
 final List<String> userInterests = [
-  'Photography',
+  'Gaming',
   'Coding',
 ];

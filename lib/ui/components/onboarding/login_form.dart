@@ -88,6 +88,8 @@ class _LoginFormState extends State<LoginForm> {
               },
               labelText: 'Password',
               icon: Icon(Icons.lock),
+              
+              
               textInputAction: TextInputAction.next,
               isPassword: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,

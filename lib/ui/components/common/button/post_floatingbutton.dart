@@ -38,11 +38,5 @@ class PostFloatingButton extends StatelessWidget {
         color: Color.fromARGB(255, 255, 255, 255),
       ),
     );
-
-    // !!!
-    // When using this on a BottomNavigationBar "BNB" un-comment these lines to make it be on the top center of the BNB
-
-    // floatingActionButtonLocation:
-    // FloatingActionButtonLocation.centerDocked;
   }
 }

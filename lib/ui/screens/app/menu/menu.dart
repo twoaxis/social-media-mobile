@@ -19,23 +19,6 @@ class Menu extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavbar(
-        onPageChanged: (index) {},
-        items: [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: const Icon(FluentIcons.home_12_filled),
-          ),
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: const Icon(FluentIcons.home_12_filled),
-          ),
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: const Icon(FluentIcons.home_12_filled),
-          ),
-        ],
-      ),
     );
   }
 }

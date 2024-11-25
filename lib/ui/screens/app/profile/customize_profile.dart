@@ -1,11 +1,13 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_text_button.dart';
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/profile_text_field.dart';
 import 'package:social_media_mobile/ui/components/common/interests.dart';
 import 'package:social_media_mobile/ui/components/common/misc/custom_devider.dart';
 import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
+import 'package:social_media_mobile/ui/components/common/misc/toast_message.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
 class CustomizeProfile extends StatefulWidget {
@@ -36,12 +38,12 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
         double maxheight = constraints.maxHeight;
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: kPrimaryColor,
           appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+            backgroundColor: kPrimaryColor,
             shadowColor: Colors.black,
             elevation: 2.5,
-            leadingWidth: maxWidth * 0.035,
+            leadingWidth: maxWidth * 0.1,
             title: CustomText(
               text: 'Edit Profile',
               fontSize: 20,
@@ -50,12 +52,11 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
             ),
             centerTitle: true,
             leading: Padding(
-              padding: EdgeInsets.only(left: maxWidth * 0.02),
+              padding: EdgeInsets.only(left: maxWidth * 0.01),
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color.fromARGB(255, 151, 150, 149)
-                      .withOpacity(0.05),
+                  color: kGray.withOpacity(0.05),
                 ),
                 child: IconButton(
                   onPressed: () {
@@ -87,7 +88,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                               offset: Offset(0, 1),
                             )
                           ],
-                          color: const Color.fromARGB(255, 255, 255, 255),
+                          color: kPrimaryColor,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15),
@@ -110,9 +111,8 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                               ),
                             ),
                             Center(
-                              child: ProfileImage(
-                                  radius: maxWidth * 0.15,
-                                  borderWidth: maxWidth * 0.0075),
+                              child: BoundedProfileImage(
+                                  maxWidth * 0.15, maxWidth * 0.0075),
                             ),
                             SizedBox(
                               height: maxheight * 0.0085,
@@ -157,7 +157,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                 child: Text(
                                   'This username is already taken !',
                                   style: TextStyle(
-                                    color: Color(0xFFB32C2C),
+                                    color: kSecondaryColor,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -285,8 +285,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                                                     .contains(
                                                                         interest)
                                                                 ? Colors.white
-                                                                : Color(
-                                                                    0xFFB32C2C),
+                                                                : kSecondaryColor,
                                                             elevation: 0,
                                                             backgroundColor: userInterests
                                                                     .contains(
@@ -320,13 +319,12 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                                           label: Text(
                                                             interest,
                                                             style: TextStyle(
-                                                              color: userInterests
-                                                                      .contains(
-                                                                          interest)
-                                                                  ? Colors.white
-                                                                  : Color(
-                                                                      0xFFB32C2C),
-                                                            ),
+                                                                color: userInterests
+                                                                        .contains(
+                                                                            interest)
+                                                                    ? Colors
+                                                                        .white
+                                                                    : kSecondaryColor),
                                                           ),
                                                           icon: interestsIcons[
                                                               interest],
@@ -398,7 +396,9 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                       ),
                       elevation: 1,
                       backgroundColor: const Color.fromARGB(255, 247, 247, 247),
-                      onPressed: () {},
+                      onPressed: () {
+                        toastMessage('Changes Saved Successfully');
+                      },
                       child: CustomText(
                         text: 'Save Changes',
                         fontSize: 16,

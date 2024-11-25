@@ -93,7 +93,7 @@ class CustomSliverAppBar extends StatelessWidget {
                 );
               },
               iconSize: 25,
-              icon: const Icon(FluentIcons.navigation_24_filled),
+              icon: const Icon(FluentIcons.navigation_16_filled),
             ),
           ),
         ),

@@ -3,8 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 
 class ProfileImage extends StatelessWidget {
-  const ProfileImage(
-      {super.key, required this.radius, required this.borderWidth});
+  const ProfileImage(this.radius, {super.key});
+  final double radius;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+       
+      ),
+      child: ValueListenableBuilder<File?>(
+        valueListenable: selectedImage,
+        builder: (context, File? imageFile, child) {
+          return CircleAvatar(
+            radius: radius,
+            foregroundImage: imageFile != null
+                ? FileImage(imageFile) as ImageProvider
+                : const AssetImage('assets/images/icon-user.png'),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class BoundedProfileImage extends StatelessWidget {
+  const BoundedProfileImage(this.radius, this.borderWidth, {super.key});
+
   final double radius;
   final double borderWidth;
 
@@ -17,24 +43,7 @@ class ProfileImage extends StatelessWidget {
             color: const Color.fromARGB(255, 111, 110, 110),
             width: borderWidth),
       ),
-      child: ValueListenableBuilder<File?>(
-        valueListenable: selectedImage,
-        builder: (context, File? imageFile, child) {
-          return CircleAvatar(
-            radius: radius,
-            foregroundImage: imageFile != null
-                ? FileImage(imageFile) as ImageProvider
-                : const AssetImage('assets/images/Sillycat.jpeg'),
-          );
-        },
-      ),
+      child: ProfileImage(radius),
     );
-
-    // CircleAvatar(
-    //   radius: radius,
-    //   foregroundImage:
-    //  AssetImage(
-    //   'assets/images/Sillycat.jpeg',
-    // ),
   }
 }
