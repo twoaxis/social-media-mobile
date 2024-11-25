@@ -18,7 +18,6 @@ Future<void> logOut() async {
         },
       ),
     );
-    await prefs.remove('authToken');
   } on DioException catch (e) {
     if (e.response?.statusCode == 401) {
       throw UnauthorizedException();
