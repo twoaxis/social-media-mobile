@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
 
 class Profile extends StatefulWidget {
@@ -77,11 +78,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       const Padding(
                         padding: EdgeInsets.all(3.0),
-                        child: CircleAvatar(
-                          radius: 45,
-                          backgroundImage:
-                              AssetImage('assets/images/icon-user.png'),
-                        ),
+                        child: ProfileImage(45),
                       ),
                       Text(
                         widget.profile?.username ?? 'username',

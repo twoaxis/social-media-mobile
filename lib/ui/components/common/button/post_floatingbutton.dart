@@ -1,6 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/components/common/posting.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/posting.dart';
 
 class PostFloatingButton extends StatelessWidget {
   const PostFloatingButton({super.key});
@@ -15,7 +15,7 @@ class PostFloatingButton extends StatelessWidget {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                const Posting(),
+                const PostingPage(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               const begin = Offset(0.0, 1.0);
