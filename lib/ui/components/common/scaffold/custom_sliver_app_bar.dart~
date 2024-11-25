@@ -90,7 +90,7 @@ class CustomSliverAppBar extends StatelessWidget {
                 //     },
                 //   ),
                 // );
-                Scaffold.of(context).openEndDrawer();
+                Scaffold.of(context).openDrawer();
               },
               iconSize: 25,
               icon: const Icon(FluentIcons.navigation_24_filled),
