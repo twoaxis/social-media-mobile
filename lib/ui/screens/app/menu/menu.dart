@@ -39,11 +39,11 @@ class Menu extends StatelessWidget {
                 ),
               ),
               onTap: () async {
+                var navigator = Navigator.of(context);
                 await logOut();
-                Navigator.pushReplacement(
-                  context,
+                navigator.pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => LoginPage(),
+                    builder: (context) => const LoginPage(),
                   ),
                 );
               },
