@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileTextField extends StatelessWidget {
-  ProfileTextField(
+  ProfileTextField(this.textAlign,
       {super.key,
       this.title,
       this.icon,
@@ -10,17 +10,22 @@ class ProfileTextField extends StatelessWidget {
       required this.color,
       this.fontWeight,
       this.hintText,
-      this.width});
+      this.width,
+      this.controller,
+      this.fillColor,
+      this.textDirection});
   final String? title;
   final String? hintText;
   final double? width;
   final Icon? icon;
   final int? maxLines;
   final Color color;
+  final Color? fillColor;
   final double? fontSize;
   final FontWeight? fontWeight;
-
-  final TextEditingController _profileTextController = TextEditingController();
+  final TextAlign textAlign;
+  final TextDirection? textDirection;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +34,12 @@ class ProfileTextField extends StatelessWidget {
         return SizedBox(
           width: width ?? constraints.maxWidth * 0.7,
           child: TextFormField(
+            controller: controller,
             textInputAction: TextInputAction.done,
             maxLines: maxLines,
+            textAlign: textAlign,
+            textDirection: textDirection,
             keyboardType: TextInputType.multiline,
-            textAlign: TextAlign.justify,
             cursorColor: const Color.fromARGB(255, 107, 98, 98),
             initialValue: title,
             style: TextStyle(
@@ -46,7 +53,7 @@ class ProfileTextField extends StatelessWidget {
               icon: icon,
               iconColor: const Color.fromARGB(255, 107, 98, 98),
               filled: true,
-              fillColor: const Color.fromARGB(255, 247, 247, 247),
+              fillColor: fillColor ?? const Color.fromARGB(255, 247, 247, 247),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: BorderSide(

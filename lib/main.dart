@@ -16,7 +16,6 @@ class SocialMedia extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: LoginPage(),
       home: PostingPage(),
-
       theme: ThemeData(
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: Color.fromARGB(53, 179, 44, 44),

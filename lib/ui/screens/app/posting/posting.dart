@@ -1,17 +1,77 @@
 import 'dart:io';
-
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/ui/components/common/button/custom_text_button.dart';
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/profile_text_field.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/simple_appbar.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
-import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
-class PostingPage extends StatelessWidget {
+class PostingPage extends StatefulWidget {
   const PostingPage({super.key});
+
+  @override
+  State<PostingPage> createState() => _PostingPageState();
+}
+
+class _PostingPageState extends State<PostingPage> {
+  final TextEditingController _descriptionController = TextEditingController();
+  bool isTextFieldNotEmpty = false;
+  File? _imageFile;
+
+  TextDirection _textDirection = TextDirection.ltr;
+  TextAlign _textAlign = TextAlign.left;
+
+  bool isButtonEnabled() {
+    if (isTextFieldNotEmpty || _imageFile != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selectedImage.addListener(() {
+      setState(() {
+        _imageFile = selectedImage.value;
+      });
+    });
+    _descriptionController.addListener(() {
+      setState(() {
+        isTextFieldNotEmpty = _descriptionController.text.isNotEmpty;
+        _updateTextDirection();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    selectedImage.removeListener(() {});
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  void _updateTextDirection() {
+    final text = _descriptionController.text;
+
+    if (text.isNotEmpty) {
+      final firstChar = text.characters.first;
+      final isArabic = RegExp(r'^[\u0600-\u06FF]').hasMatch(firstChar);
+
+      setState(() {
+        _textDirection = isArabic ? TextDirection.rtl : TextDirection.ltr;
+        _textAlign = isArabic ? TextAlign.right : TextAlign.left;
+      });
+    } else {
+      setState(() {
+        _textDirection = TextDirection.ltr;
+        _textAlign = TextAlign.left;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +84,15 @@ class PostingPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: maxWidth * 0.02),
             child: ElevatedButton(
-              onPressed: () {},
               style: ElevatedButton.styleFrom(
-                  backgroundColor: kSecondaryColor,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
+                backgroundColor: kSecondaryColor,
+                overlayColor: kSecondaryColor,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: isButtonEnabled() ? () {} : null,
               child: Text(
                 'Post',
                 style: TextStyle(color: kPrimaryColor),
@@ -74,25 +137,40 @@ class PostingPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                         child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: imageFile == null
-                                ? [
-                                    Icon(
-                                      FluentIcons.add_16_filled,
-                                      color: Colors.white,
-                                      size: 45,
-                                    ),
-                                    CustomText(
-                                      text: 'Add Photos',
-                                      colorName: 'white',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ]
-                                : [],
-                          ),
-                        ),
+                            child: imageFile == null
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                        Icon(
+                                          FluentIcons.add_16_filled,
+                                          color: Colors.white,
+                                          size: 45,
+                                        ),
+                                        CustomText(
+                                          text: 'Add Photos',
+                                          colorName: 'white',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ])
+                                : Stack(
+                                    children: [
+                                      Positioned(
+                                        bottom: maxHeight * 0.005,
+                                        right: maxWidth * 0.035,
+                                        child: CustomTextButton(
+                                          text: 'Remove',
+                                          colorName: 'white',
+                                          function: () {
+                                            setState(() {
+                                              selectedImage.value = null;
+                                              _imageFile = null;
+                                            });
+                                          },
+                                        ),
+                                      )
+                                    ],
+                                  )),
                       );
                     }),
                 onTap: () {
@@ -107,7 +185,7 @@ class PostingPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: CustomText(
                   text: 'Description',
-                  colorName: 'black',
+                  colorName: 'grey',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -118,9 +196,13 @@ class PostingPage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: ProfileTextField(
+                  controller: _descriptionController,
+                  _textAlign,
+                  textDirection: _textDirection,
                   width: maxWidth * 0.9,
                   hintText: 'Share Your Thoughts.',
                   color: Colors.black,
+                  fillColor: const Color.fromARGB(0, 255, 255, 255),
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
                 ),
