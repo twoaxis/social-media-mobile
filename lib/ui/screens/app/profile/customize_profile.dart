@@ -40,13 +40,11 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kPrimaryColor,
-      appBar: SimpleAppbar(),
+      appBar: SimpleAppbar(
+        title: 'Edit Profile',
+      ),
       body: Stack(
         children: [
-          //  Padding(
-          // padding: EdgeInsets.only(
-          //     left: maxWidth * 0.01, right: maxWidth * 0.01, bottom: 10),
-          // child:
           SingleChildScrollView(
             child: Center(
               child: Column(
@@ -117,6 +115,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.025,
                         ),
                         ProfileTextField(
+                          color: kSecondaryColor,
                           title: 'BiiiiiM',
                           icon: Icon(FluentIcons.mention_24_filled),
                           maxLines: 1,
@@ -152,6 +151,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.025,
                         ),
                         ProfileTextField(
+                          color: kSecondaryColor,
                           title: 'Ibrahim Abdulqader',
                           icon: Icon(FluentIcons.person_20_filled),
                           maxLines: 1,
@@ -177,6 +177,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.01,
                         ),
                         ProfileTextField(
+                          color: kSecondaryColor,
                           maxLines: null,
                           title:
                               'Fonts shape how we perceive words. A bold, clean font may feel modern, while a classic serif adds warmth. Testing font styles side-by-side reveals the subtle impact each choice has on readability and tone',

@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 
 class ProfileTextField extends StatelessWidget {
-  const ProfileTextField(
-      {super.key, required this.title, required this.icon, this.maxLines});
-  final String title;
-  final Icon icon;
+  ProfileTextField(
+      {super.key,
+      this.title,
+      this.icon,
+      this.maxLines,
+      this.fontSize,
+      required this.color,
+      this.fontWeight,
+      this.hintText,
+      this.width});
+  final String? title;
+  final String? hintText;
+  final double? width;
+  final Icon? icon;
   final int? maxLines;
+  final Color color;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+
+  final TextEditingController _profileTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return SizedBox(
-          width: constraints.maxWidth * 0.7,
+          width: width ?? constraints.maxWidth * 0.7,
           child: TextFormField(
             textInputAction: TextInputAction.done,
             maxLines: maxLines,
@@ -21,20 +36,17 @@ class ProfileTextField extends StatelessWidget {
             cursorColor: const Color.fromARGB(255, 107, 98, 98),
             initialValue: title,
             style: TextStyle(
-                color: Color(0xFFB32C2C),
-                fontSize: 14,
-                fontWeight: FontWeight.w500),
+                color: color,
+                fontSize: fontSize ?? 14,
+                fontWeight: fontWeight ?? FontWeight.w500),
             decoration: InputDecoration(
+              hintText: hintText,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: constraints.maxWidth * 0.01),
               icon: icon,
               iconColor: const Color.fromARGB(255, 107, 98, 98),
               filled: true,
               fillColor: const Color.fromARGB(255, 247, 247, 247),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(color: Color(0xFFB32C2C), width: 2),
-              ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: BorderSide(

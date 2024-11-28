@@ -4,7 +4,9 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
 class SimpleAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const SimpleAppbar({super.key});
+  SimpleAppbar({required this.title, this.actions, super.key});
+  String title;
+  List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,9 @@ class SimpleAppbar extends StatelessWidget implements PreferredSizeWidget {
       shadowColor: Colors.black,
       elevation: 2.5,
       leadingWidth: maxWidth * 0.1,
+      actions: actions,
       title: CustomText(
-        text: 'Edit Profile',
+        text: title,
         fontSize: 20,
         fontWeight: FontWeight.bold,
         colorName: 'red',

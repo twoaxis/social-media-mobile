@@ -17,6 +17,8 @@ class CustomText extends StatelessWidget {
     Map<String, Color> textColor = {
       "red": const Color(0xFFB32C2C),
       "grey": const Color.fromARGB(255, 111, 110, 110),
+      "white": Colors.white,
+      "black": Colors.black
     };
     return Text(
       softWrap: true,
