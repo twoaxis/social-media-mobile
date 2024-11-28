@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/invalid_credentials_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
@@ -9,6 +12,8 @@ import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields
 class Api {
   //get-----------------------------------------------
   static Future<dynamic> get(String url) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('authToken');
     Dio dio = Dio();
     try {
       var response = await dio.get(
@@ -16,11 +21,15 @@ class Api {
         options: Options(
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token'
           },
         ),
       );
       return response.data;
     } on DioException catch (e) {
+      log(e.response.toString());
+      log(e.response!.data.toString());
+      log(e.response!.statusCode.toString());
       if (e.response?.statusCode == 400) {
         throw MissingOrIncorrectFieldsException();
       }
@@ -32,7 +41,8 @@ class Api {
   }
 
   //post-----------------------------------------------
-  static Future<Map<String, dynamic>> post({required String url,required Object data}) async {
+  static Future<Map<String, dynamic>> post(
+      {required String url, required Object data}) async {
     Dio dio = Dio();
     try {
       Response response = await dio.post(
@@ -67,4 +77,3 @@ class Api {
     return {};
   }
 }
-
