@@ -22,7 +22,6 @@ class Home extends StatelessWidget {
             createdAt: DateTime.now(),
             commentCount: 10,
             likeCount: 10,
-            userName: 'ahmed',
             content: 'Hello World',
           ),
         ),

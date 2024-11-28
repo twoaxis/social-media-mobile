@@ -6,13 +6,13 @@ import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
+import 'package:social_media_mobile/ui/components/common/scaffold/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/comments_page.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/full_screen_image.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class PostTile extends StatefulWidget {
   final Post post;
-
   const PostTile({
     super.key,
     required this.post,
@@ -46,14 +46,26 @@ class _PostTileState extends State<PostTile> {
         children: [
           GestureDetector(
             onTap: () async {
-              Map<String, dynamic> profile = await getProfile('mhmaldyb510');
+              Map<String, dynamic>? profile = await getProfile('mhmaldyb510');
               log(profile.toString());
               Navigator.push(
                   // ignore: use_build_context_synchronously
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Profile(
-                      profile: ProfileModel.fromJson(profile),
+                    builder: (context) => Scaffold(
+                      body: Scaffold(
+                        body: CustomScrollView(
+                          slivers: [
+                            CustomSliverAppBar(
+                              title: 'Profile',
+                              isCenter: false,
+                            ),
+                            Profile(
+                              profile: ProfileModel.fromJson(profile),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ));
             },
@@ -69,7 +81,7 @@ class _PostTileState extends State<PostTile> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  widget.post.userName,
+                  widget.post.author.name,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
