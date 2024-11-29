@@ -1,6 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/screens/app/posting/posting.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/posting_page.dart';
 
 class PostFloatingButton extends StatelessWidget {
   const PostFloatingButton({super.key});

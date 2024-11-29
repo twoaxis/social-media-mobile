@@ -78,6 +78,7 @@ class _PostingPageState extends State<PostingPage> {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: SimpleAppbar(
         title: 'Create a Post',
         actions: [
@@ -101,12 +102,12 @@ class _PostingPageState extends State<PostingPage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: maxHeight,
-          child: Stack(
-            children: [
-              Column(
+      body: SizedBox(
+        height: maxHeight * 0.9,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
                 children: [
                   SizedBox(
                     height: maxHeight * 0.025,
@@ -190,8 +191,10 @@ class _PostingPageState extends State<PostingPage> {
                   )
                 ],
               ),
-              Align(
-                alignment: Alignment(0.0, 0.65),
+            ),
+            Align(
+              alignment: Alignment(0.0, 0.85),
+              child: SizedBox(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kSecondaryColor,
@@ -210,8 +213,8 @@ class _PostingPageState extends State<PostingPage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

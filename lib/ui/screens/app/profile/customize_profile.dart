@@ -347,7 +347,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
               ),
             ),
           ),
-          //   ),
+       
           Padding(
             padding: EdgeInsets.only(bottom: maxHeight * 0.08),
             child: Align(

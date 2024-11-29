@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/ui/screens/app/posting/posting.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/posting_page.dart';
 
 void main() {
   runApp(const SocialMedia());
