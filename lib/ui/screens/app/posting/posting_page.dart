@@ -5,6 +5,7 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_text_button.dart';
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/profile_text_field.dart';
+import 'package:social_media_mobile/ui/components/common/misc/custom_devider.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/simple_appbar.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
@@ -41,7 +42,7 @@ class _PostingPageState extends State<PostingPage> {
     });
     _descriptionController.addListener(() {
       setState(() {
-        isTextFieldNotEmpty = _descriptionController.text.isNotEmpty;
+        isTextFieldNotEmpty = _descriptionController.text.trim().isNotEmpty;
         _updateTextDirection();
       });
     });
@@ -90,7 +91,7 @@ class _PostingPageState extends State<PostingPage> {
                 overlayColor: kSecondaryColor,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
               onPressed: isButtonEnabled() ? () {} : null,
@@ -187,29 +188,70 @@ class _PostingPageState extends State<PostingPage> {
                     ),
                   ),
                   SizedBox(
-                    height: maxHeight * 0.1,
+                    height: maxHeight * 0.15,
                   )
                 ],
               ),
             ),
             Align(
-              alignment: Alignment(0.0, 0.85),
+              alignment: Alignment(0.0, 1),
               child: SizedBox(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kSecondaryColor,
-                    overlayColor: kSecondaryColor,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                child: Container(
+                  height: maxHeight * 0.145,
+                  width: maxWidth,
+                  decoration: BoxDecoration(
+                    border: Border(top: BorderSide(color: kGray, width: .85)),
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                   ),
-                  onPressed: () {
-                    pickImage();
-                  },
-                  child: Text(
-                    _imageFile == null ? 'Add a Photo' : 'Change Photo',
-                    style: TextStyle(color: kPrimaryColor),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: maxHeight * 0.01,
+                      ),
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                            overlayColor: kSecondaryColor,
+                            fixedSize: Size(maxWidth * 0.75, 0)),
+                        onPressed: () {
+                          pickImage();
+                        },
+                        label: Text(
+                          _imageFile == null ? 'Add a Photo' : 'Change Photo',
+                          style: TextStyle(
+                            color: kSecondaryColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                        icon: Icon(
+                          _imageFile == null
+                              ? FluentIcons.image_add_20_filled
+                              : FluentIcons
+                                  .image_arrow_counterclockwise_20_filled,
+                          size: 28,
+                          color: kSecondaryColor,
+                        ),
+                      ),
+                      CustomDevider(),
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                            overlayColor: kSecondaryColor,
+                            fixedSize: Size(maxWidth * 0.75, 10)),
+                        onPressed: () {},
+                        label: Text(
+                          'Tag People',
+                          style: TextStyle(
+                            color: kSecondaryColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                        icon: Icon(
+                          FluentIcons.tag_20_filled,
+                          size: 26,
+                          color: kSecondaryColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
