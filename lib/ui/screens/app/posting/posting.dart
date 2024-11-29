@@ -79,7 +79,7 @@ class _PostingPageState extends State<PostingPage> {
     double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: SimpleAppbar(
-        title: 'Posting',
+        title: 'Create a Post',
         actions: [
           Padding(
             padding: EdgeInsets.only(right: maxWidth * 0.02),
@@ -102,116 +102,116 @@ class _PostingPageState extends State<PostingPage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: maxWidth * 0.05, vertical: maxHeight * 0.025),
-              child: GestureDetector(
-                child: ValueListenableBuilder<File?>(
-                    valueListenable: selectedImage,
-                    builder: (context, File? imageFile, child) {
-                      return Container(
+        child: SizedBox(
+          height: maxHeight,
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: maxHeight * 0.025,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: maxWidth * 0.05),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: ProfileTextField(
+                        controller: _descriptionController,
+                        textInputAction: TextInputAction.newline,
+                        _textAlign,
+                        textDirection: _textDirection,
                         width: maxWidth * 0.9,
-                        height: maxHeight * 0.25,
-                        decoration: imageFile == null
-                            ? BoxDecoration(
-                                border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 146, 146, 146),
-                                  width: 2,
-                                ),
-                                color: kSecondaryColor,
-                                borderRadius: BorderRadius.circular(8),
-                              )
-                            : BoxDecoration(
-                                border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 146, 146, 146),
-                                  width: 2,
-                                ),
-                                image: DecorationImage(
-                                  image: FileImage(imageFile) as ImageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                        child: Center(
-                            child: imageFile == null
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                        Icon(
-                                          FluentIcons.add_16_filled,
-                                          color: Colors.white,
-                                          size: 45,
-                                        ),
-                                        CustomText(
-                                          text: 'Add Photos',
-                                          colorName: 'white',
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ])
-                                : Stack(
-                                    children: [
-                                      Positioned(
-                                        bottom: maxHeight * 0.005,
-                                        right: maxWidth * 0.035,
-                                        child: CustomTextButton(
-                                          text: 'Remove',
-                                          colorName: 'white',
-                                          function: () {
-                                            setState(() {
-                                              selectedImage.value = null;
-                                              _imageFile = null;
-                                            });
-                                          },
-                                        ),
-                                      )
-                                    ],
-                                  )),
-                      );
-                    }),
-                onTap: () {
-                  pickImage();
-                },
+                        hintText: 'Share Your Thoughts.',
+                        color: Colors.black,
+                        fillColor: const Color.fromARGB(0, 255, 255, 255),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: maxWidth * 0.05,
+                        vertical: maxHeight * 0.025),
+                    child: GestureDetector(
+                      child: ValueListenableBuilder<File?>(
+                        valueListenable: selectedImage,
+                        builder: (context, File? imageFile, child) {
+                          return imageFile == null
+                              ? Container()
+                              : Container(
+                                  width: maxWidth * 0.9,
+                                  height: maxHeight * 0.25,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: const Color.fromARGB(
+                                          255, 146, 146, 146),
+                                      width: 2,
+                                    ),
+                                    image: DecorationImage(
+                                      image:
+                                          FileImage(imageFile) as ImageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                          top: maxHeight * 0.005,
+                                          right: maxWidth * 0.02,
+                                          child: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                selectedImage.value = null;
+                                                _imageFile = null;
+                                              });
+                                            },
+                                            icon: Icon(
+                                              FluentIcons.dismiss_16_filled,
+                                              color: kGray,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                        },
+                      ),
+                      onTap: () {
+                        pickImage();
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: maxHeight * 0.1,
+                  )
+                ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: maxWidth * 0.05, bottom: maxHeight * 0.02),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: CustomText(
-                  text: 'Description',
-                  colorName: 'grey',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Align(
+                alignment: Alignment(0.0, 0.65),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kSecondaryColor,
+                    overlayColor: kSecondaryColor,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () {
+                    pickImage();
+                  },
+                  child: Text(
+                    _imageFile == null ? 'Add a Photo' : 'Change Photo',
+                    style: TextStyle(color: kPrimaryColor),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: maxWidth * 0.05),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: ProfileTextField(
-                  controller: _descriptionController,
-                  _textAlign,
-                  textDirection: _textDirection,
-                  width: maxWidth * 0.9,
-                  hintText: 'Share Your Thoughts.',
-                  color: Colors.black,
-                  fillColor: const Color.fromARGB(0, 255, 255, 255),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: maxHeight * 0.1,
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

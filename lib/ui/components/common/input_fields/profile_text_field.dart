@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileTextField extends StatelessWidget {
-  ProfileTextField(this.textAlign,
+  const ProfileTextField(this.textAlign,
       {super.key,
       this.title,
       this.icon,
@@ -13,7 +13,8 @@ class ProfileTextField extends StatelessWidget {
       this.width,
       this.controller,
       this.fillColor,
-      this.textDirection});
+      this.textDirection,
+      this.textInputAction});
   final String? title;
   final String? hintText;
   final double? width;
@@ -26,6 +27,7 @@ class ProfileTextField extends StatelessWidget {
   final TextAlign textAlign;
   final TextDirection? textDirection;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class ProfileTextField extends StatelessWidget {
           width: width ?? constraints.maxWidth * 0.7,
           child: TextFormField(
             controller: controller,
-            textInputAction: TextInputAction.done,
+            textInputAction: textInputAction ?? TextInputAction.done,
             maxLines: maxLines,
             textAlign: textAlign,
             textDirection: textDirection,

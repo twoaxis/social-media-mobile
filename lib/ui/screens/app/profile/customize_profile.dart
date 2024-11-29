@@ -8,7 +8,6 @@ import 'package:social_media_mobile/ui/components/common/interests.dart';
 import 'package:social_media_mobile/ui/components/common/misc/custom_devider.dart';
 import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/components/common/misc/toast_message.dart';
-import 'package:social_media_mobile/ui/components/common/scaffold/custom_appbar.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/simple_appbar.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
@@ -115,6 +114,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.025,
                         ),
                         ProfileTextField(
+                          TextAlign.left,
                           color: kSecondaryColor,
                           title: 'BiiiiiM',
                           icon: Icon(FluentIcons.mention_24_filled),
@@ -151,6 +151,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.025,
                         ),
                         ProfileTextField(
+                          TextAlign.left,
                           color: kSecondaryColor,
                           title: 'Ibrahim Abdulqader',
                           icon: Icon(FluentIcons.person_20_filled),
@@ -177,6 +178,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.01,
                         ),
                         ProfileTextField(
+                          TextAlign.left,
                           color: kSecondaryColor,
                           maxLines: null,
                           title:
