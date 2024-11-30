@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/main_scaffold.dart';
+
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 
 void main() {
   runApp(const SocialMedia());
 }
 
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 class SocialMedia extends StatelessWidget {
   const SocialMedia({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      
       home: SplashScreen(),
     );
   }

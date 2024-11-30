@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/user.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 
 class Following extends StatelessWidget {
   final User user;
@@ -42,10 +43,7 @@ class Following extends StatelessWidget {
                 horizontal: 8.0,
                 vertical: 5.0,
               ),
-              child: CircleAvatar(
-                radius: 35,
-                backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
-              ),
+              child: ProfileImage(35),
             ),
             SizedBox(
               width: 8,

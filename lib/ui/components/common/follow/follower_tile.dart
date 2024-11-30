@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/user.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 
 bool isFollow = true;
 
@@ -49,10 +51,7 @@ class _FollowersState extends State<Followers> {
                 horizontal: 8.0,
                 vertical: 5.0,
               ),
-              child: CircleAvatar(
-                radius: 35,
-                backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
-              ),
+              child: ProfileImage(35),
             ),
             SizedBox(
               width: 8,
@@ -71,7 +70,7 @@ class _FollowersState extends State<Followers> {
                   horizontal: 25,
                   vertical: 10,
                 ),
-                backgroundColor: const Color.fromARGB(255, 107, 171, 223),
+                backgroundColor: kSecondaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
