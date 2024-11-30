@@ -2,7 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_to_hide/scroll_to_hide.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/button/post_floatingbutton.dart';
+import 'package:social_media_mobile/ui/components/common/button/post_floating_button.dart';
 import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/custom_sliver_app_bar.dart';

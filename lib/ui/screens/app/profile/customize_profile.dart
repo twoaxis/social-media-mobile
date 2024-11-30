@@ -5,10 +5,9 @@ import 'package:social_media_mobile/ui/components/common/button/custom_text_butt
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/profile_text_field.dart';
 import 'package:social_media_mobile/ui/components/common/interests.dart';
-import 'package:social_media_mobile/ui/components/common/misc/custom_devider.dart';
+import 'package:social_media_mobile/ui/components/common/misc/custom_divider.dart';
 import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/components/common/misc/toast_message.dart';
-import 'package:social_media_mobile/ui/components/common/scaffold/custom_appbar.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/simple_appbar.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
@@ -99,7 +98,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                             },
                           ),
                         ),
-                        CustomDevider(),
+                        CustomDivider(),
                         Padding(
                           padding: EdgeInsets.only(
                               left: maxWidth * 0.035, top: maxHeight * 0.01),
@@ -159,7 +158,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         SizedBox(
                           height: maxHeight * 0.02,
                         ),
-                        CustomDevider(),
+                        CustomDivider(),
                         Padding(
                           padding: EdgeInsets.only(
                               left: maxWidth * 0.035, top: maxHeight * 0.01),
@@ -185,7 +184,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         SizedBox(
                           height: maxHeight * 0.025,
                         ),
-                        CustomDevider(),
+                        CustomDivider(),
                         Row(
                           children: [
                             Padding(

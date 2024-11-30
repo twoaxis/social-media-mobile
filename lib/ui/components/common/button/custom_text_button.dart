@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
 class CustomTextButton extends StatelessWidget {
-  CustomTextButton(
+  const CustomTextButton(
       {super.key, this.function, required this.text, required this.colorName});
   final String text;
   final String colorName;
-  VoidCallback? function;
+  final VoidCallback? function;
 
   @override
   Widget build(BuildContext context) {

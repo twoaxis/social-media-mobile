@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/ui/components/common/scaffold/main_scaffold.dart';
 
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
-import 'package:social_media_mobile/ui/screens/onboarding/sign_up_page.dart';
 
 void main() {
   runApp(const SocialMedia());

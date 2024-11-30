@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/data/color.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
