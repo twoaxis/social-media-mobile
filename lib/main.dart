@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/models/post.dart';
-import 'package:social_media_mobile/ui/screens/app/home/home.dart';
-import 'package:social_media_mobile/ui/screens/app/posting/posting.dart';
-import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
-import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:social_media_mobile/ui/components/common/scaffold/main_scaffold.dart';
+
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/sign_up_page.dart';
 
@@ -20,13 +19,56 @@ class SocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-      //home: CustomizeProfile(),
-      //home: CustomScrollView(slivers: [Profile()],),
-      theme: ThemeData(
-        textSelectionTheme: TextSelectionThemeData(
-          selectionColor: Color.fromARGB(53, 179, 44, 44),
-          selectionHandleColor: Color(0xFFB32C2C),
+      
+      home: SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+    var navigator = Navigator.of(context);
+    prefs.then(
+      (value) {
+        if (value.getString('authToken') != null &&
+            value.getString('authToken') != '') {
+          navigator.pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const MainScaffold(),
+            ),
+          );
+        } else {
+          navigator.pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+          );
+        }
+      },
+    );
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            CircularProgressIndicator(),
+            Text('Loading...'),
+          ],
         ),
       ),
     );

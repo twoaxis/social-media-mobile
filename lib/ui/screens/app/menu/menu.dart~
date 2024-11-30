@@ -11,7 +11,7 @@ class Menu extends StatelessWidget {
     return SafeArea(
       child: Drawer(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-        width: 250,
+        width: 200,
         child: ListView(
           children: [
             DrawerHeader(
@@ -39,11 +39,11 @@ class Menu extends StatelessWidget {
                 ),
               ),
               onTap: () async {
-                var navigator = Navigator.of(context);
                 await logOut();
-                navigator.pushReplacement(
+                Navigator.pushReplacement(
+                  context,
                   MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
+                    builder: (context) => LoginPage(),
                   ),
                 );
               },

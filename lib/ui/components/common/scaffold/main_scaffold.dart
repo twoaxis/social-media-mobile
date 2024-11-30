@@ -8,6 +8,7 @@ import 'package:social_media_mobile/ui/components/common/scaffold/custom_bottom_
 import 'package:social_media_mobile/ui/components/common/scaffold/custom_sliver_app_bar.dart';
 import 'package:social_media_mobile/ui/screens/app/friend_page.dart';
 import 'package:social_media_mobile/ui/screens/app/home/home.dart';
+import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/notification/notification_page.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
@@ -28,10 +29,11 @@ class _MainScaffoldState extends State<MainScaffold> {
     const NotificationPage(),
   ];
   final ScrollController _scrollController = ScrollController();
-  @override
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: Menu(),
       body: SafeArea(
         child: CustomScrollView(
           controller: _scrollController,

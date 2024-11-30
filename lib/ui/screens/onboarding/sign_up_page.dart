@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:social_media_mobile/cubits/sing_up_cubit/sign_up_cubit.dart';
+import 'package:social_media_mobile/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
 import 'package:social_media_mobile/ui/components/onboarding/sign_up_form.dart';
