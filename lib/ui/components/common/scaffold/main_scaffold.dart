@@ -36,6 +36,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       endDrawer: Menu(),
       body: SafeArea(
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           controller: _scrollController,
           slivers: [
             CustomSliverAppBar(
