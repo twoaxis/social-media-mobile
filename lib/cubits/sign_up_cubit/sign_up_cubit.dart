@@ -1,7 +1,5 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.dart';
@@ -20,14 +18,12 @@ class SignUpCubit extends Cubit<SignUpState> {
   }) async {
     try {
       emit(SignUpLoading());
-      String token = await AuthService.signUp(
+      String sessionId = await AuthService.signUp(
         name: name,
         username: username,
         email: email,
         password: password,
       );
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('authToken', token);
       emit(SignUpSuccess(message: 'Successfully signed up.'));
     } on NameNotEnglishException {
       emit(SignUpError(message: 'Name must be in English.'));

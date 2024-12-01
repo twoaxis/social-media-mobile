@@ -18,3 +18,9 @@ final class LogInError extends LogInState {
 
   LogInError({required this.message});
 }
+
+final class LogInEmailVerification extends LogInState {
+  final String sessionId;
+
+  LogInEmailVerification({required this.sessionId});
+}
