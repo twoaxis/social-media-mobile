@@ -10,7 +10,9 @@ class Menu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
         width: 250,
         child: ListView(
           children: [

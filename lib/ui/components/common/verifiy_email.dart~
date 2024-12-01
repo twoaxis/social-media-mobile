@@ -1,0 +1,167 @@
+import 'package:flutter/material.dart';
+import 'package:social_media_mobile/data/color.dart';
+
+class EmailVerificationScreen extends StatelessWidget {
+  const EmailVerificationScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 180,
+          ),
+          constraints: BoxConstraints(
+            minHeight: 100,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 5,
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              IconButton(
+                onPressed: () {
+                  // Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Verify Your Email',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const Text(
+                      'Enter the 6-digit code we sent to your email.',
+                      style: TextStyle(
+                        color: kGray,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 15),
+                    const VerificationCodeInput(),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 40,
+                      width: 250,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: kSecondaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Add verification logic here
+                        },
+                        child: const Text(
+                          'VERIFY CODE',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 10,
+                right: 20,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    'RESEND CODE',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class VerificationCodeInput extends StatefulWidget {
+  const VerificationCodeInput({super.key});
+
+  @override
+  _VerificationCodeInputState createState() => _VerificationCodeInputState();
+}
+
+class _VerificationCodeInputState extends State<VerificationCodeInput> {
+  final List<TextEditingController> _controllers = List.generate(
+    6,
+    (index) => TextEditingController(),
+  );
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: List.generate(
+        6,
+        (index) {
+          return SizedBox(
+            width: 45,
+            height: 50,
+            child: TextField(
+              controller: _controllers[index],
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              maxLength: 1,
+              decoration: const InputDecoration(
+                counterText: '',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(4.0),
+                  ),
+                ),
+              ),
+              onChanged: (value) {
+                if (value.isNotEmpty) {
+                  if (index < 5) {
+                    FocusScope.of(context).nextFocus(); // Move to next field
+                  } else {
+                    FocusScope.of(context).unfocus(); // Dismiss keyboard
+                  }
+                }
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
