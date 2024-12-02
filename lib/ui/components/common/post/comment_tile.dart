@@ -19,7 +19,7 @@ class CommentTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 15,
-                backgroundColor: secondarycolor,
+                backgroundColor: secondaryColor,
                 child: CircleAvatar(
                   radius: 14,
                   backgroundImage: NetworkImage(

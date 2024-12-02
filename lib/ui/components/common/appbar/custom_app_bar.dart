@@ -1,12 +1,10 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/screens/app/menu/menu.dart';
 import 'package:social_media_mobile/ui/screens/app/search/search.dart';
 
 
-class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     super.key,
     required this.title,
     this.image = 'assets/images/logo.png',
@@ -18,8 +16,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final bool isCenter;
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
+    return AppBar(
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       shadowColor: Colors.black,
       elevation: 3.5,
@@ -71,27 +68,28 @@ class CustomSliverAppBar extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimaiton) =>
-                        const Menu(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0);
-                      const end = Offset.zero;
-                      const curve = Curves.easeInOut;
-
-                      var tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-                      var offsetAnimation = animation.drive(tween);
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   PageRouteBuilder(
+                //     pageBuilder: (context, animation, secondaryAnimaiton) =>
+                //         const Menu(),
+                //     transitionsBuilder:
+                //         (context, animation, secondaryAnimation, child) {
+                //       const begin = Offset(1.0, 0.0);
+                //       const end = Offset.zero;
+                //       const curve = Curves.easeInOut;
+                //
+                //       var tween = Tween(begin: begin, end: end)
+                //           .chain(CurveTween(curve: curve));
+                //       var offsetAnimation = animation.drive(tween);
+                //       return SlideTransition(
+                //         position: offsetAnimation,
+                //         child: child,
+                //       );
+                //     },
+                //   ),
+                // );
+                Scaffold.of(context).openEndDrawer();
               },
               iconSize: 25,
               icon: const Icon(FluentIcons.navigation_24_filled),

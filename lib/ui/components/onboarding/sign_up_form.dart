@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
-
-import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
+import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
@@ -23,19 +22,20 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  var autovalidateMode = AutovalidateMode.disabled;
+  var autoValidateMode = AutovalidateMode.disabled;
   Dio dio = Dio();
   late String email;
   late String name;
   late String username;
   late String password;
-  late String confirmpassword;
+  late String confirmPassword;
   String error = '';
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      autovalidateMode: autovalidateMode,
+      autovalidateMode: autoValidateMode,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -131,7 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
             onChange: (value) {
               setState(
                 () {
-                  confirmpassword = value;
+                  confirmPassword = value;
                 },
               );
             },
@@ -157,12 +157,17 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 try {
-
                   var authService = AuthService();
 
-                  String token = await authService.signUp(name, username, email, password);
+                  String token = await authService.signUp(
+                    name,
+                    username,
+                    email,
+                    password,
+                  );
 
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
                   prefs.setString('authToken', token);
 
                   setState(
@@ -171,14 +176,12 @@ class _SignUpFormState extends State<SignUpForm> {
                     },
                   );
                 } on NameNotEnglishException {
-
                   setState(
                     () {
                       error = '$name must be English letters only.';
                     },
-                    );
+                  );
                 } on EmailTakenException {
-
                   setState(
                     () {
                       error = 'Email Taken';
@@ -193,7 +196,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
               } else {
                 setState(() {
-                    autovalidateMode = AutovalidateMode.onUnfocus;
+                    autoValidateMode = AutovalidateMode.onUnfocus;
                   },
                 );
               }
@@ -201,9 +204,9 @@ class _SignUpFormState extends State<SignUpForm> {
             width: 280,
             height: 40,
             text: 'Sign Up',
-            sizetext: 24,
-            bgcolor: secondarycolor,
-            textcolor: Colors.white,
+            sizeText: 24,
+            bgColor: secondaryColor,
+            textColor: Colors.white,
           ),
         ],
       ),

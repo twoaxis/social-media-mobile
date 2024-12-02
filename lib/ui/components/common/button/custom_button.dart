@@ -5,9 +5,9 @@ class CustomButton extends StatelessWidget {
   final String text;
   final double width;
   final double height;
-  final Color bgcolor;
-  final Color textcolor;
-  final double sizetext;
+  final Color bgColor;
+  final Color textColor;
+  final double sizeText;
 
   const CustomButton({
     super.key,
@@ -15,9 +15,9 @@ class CustomButton extends StatelessWidget {
     required this.text,
     this.width = 0,
     this.height = 0,
-    required this.bgcolor,
-    required this.textcolor,
-    required this.sizetext,
+    required this.bgColor,
+    required this.textColor,
+    required this.sizeText,
   });
 
   @override
@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: Size(width, height),
-        backgroundColor: bgcolor,
+        backgroundColor: bgColor,
       ),
       onPressed: onPressed,
       child: Container(
@@ -37,8 +37,8 @@ class CustomButton extends StatelessWidget {
           maxLines: 1,
           style: TextStyle(
             overflow: TextOverflow.ellipsis,
-            fontSize: sizetext,
-            color: textcolor,
+            fontSize: sizeText,
+            color: textColor,
           ),
         ),
       ),

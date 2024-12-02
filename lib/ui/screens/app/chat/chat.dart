@@ -27,9 +27,9 @@ class _ChatState extends State<Chat> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: primarycolor,
+        backgroundColor: primaryColor,
       ),
-      backgroundColor: primarycolor,
+      backgroundColor: primaryColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
