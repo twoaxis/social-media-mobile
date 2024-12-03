@@ -29,16 +29,11 @@ class _FriendState extends State<Friend> {
         maxHeight: 90,
       ),
       decoration: BoxDecoration(
-        color: Colors.grey.shade400,
-        borderRadius: BorderRadius.circular(8),
-
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-          ),
-        ],
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.grey.shade300
+          )
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

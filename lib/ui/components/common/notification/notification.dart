@@ -11,21 +11,17 @@ class Notificate extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(
             vertical: 8,
-            horizontal: 10,
+            horizontal: 0,
           ),
           constraints: BoxConstraints(
             minHeight: 80,
           ),
           decoration: BoxDecoration(
-            color: Colors.grey.shade400,
+            color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(5),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 1,
-                blurRadius: 5,
-              ),
-            ],
+            border: Border.all(
+              color: Colors.grey.shade300
+            )
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

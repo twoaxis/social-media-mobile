@@ -25,18 +25,14 @@ class _MyFriendState extends State<MyFriend> {
         horizontal: 10,
       ),
       constraints: BoxConstraints(
-        maxHeight: 90,
+        maxHeight: 100,
       ),
       decoration: BoxDecoration(
-        color: Colors.grey.shade400,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-          ),
-        ],
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.grey.shade300
+          )
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +40,7 @@ class _MyFriendState extends State<MyFriend> {
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 8.0,
-              vertical: 5.0,
+              vertical: 10.0,
             ),
             child: CircleAvatar(
               radius: 30,

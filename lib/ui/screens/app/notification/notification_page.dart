@@ -18,7 +18,7 @@ class NotificationPage extends StatelessWidget {
               image: '',
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Expanded(
               child: ListView.builder(
