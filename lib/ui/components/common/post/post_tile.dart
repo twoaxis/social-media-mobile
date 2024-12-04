@@ -60,7 +60,7 @@ class _PostTileState extends State<PostTile> {
               children: [
                 CircleAvatar(
                   radius: 21,
-                  backgroundColor: secondarycolor,
+                  backgroundColor: secondaryColor,
                   child: CircleAvatar(
                     radius: 20,
                     backgroundImage: AssetImage('assets/images/icon-user.png'),
@@ -114,7 +114,7 @@ class _PostTileState extends State<PostTile> {
                     },
                     icon: Icon(
                       Icons.favorite,
-                      color: isLiked ? secondarycolor : Colors.grey,
+                      color: isLiked ? secondaryColor : Colors.grey,
                     ),
                   ),
                   Text(isLiked

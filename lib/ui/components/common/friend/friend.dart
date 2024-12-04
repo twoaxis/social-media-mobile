@@ -21,20 +21,19 @@ class _FriendState extends State<Friend> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 10,
+      ),
       constraints: BoxConstraints(
-        maxHeight: 100,
+        maxHeight: 90,
       ),
       decoration: BoxDecoration(
-        color: Colors.white, // Optional background color
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-          ),
-        ],
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.grey.shade300
+          )
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,7 +44,7 @@ class _FriendState extends State<Friend> {
               vertical: 5.0,
             ),
             child: CircleAvatar(
-              radius: 35,
+              radius: 30,
               backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
             ),
           ),
@@ -53,15 +52,15 @@ class _FriendState extends State<Friend> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 15.0,
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  left: 10.0,
                 ),
                 child: Text(
                   widget.name,
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
                   ),
                 ),
               ),
@@ -72,13 +71,9 @@ class _FriendState extends State<Friend> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(3.0),
                         ),
-                        backgroundColor: secondarycolor,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 18.0,
-                          vertical: 8,
-                        ),
+                        backgroundColor: secondaryColor,
                       ),
                       onPressed: () {
                         setState(() {
@@ -99,13 +94,9 @@ class _FriendState extends State<Friend> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(3.0),
                         ),
                         backgroundColor: Colors.grey,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 18.0,
-                          vertical: 8,
-                        ),
                       ),
                       onPressed: () {
                         widget.onRemove();

@@ -23,7 +23,7 @@ void follow(BuildContext context) {
                   ),
                 ),
                 onPressed: () {
-                  followers('ahmed');
+                  //followers('ahmed');
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

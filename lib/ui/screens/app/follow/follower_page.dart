@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/user.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
+import 'package:social_media_mobile/ui/components/common/appbar/custom_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follower_tile.dart';
 
 class FollowerPage extends StatelessWidget {
@@ -9,24 +9,24 @@ class FollowerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          CustomSliverAppBar(
+      body: Column(
+        children: [
+          CustomAppBar(
             title: 'Followers',
             isCenter: false,
             image: '',
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 10,
-              (context, index) => Followers(
+          Expanded(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => Followers(
                 user: User(
-                  username: '',
-                  name: 'Eldeeb',
-                  id: 1,
+                    username: '',
+                    name: 'Eldeeb',
+                    id: 1,
+                  ),
                 ),
               ),
-            ),
           ),
         ],
       ),

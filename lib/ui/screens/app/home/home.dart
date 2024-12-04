@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/models/user.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_sliver_app_bar.dart';
+import 'package:social_media_mobile/ui/components/common/appbar/custom_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 import 'package:social_media_mobile/ui/components/common/post/post_tile.dart';
 
@@ -11,17 +11,17 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          CustomSliverAppBar(
+      body:Column(
+        children: [
+          CustomAppBar(
             title: '',
-            isCenter: true,
             image: 'assets/images/logo.png',
+            isCenter: true,
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 10,
-              (context, index) => PostTile(
+          Expanded(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => PostTile(
                 post: Post(
                   author: User(
                     username: 'ahmed',

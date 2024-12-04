@@ -17,10 +17,10 @@ class Errorbox extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: secondarycolor,
+            color: secondaryColor,
             border: Border.all(
               width: 2.0,
-              color: primarycolor,
+              color: primaryColor,
             ),
           ),
           child: Text(
