@@ -7,3 +7,15 @@ const Color red2 = Color.fromARGB(255, 100, 23, 23);
 const Color black = Color.fromARGB(255, 0, 0, 0);
 const Color lightRed = Color.fromARGB(255, 255, 48, 48);
 const Color pinckyGray =  Color.fromARGB(255, 187, 136, 136);
+
+var colorScheme = ColorScheme.fromSeed(
+  seedColor: Color.fromARGB(255, 195, 48, 48),
+  primary: Color.fromARGB(255, 195, 48, 48),
+  onPrimary: Colors.white,
+  secondary: Color.fromARGB(255, 100, 23, 23),
+  onSecondary: Colors.white,
+  surface: Colors.white,
+  onSurface: Colors.black,
+  onSurfaceVariant: Colors.grey,
+
+);

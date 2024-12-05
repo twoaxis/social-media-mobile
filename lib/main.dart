@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/loading/loading_screen.dart';
 import 'package:social_media_mobile/ui/screens/app/app.dart';
 import 'package:social_media_mobile/ui/screens/app/home/home.dart';
@@ -48,7 +49,7 @@ class _SocialMediaState extends State<SocialMedia> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 195, 48, 48), contrastLevel: 1)
+        colorScheme: colorScheme
       ),
       home: loading ? LoadingScreen() : (isLoggedIn ? App() : LoginPage(setLoginState: setLoginState)),
     );
