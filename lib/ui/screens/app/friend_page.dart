@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/friend/friend.dart';
 import 'package:social_media_mobile/ui/components/common/friend/myFriend.dart';
 import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
@@ -37,61 +36,51 @@ class _FriendPageState extends State<FriendPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              CustomAppBar(
-                title: 'Friends',
-                image: '',
-                isCenter: false,
+      child: Column(
+        children: [
+          TabBar(
+            labelColor: secondaryColor,
+            labelStyle: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+            tabs: [
+              Tab(
+                text: 'Requests',
               ),
-              TabBar(
-                labelColor: secondaryColor,
-                labelStyle: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-                tabs: [
-                  Tab(
-                    text: 'Requests',
-                  ),
-                  Tab(
-                    text: 'My friends',
-                  ),
-                ],
-                dividerColor: Colors.grey.shade300,
-                indicatorColor: secondaryColor,
-                indicatorSize: TabBarIndicatorSize.values[1],
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    ListView.builder(
-                      itemCount: names.length,
-                      itemBuilder: (context, index) => Friend(
-                        name: names[index],
-                        onRemove: () => removeFriend(index),
-                      ),
-                    ),
-                    ListView.builder(
-                      itemCount: names.length,
-                      itemBuilder: (context, index) => MyFriend(
-                        name: names[index],
-                        onRemove: () => removeFriend(index),
-                      ),
-                    ),
-                  ],
-                ),
+              Tab(
+                text: 'My friends',
               ),
             ],
+            dividerColor: Colors.grey.shade300,
+            indicatorColor: secondaryColor,
+            indicatorSize: TabBarIndicatorSize.values[1],
           ),
-        ),
-        bottomNavigationBar: CustomBottomNavbar.bottomNavBar(),
-      ),
+          SizedBox(
+            height: 8,
+          ),
+          Expanded(
+            child: TabBarView(
+              children: [
+                ListView.builder(
+                  itemCount: names.length,
+                  itemBuilder: (context, index) => Friend(
+                    name: names[index],
+                    onRemove: () => removeFriend(index),
+                  ),
+                ),
+                ListView.builder(
+                  itemCount: names.length,
+                  itemBuilder: (context, index) => MyFriend(
+                    name: names[index],
+                    onRemove: () => removeFriend(index),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      )
     );
   }
 }

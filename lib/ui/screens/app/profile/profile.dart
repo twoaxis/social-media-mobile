@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
 import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 
@@ -20,13 +19,14 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("username"),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+        ],
+      ),
       body: Column(
         children: [
-          CustomAppBar(
-            title: 'Profile',
-            image: '',
-            isCenter: false,
-          ),
           Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,25 +36,11 @@ class _ProfileState extends State<Profile> {
                     Image(
                       image: AssetImage('assets/images/background3.png'),
                     ),
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: IconButton(
-                        onPressed: () {
-                          follow(context);
-                        },
-                        color: primaryColor,
-                        icon: const Icon(
-                          Icons.more_vert,
-                          color: primaryColor,
-                        ),
-                      ),
-                    ),
                     Center(
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 30.0),
+                            padding: const EdgeInsets.only(top: 50.0),
                             child: Text(
                               'Full name',
                               style: TextStyle(
@@ -69,13 +55,6 @@ class _ProfileState extends State<Profile> {
                               radius: 45,
                               backgroundImage:
                                   AssetImage('assets/images/icon-user.png'),
-                            ),
-                          ),
-                          Text(
-                            '@${widget.profile?.username ?? 'username'}',
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 15,
                             ),
                           ),
                           const Text(
@@ -143,8 +122,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: CustomBottomNavbar.bottomNavBar(),
+      )
     );
   }
 }

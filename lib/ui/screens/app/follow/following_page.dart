@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/models/user.dart';
-import 'package:social_media_mobile/ui/components/common/appbar/custom_app_bar.dart';
 import 'package:social_media_mobile/ui/components/common/follow/following_tile.dart';
 
 class FollowingPage extends StatelessWidget {
@@ -11,11 +10,6 @@ class FollowingPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(
-            title: 'Following',
-            image: '',
-            isCenter: false,
-          ),
           Expanded(
             child: ListView.builder(
               itemCount: 10,

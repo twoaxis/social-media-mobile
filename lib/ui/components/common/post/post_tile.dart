@@ -46,13 +46,13 @@ class _PostTileState extends State<PostTile> {
         children: [
           GestureDetector(
             onTap: () async {
-              Map<String, dynamic> profile = await getProfile('ahmed');
-              log(profile.toString());
+             // Map<String, dynamic> profile = await getProfile('ahmed');
+              //log(profile.toString());
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Profile(
-                      profile: ProfileModel.fromJson(profile),
+                      profile: null,
                     ),
                   ));
             },
