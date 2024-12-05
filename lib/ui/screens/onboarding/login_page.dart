@@ -5,7 +5,9 @@ import 'package:social_media_mobile/ui/components/onboarding/login_form.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, this.setLoginState});
+
+  final dynamic setLoginState;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,9 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              LoginForm(),
+              LoginForm(
+                setLoginState: setLoginState,
+              ),
               const SizedBox(
                 height: 20,
               ),

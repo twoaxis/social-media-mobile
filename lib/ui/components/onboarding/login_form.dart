@@ -9,7 +9,9 @@ import 'package:social_media_mobile/ui/components/common/input_fields/custom_tex
 import 'package:social_media_mobile/ui/components/common/misc/errorbox.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({super.key, this.setLoginState});
+
+  final dynamic setLoginState;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -84,6 +86,10 @@ class _LoginFormState extends State<LoginForm> {
           ),
           CustomButton(
             onPressed: () async {
+              setState(() {
+                error = "";
+              });
+
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 try {
@@ -92,11 +98,7 @@ class _LoginFormState extends State<LoginForm> {
                   SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setString('authToken', token);
-                    setState(
-                      () {
-                        error = 'Logged into your account.';
-                      },
-                    );
+                    widget.setLoginState(true);
 
                 } on InvalidCredentialsExceptions {
                   setState(
@@ -108,8 +110,7 @@ class _LoginFormState extends State<LoginForm> {
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.onUnfocus;
-                  },
-                );
+                });
               }
             },
             width: 280,

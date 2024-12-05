@@ -37,14 +37,20 @@ class _SocialMediaState extends State<SocialMedia> {
     });
   }
 
+  void setLoginState (state) {
+    setState(() {
+      isLoggedIn = state;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 195, 48, 48))
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 195, 48, 48), contrastLevel: 1)
       ),
-      home: loading ? LoadingScreen() : (isLoggedIn ? App() : LoginPage()),
+      home: loading ? LoadingScreen() : (isLoggedIn ? App() : LoginPage(setLoginState: setLoginState)),
     );
   }
 }
