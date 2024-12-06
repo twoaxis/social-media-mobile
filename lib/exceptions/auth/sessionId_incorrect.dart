@@ -1,0 +1,1 @@
+class SessionIdAndCodeIncorrect implements Exception {}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
   final Icon icon;
@@ -7,7 +8,7 @@ class CustomTextFormField extends StatefulWidget {
   final Function(String? value)? onSaved;
   final Function(String value)? onChange;
   final String? Function(String? value)? validator;
-  final AutovalidateMode? autovalidateMode;
+  final AutovalidateMode? autoValidateMode;
 
   const CustomTextFormField({
     super.key,
@@ -18,7 +19,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onSaved,
     this.validator,
     this.onChange,
-    this.autovalidateMode = AutovalidateMode.disabled,
+    this.autoValidateMode = AutovalidateMode.disabled,
   });
 
   @override
