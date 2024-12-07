@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/friend/friend.dart';
 import 'package:social_media_mobile/ui/components/common/friend/myFriend.dart';
-import 'package:social_media_mobile/ui/components/common/navigation/custom_bottom_navbar.dart';
 
 class FriendPage extends StatefulWidget {
   const FriendPage({super.key});

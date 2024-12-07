@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/name_not_english_exception.dart';
@@ -9,7 +8,8 @@ import 'package:social_media_mobile/exceptions/auth/user_name_taken_exception.da
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_button.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/custom_text_form_field.dart';
-import 'package:social_media_mobile/ui/components/common/misc/errorbox.dart';
+import 'package:social_media_mobile/ui/components/common/misc/error_box.dart';
+import 'package:social_media_mobile/ui/screens/app/email_verify/email_verify.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -40,7 +40,7 @@ class _SignUpFormState extends State<SignUpForm> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (error.isNotEmpty)
-            Errorbox(content: error)
+            ErrorBox(content: error)
           else
             SizedBox(
               height: 0,
@@ -49,7 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
             onSaved: (value) {
               name = value!;
             },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please Enter Name.';
@@ -72,7 +72,7 @@ class _SignUpFormState extends State<SignUpForm> {
             labelText: 'Username',
             icon: Icon(FontAwesomeIcons.at),
             textInputAction: TextInputAction.next,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please Enter UserName';
@@ -90,7 +90,7 @@ class _SignUpFormState extends State<SignUpForm> {
             labelText: 'Email',
             icon: Icon(Icons.email),
             textInputAction: TextInputAction.next,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please Enter Email.';
@@ -116,7 +116,7 @@ class _SignUpFormState extends State<SignUpForm> {
             icon: Icon(Icons.lock),
             textInputAction: TextInputAction.next,
             isPassword: true,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please Enter Password';
@@ -139,7 +139,7 @@ class _SignUpFormState extends State<SignUpForm> {
             icon: Icon(Icons.lock),
             textInputAction: TextInputAction.done,
             isPassword: true,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please confirm your password';
@@ -159,21 +159,20 @@ class _SignUpFormState extends State<SignUpForm> {
                 try {
                   var authService = AuthService();
 
-                  String token = await authService.signUp(
+                  String sessionId =  await authService.signUp(
                     name,
                     username,
                     email,
                     password,
                   );
 
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  prefs.setString('authToken', token);
-
-                  setState(
-                    () {
-                      error = 'Account created';
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EmailVerificationScreen(
+                        sessionId: sessionId
+                      ),
+                    ),
                   );
                 } on NameNotEnglishException {
                   setState(

@@ -10,7 +10,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         Expanded(
           child: ListView.builder(
             itemCount: 10,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 
-class Errorbox extends StatelessWidget {
-  const Errorbox({super.key, required this.content});
+class ErrorBox extends StatelessWidget {
+  const ErrorBox({super.key, required this.content});
 
   final String content;
 
