@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/loading/loading_screen.dart';
 import 'package:social_media_mobile/ui/screens/app/app.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/posting_page.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 
 void main() {
@@ -17,7 +18,6 @@ class SocialMedia extends StatefulWidget {
 }
 
 class _SocialMediaState extends State<SocialMedia> {
-
   var loading = true;
   var isLoggedIn = false;
 
@@ -30,16 +30,18 @@ class _SocialMediaState extends State<SocialMedia> {
   void checkLoginState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() {
-      loading = false;
-      isLoggedIn = prefs.getString("authToken") != null;
+    setState(
+      () {
+        loading = false;
+        isLoggedIn = prefs.getString("authToken") != null;
       },
     );
   }
 
-  void setLoginState (state) {
-    setState(() {
-      isLoggedIn = state;
+  void setLoginState(state) {
+    setState(
+      () {
+        isLoggedIn = state;
       },
     );
   }
@@ -47,13 +49,12 @@ class _SocialMediaState extends State<SocialMedia> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: colorScheme
-      ),
-      home: loading
-          ? LoadingScreen()
-          : (isLoggedIn ? App() : LoginPage(setLoginState: setLoginState)),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(colorScheme: colorScheme),
+        home: PostingPage()
+        //  loading
+        //     ? LoadingScreen()
+        //     : (isLoggedIn ? App() : LoginPage(setLoginState: setLoginState)),
+        );
   }
 }
