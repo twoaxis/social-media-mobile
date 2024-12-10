@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/email_verification_input/email_verify_input.dart';
-import 'package:social_media_mobile/ui/screens/app/app.dart';
+import 'package:social_media_mobile/ui/screens/app/scaffold/main_scaffold.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({
@@ -112,7 +112,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const App(),
+                                builder: (context) => const MainScaffold(),
                               ),
                             );
                           },

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/loading/loading_screen.dart';
-import 'package:social_media_mobile/ui/screens/app/app.dart';
+import 'package:social_media_mobile/ui/screens/app/scaffold/main_scaffold.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 
 void main() {
-  runApp(const SocialMedia());
+  runApp(
+    const SocialMedia(),
+  );
 }
 
 class SocialMedia extends StatefulWidget {
@@ -53,7 +55,9 @@ class _SocialMediaState extends State<SocialMedia> {
       ),
       home: loading
           ? LoadingScreen()
-          : (isLoggedIn ? App() : LoginPage(setLoginState: setLoginState)),
+          : (isLoggedIn
+              ? MainScaffold()
+              : LoginPage(setLoginState: setLoginState)),
     );
   }
 }

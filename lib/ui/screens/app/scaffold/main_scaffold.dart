@@ -5,14 +5,14 @@ import 'package:social_media_mobile/ui/screens/app/home/home.dart';
 import 'package:social_media_mobile/ui/screens/app/notification/notification_page.dart';
 import 'package:social_media_mobile/ui/screens/app/option/option.dart';
 
-class App extends StatefulWidget {
-  const App({super.key});
+class MainScaffold extends StatefulWidget {
+  const MainScaffold({super.key});
 
   @override
-  State<App> createState() => _AppState();
+  State<MainScaffold> createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends State<MainScaffold> {
   var index = 0;
 
   static const screenTitles = [
