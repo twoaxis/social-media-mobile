@@ -5,7 +5,7 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/transparent_text_field.dart';
 import 'package:social_media_mobile/ui/components/common/misc/custom_devider.dart';
 import 'package:social_media_mobile/ui/components/common/misc/image_picker.dart';
-import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
+import 'package:social_media_mobile/ui/components/common/scaffold/simple_appbar.dart';
 
 class PostingPage extends StatefulWidget {
   const PostingPage({super.key});
@@ -78,11 +78,7 @@ class _PostingPageState extends State<PostingPage> {
     double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        shadowColor: Colors.black,
-        elevation: 2.5,
-        leadingWidth: maxWidth * 0.1,
+      appBar: SimpleAppbar(
         actions: [
           Padding(
             padding: EdgeInsets.only(right: maxWidth * 0.02),
@@ -103,28 +99,7 @@ class _PostingPageState extends State<PostingPage> {
             ),
           ),
         ],
-        title: CustomText(
-          text: 'Create a Post',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          colorName: 'red',
-        ),
-        centerTitle: true,
-        leading: Padding(
-          padding: EdgeInsets.only(left: maxWidth * 0.01),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: gray.withOpacity(0.05),
-            ),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(FluentIcons.arrow_left_12_filled),
-            ),
-          ),
-        ),
+        title: 'Create a Post',
       ),
       body: SizedBox(
         height: maxHeight * 0.9,

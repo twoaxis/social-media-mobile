@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/ui/components/common/loading/loading_screen.dart';
-import 'package:social_media_mobile/ui/screens/app/app.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/posting_page.dart';
-import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
 
 void main() {
   runApp(const SocialMedia());
@@ -51,7 +49,7 @@ class _SocialMediaState extends State<SocialMedia> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(colorScheme: colorScheme),
-        home: PostingPage()
+        home: CustomizeProfile()
         //  loading
         //     ? LoadingScreen()
         //     : (isLoggedIn ? App() : LoginPage(setLoginState: setLoginState)),
