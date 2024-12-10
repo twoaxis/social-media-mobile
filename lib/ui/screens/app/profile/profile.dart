@@ -21,9 +21,14 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         title: Text("username"),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
-        ],
-      ),
+            IconButton(
+              onPressed: () {
+                follow(context);
+              },
+              icon: Icon(Icons.more_vert),
+            ),
+          ],
+        ),
       body: Column(
         children: [
           Center(
