@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
-import 'package:social_media_mobile/services/create_post.dart';
+import 'package:social_media_mobile/services/post.dart';
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/profile_text_field.dart';
 import 'package:social_media_mobile/ui/components/common/misc/custom_divider.dart';

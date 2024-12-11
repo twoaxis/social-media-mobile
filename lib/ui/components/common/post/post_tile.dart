@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/post.dart';
-import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/comments_page.dart';
@@ -46,15 +45,16 @@ class _PostTileState extends State<PostTile> {
         children: [
           GestureDetector(
             onTap: () async {
-             // Map<String, dynamic> profile = await getProfile('ahmed');
-              //log(profile.toString());
+             Map<String, dynamic> profile = await getProfile('ahmed');
+              log(profile.toString());
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Profile(
                       profile: null,
                     ),
-                  ));
+                ),
+              );
             },
             child: Row(
               children: [
@@ -135,7 +135,9 @@ class _PostTileState extends State<PostTile> {
                     },
                     icon: Icon(Icons.comment),
                   ),
-                  Text(widget.post.commentCount.toString()),
+                  Text(
+                    widget.post.commentCount.toString(),
+                  ),
                 ],
               ),
             ],
