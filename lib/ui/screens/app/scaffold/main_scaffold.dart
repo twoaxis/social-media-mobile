@@ -4,6 +4,7 @@ import 'package:social_media_mobile/ui/screens/app/friends/friend_page.dart';
 import 'package:social_media_mobile/ui/screens/app/home/home.dart';
 import 'package:social_media_mobile/ui/screens/app/notification/notification_page.dart';
 import 'package:social_media_mobile/ui/screens/app/option/option.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/posting_page.dart';
 
 class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});
@@ -42,8 +43,18 @@ class _AppState extends State<MainScaffold> {
       floatingActionButton: index == 0 ? FloatingActionButton( 
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
-              onPressed: () {},
-              child: Icon(Icons.add))
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PostingPage(),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.add,
+              ),
+            )
           : null,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

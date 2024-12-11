@@ -18,29 +18,19 @@ class Followers extends StatefulWidget {
 class _FollowersState extends State<Followers> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 8.0,
-      ),
-      child: Container(
-        margin: EdgeInsets.symmetric(
+    return Container(
+      margin: EdgeInsets.symmetric(
           horizontal: 10,
-          vertical: 5,
+          vertical: 8,
         ),
         constraints: BoxConstraints(
-          minHeight: 100,
+          minHeight: 90,
         ),
-        decoration: BoxDecoration(
-          color: Colors.white, // Optional background color
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-            ),
-          ],
-        ),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -50,7 +40,7 @@ class _FollowersState extends State<Followers> {
                 vertical: 5.0,
               ),
               child: CircleAvatar(
-                radius: 35,
+                radius: 30,
                 backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
               ),
             ),
@@ -71,7 +61,7 @@ class _FollowersState extends State<Followers> {
                   horizontal: 25,
                   vertical: 10,
                 ),
-                backgroundColor: const Color.fromARGB(255, 107, 171, 223),
+                backgroundColor: const Color.fromARGB(255, 104, 168, 225),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -84,7 +74,7 @@ class _FollowersState extends State<Followers> {
                 );
               },
               child: Text(
-                isFollow ? 'unfollow' : 'follow',
+                isFollow ? 'UnFollow' : 'Follow',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -95,7 +85,6 @@ class _FollowersState extends State<Followers> {
             ),
           ],
         ),
-      ),
     );
   }
 }

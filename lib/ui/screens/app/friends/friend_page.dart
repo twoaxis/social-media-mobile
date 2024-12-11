@@ -79,7 +79,7 @@ class _FriendPageState extends State<FriendPage> {
             ),
           ),
         ],
-      )
+      ),
     );
   }
 }

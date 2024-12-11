@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
 
 class Profile extends StatefulWidget {
   final ProfileModel? profile;
@@ -23,7 +24,13 @@ class _ProfileState extends State<Profile> {
         actions: [
             IconButton(
               onPressed: () {
-                follow(context);
+                // follow(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Follow(),
+                  ),
+                );
               },
               icon: Icon(Icons.more_vert),
             ),
@@ -37,20 +44,38 @@ class _ProfileState extends State<Profile> {
               children: [
                 Stack(
                   children: [
-                    Image(
-                      image: AssetImage('assets/images/background3.png'),
-                    ),
-                    Center(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 50.0),
-                            child: Text(
-                              'Full name',
-                              style: TextStyle(
-                                color: primaryColor,
-                                fontSize: 20,
+                      Image(
+                        image: AssetImage('assets/images/background3.png'),
+                      ),
+                      Positioned(
+                        top: 8,
+                        left: 8,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CustomizeProfile(),
                               ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30.0),
+                              child: Text(
+                                'Full name',
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 20,
+                                ),
                             ),
                           ),
                           const Padding(

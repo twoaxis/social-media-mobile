@@ -7,7 +7,6 @@ import 'package:social_media_mobile/ui/components/common/input_fields/profile_te
 import 'package:social_media_mobile/ui/components/common/interests.dart';
 import 'package:social_media_mobile/ui/components/common/misc/custom_divider.dart';
 import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
-import 'package:social_media_mobile/ui/components/common/misc/toast_message.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 import 'package:social_media_mobile/ui/screens/app/scaffold/simple_appbar.dart';
 
@@ -39,7 +38,9 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: primaryColor,
-      appBar: SimpleAppbar(),
+      appBar: SimpleAppbar(
+        title: 'Edit Profile',
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -67,9 +68,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                            left: maxWidth * 0.035,
-                            top: maxHeight * 0.01,
-                          ),
+                              left: maxWidth * 0.035, top: maxHeight * 0.01),
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: CustomText(
@@ -82,9 +81,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         ),
                         Center(
                           child: BoundedProfileImage(
-                            maxWidth * 0.15,
-                            maxWidth * 0.0075,
-                          ),
+                              maxWidth * 0.15, maxWidth * 0.0075),
                         ),
                         SizedBox(
                           height: maxHeight * 0.0085,
@@ -101,9 +98,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         CustomDivider(),
                         Padding(
                           padding: EdgeInsets.only(
-                            left: maxWidth * 0.035,
-                            top: maxHeight * 0.01,
-                          ),
+                              left: maxWidth * 0.035, top: maxHeight * 0.01),
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: CustomText(
@@ -118,6 +113,8 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.025,
                         ),
                         ProfileTextField(
+                          TextAlign.left,
+                          color: secondaryColor,
                           title: 'BiiiiiM',
                           icon: Icon(FluentIcons.mention_24_filled),
                           maxLines: 1,
@@ -153,6 +150,8 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.025,
                         ),
                         ProfileTextField(
+                          TextAlign.left,
+                          color: secondaryColor,
                           title: 'Ibrahim Abdulqader',
                           icon: Icon(FluentIcons.person_20_filled),
                           maxLines: 1,
@@ -163,9 +162,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         CustomDivider(),
                         Padding(
                           padding: EdgeInsets.only(
-                            left: maxWidth * 0.035,
-                            top: maxHeight * 0.01,
-                          ),
+                              left: maxWidth * 0.035, top: maxHeight * 0.01),
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: CustomText(
@@ -180,6 +177,8 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           height: maxHeight * 0.01,
                         ),
                         ProfileTextField(
+                          TextAlign.left,
+                          color: secondaryColor,
                           maxLines: null,
                           title:
                               'Fonts shape how we perceive words. A bold, clean font may feel modern, while a classic serif adds warmth. Testing font styles side-by-side reveals the subtle impact each choice has on readability and tone',
@@ -193,9 +192,8 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                left: maxWidth * 0.035,
-                                top: maxHeight * 0.01,
-                              ),
+                                  left: maxWidth * 0.035,
+                                  top: maxHeight * 0.01),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: CustomText(
@@ -223,8 +221,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.symmetric(
-                                              vertical: maxHeight * 0.025,
-                                            ),
+                                                vertical: maxHeight * 0.025),
                                             child: Center(
                                               child: CustomText(
                                                 text: 'Select Your Interests',
@@ -265,15 +262,13 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                                                     184,
                                                                     255,
                                                                     50,
-                                                                    35,
-                                                                  )
+                                                                    35)
                                                                 : const Color
                                                                     .fromARGB(
                                                                     255,
                                                                     242,
                                                                     239,
-                                                                    239,
-                                                                  ),
+                                                                    239),
                                                         shape:
                                                             RoundedRectangleBorder(
                                                           borderRadius:
@@ -290,13 +285,11 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                                                       label: Text(
                                                         interest,
                                                         style: TextStyle(
-                                                          color: userInterests
-                                                                  .contains(
-                                                            interest,
-                                                          )
-                                                              ? Colors.white
-                                                              : secondaryColor,
-                                                        ),
+                                                            color: userInterests
+                                                                    .contains(
+                                                                        interest)
+                                                                ? Colors.white
+                                                                : secondaryColor),
                                                       ),
                                                       icon: interestsIcons[
                                                           interest],
@@ -367,9 +360,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                   ),
                   elevation: 1,
                   backgroundColor: const Color.fromARGB(255, 247, 247, 247),
-                  onPressed: () {
-                    toastMessage('Changes Saved Successfully');
-                  },
+                  onPressed: () {},
                   child: CustomText(
                     text: 'Save Changes',
                     fontSize: 16,
