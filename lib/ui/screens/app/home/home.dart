@@ -1,8 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/post.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
+import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/services/post.dart';
 import 'package:social_media_mobile/ui/components/common/post/post_tile.dart';
 
@@ -35,10 +38,25 @@ class _HomeState extends State<Home> {
       String? token = prefs.getString("authToken");
       final List<dynamic> response = await getPosts(token: token!);
 
+      posts = response.map((data) => Post.fromJson(data)).toList();
+
+      String yourToken = token;
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
+      log(decodedToken.toString());
+
+      String userName = decodedToken['Username'];
+      log(userName);
+
+      Map<String, dynamic> profile = await getProfile(userName);
+
+      ProfileModel profileModel = ProfileModel.fromJson(profile);
+      List<Post> ownPosts = profileModel.posts;
+      posts += ownPosts;
+
       setState(() {
-        posts = response.map((data) => Post.fromJson(data)).toList();
         isLoading = false;
       });
+
     } catch (error) {
       log('Error fetching posts: $error');
       setState(() {
@@ -54,7 +72,7 @@ class _HomeState extends State<Home> {
       return Center(
         child: Padding(
           padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height / 3.0,
+            top: MediaQuery.of(context).size.height / 4.0,
           ),
           child: const CircularProgressIndicator(),
         ),
@@ -93,7 +111,7 @@ class _HomeState extends State<Home> {
       return Center(
         child: Padding(
           padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height / 3.0,
+            top: MediaQuery.of(context).size.height / 3.5,
           ),
           child: Column(
             children: [

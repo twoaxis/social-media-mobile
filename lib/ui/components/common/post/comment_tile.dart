@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/models/comment_model.dart';
 
 class CommentTile extends StatelessWidget {
-  const CommentTile({super.key});
+  const CommentTile({super.key, required this.commentModel});
+
+  final CommentModel commentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class CommentTile extends StatelessWidget {
               ),
               SizedBox(width: 10),
               Text(
-                'username',
+                commentModel.author?.name ?? '',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,7 +40,7 @@ class CommentTile extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            'python is overrated 😂😂😂 ',
+            commentModel.content ?? '',
             style: TextStyle(fontSize: 16),
           ),
         ],

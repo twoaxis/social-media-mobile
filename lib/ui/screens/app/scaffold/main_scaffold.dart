@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/screens/app/friends/friend_page.dart';
+import 'package:social_media_mobile/ui/screens/app/friends/posting/posting_page.dart';
 import 'package:social_media_mobile/ui/screens/app/home/home.dart';
 import 'package:social_media_mobile/ui/screens/app/notification/notification_page.dart';
 import 'package:social_media_mobile/ui/screens/app/option/option.dart';
-import 'package:social_media_mobile/ui/screens/app/posting/posting_page.dart';
+
 
 class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});

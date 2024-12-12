@@ -1,0 +1,1 @@
+class DidNotLikeThisPostException implements Exception {}

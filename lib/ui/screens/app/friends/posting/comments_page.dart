@@ -1,10 +1,14 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/models/post.dart';
+import 'package:social_media_mobile/services/post.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
 
 class CommentsPage extends StatefulWidget {
-  const CommentsPage({super.key});
+  const CommentsPage({super.key, required this.post});
 
+  final Post post;
   @override
   State<CommentsPage> createState() => _CommentsPageState();
 }
@@ -24,9 +28,12 @@ class _CommentsPageState extends State<CommentsPage> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ListView.separated(
                 itemBuilder: (context, index) {
-                  return CommentTile();
+                  return CommentTile(
+                    commentModel: widget.post.comments[index],
+                  );
                 },
-                itemCount: 10, separatorBuilder: (BuildContext context, int index) {
+                itemCount: widget.post.comments.length,
+                separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(height: 10);
                 },
               ),
@@ -73,7 +80,9 @@ class _CommentsPageState extends State<CommentsPage> {
                     elevation: 4,
                     shadowColor: Colors.grey,
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    await createComment(_controller.text, widget.post.id);
+                    log(_controller.text);
                     _controller.clear();
                   },
                   child: const Icon(

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
+import 'package:social_media_mobile/services/post.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
-import 'package:social_media_mobile/ui/screens/app/posting/comments_page.dart';
-import 'package:social_media_mobile/ui/screens/app/posting/full_screen_image.dart';
+import 'package:social_media_mobile/ui/screens/app/friends/posting/comments_page.dart';
+import 'package:social_media_mobile/ui/screens/app/friends/posting/full_screen_image.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class PostTile extends StatefulWidget {
@@ -44,14 +45,14 @@ class _PostTileState extends State<PostTile> {
         children: [
           GestureDetector(
             onTap: () async {
-             Map<String, dynamic>? profile = await getProfile('ahmed');
+              Map<String, dynamic>? profile = await getProfile('ahmed');
               log(profile.toString());
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Profile(
-                      profile: null,
-                    ),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Profile(
+                    profile: null,
+                  ),
                 ),
               );
             },
@@ -107,9 +108,18 @@ class _PostTileState extends State<PostTile> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {
-                      isLiked = !isLiked;
-                      setState(() {});
+                    onPressed: () async {
+                      if (isLiked) {
+                        await unlikePost(postId: widget.post.id);
+                        setState(() {
+                          isLiked = false;
+                        });
+                      } else {
+                        await likePost(postId: widget.post.id);
+                        setState(() {
+                          isLiked = true;
+                        });
+                      }
                     },
                     icon: Icon(
                       Icons.favorite,
@@ -128,14 +138,16 @@ class _PostTileState extends State<PostTile> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CommentsPage(),
+                          builder: (context) => CommentsPage(
+                            post: widget.post,
+                          ),
                         ),
                       );
                     },
                     icon: Icon(Icons.comment),
                   ),
                   Text(
-                    widget.post.commentCount.toString(),
+                    widget.post.comments.length.toString(),
                   ),
                 ],
               ),
@@ -145,7 +157,23 @@ class _PostTileState extends State<PostTile> {
             color: Colors.grey.withOpacity(0.3),
             thickness: 1,
           ),
-          CommentTile(),
+          widget.post.comments.isNotEmpty
+              ? InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CommentsPage(
+                          post: widget.post,
+                        ),
+                      ),
+                    );
+                  },
+                  child: CommentTile(
+                    commentModel: widget.post.comments[0],
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );
