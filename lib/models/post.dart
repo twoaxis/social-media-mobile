@@ -2,7 +2,7 @@ import 'package:social_media_mobile/models/user.dart';
 
 class Post {
   int id;
-  final String userName;
+  // final String userName;
   final String content;
   final int likeCount;
   final int commentCount;
@@ -11,7 +11,7 @@ class Post {
   User author;
 
   Post({
-    required this.userName,
+    // required this.userName,
     required this.content,
     this.likeCount = 10,
     this.commentCount = 10,
@@ -24,15 +24,14 @@ class Post {
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
 
-      id: json['id'],
-      content: json['content'],
-      createdAt: DateTime.parse(json['createdAt']),
+      id: json['id'] ?? 0,
+      content: json['content'] ?? '',
+      createdAt: DateTime.parse(json['createdAt'] ?? ''),
       author: User.fromJson(json['author']),
-      
-      userName: json['userName'],
-      likeCount: json['likeCount'],
-      commentCount: json['commentCount'],
-      imageUrl: json['imageUrl'],
+      // userName: json['userName'],
+      likeCount: json['likeCount'] ?? 0,
+      commentCount: json['commentCount'] ?? 0,
+      imageUrl: json['imageUrl'] = '',
     );
   }
 }

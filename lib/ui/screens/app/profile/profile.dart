@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
+import 'package:social_media_mobile/ui/components/common/post/post_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
 
 class Profile extends StatefulWidget {
@@ -20,8 +21,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("username"),
-        actions: [
+          title: Text(
+            widget.profile?.username ?? "username",
+          ),
+          actions: [
             IconButton(
               onPressed: () {
                 // follow(context);
@@ -36,121 +39,154 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-      body: Column(
-        children: [
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Stack(
-                  children: [
-                      Image(
-                        image: AssetImage('assets/images/background3.png'),
-                      ),
-                      Positioned(
-                        top: 8,
-                        left: 8,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CustomizeProfile(),
-                              ),
-                            );
-                          },
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    children: [
+                        Image(
+                          image: AssetImage('assets/images/background3.png'),
+                        ),
+                        Positioned(
+                          top: 8,
+                          left: 8,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CustomizeProfile(),
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      Center(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
-                              child: Text(
-                                'Full name',
-                                style: TextStyle(
-                                  color: primaryColor,
-                                  fontSize: 20,
-                                ),
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: CircleAvatar(
-                              radius: 45,
-                              backgroundImage:
-                                  AssetImage('assets/images/icon-user.png'),
-                            ),
-                          ),
-                          const Text(
-                            'Hello! This is our OSS project.',
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                        Center(
+                          child: Column(
                             children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  setState(
-                                    () {
-                                      isFriendAdded = !isFriendAdded;
-                                    },
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: secondaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: Text(
-                                  isFriendAdded
-                                      ? 'Cancel Request'
-                                      : 'Add Friend',
-                                  style: const TextStyle(color: primaryColor),
-                                ),
-                              ),
                               Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: ElevatedButton(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: Text(
+                                  widget.profile?.name ?? 'Full name',
+                                  style: TextStyle(
+                                    color: primaryColor,
+                                    fontSize: 20,
+                                  ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: CircleAvatar(
+                                radius: 45,
+                                backgroundImage:
+                                    AssetImage('assets/images/icon-user.png'),
+                              ),
+                            ),
+                              Text(
+                                widget.profile?.bio ??
+                                    'Hello! This is our OSS project.',
+                                style: const TextStyle(
+                                  color: primaryColor,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
                                   onPressed: () {
                                     setState(
                                       () {
-                                        isFollowed = !isFollowed;
+                                        isFriendAdded = !isFriendAdded;
                                       },
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      backgroundColor: gray),
+                                    backgroundColor: secondaryColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
                                   child: Text(
-                                    isFollowed ? 'Unfollow' : 'Follow',
-                                    style: const TextStyle(
-                                      color: primaryColor,
+                                    isFriendAdded
+                                        ? 'Cancel Request'
+                                        : 'Add Friend',
+                                    style: const TextStyle(color: primaryColor),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          isFollowed = !isFollowed;
+                                        },
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        backgroundColor: gray),
+                                    child: Text(
+                                      isFollowed ? 'Unfollow' : 'Follow',
+                                      style: const TextStyle(
+                                        color: primaryColor,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Posts',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
+                    widget.profile?.posts == null
+                        ? const Text(
+                            'No posts!',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: widget.profile!.posts.length,
+                            itemBuilder: (context, index) {
+                              return PostTile(
+                                post: widget.profile!.posts[index],
+                              );
+                            },
+                          ),
                   ],
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       )
     );
   }

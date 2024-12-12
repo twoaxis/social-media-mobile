@@ -1,11 +1,37 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
+import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 
-class Option extends StatelessWidget {
+class Option extends StatefulWidget {
   const Option({super.key});
 
+  @override
+  State<Option> createState() => _OptionState();
+}
+
+@override
+void initState()async{
+  SharedPreferences prefs =
+      await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  log(token!);
+
+  String yourToken = token;
+  Map<String, dynamic> decodedToken =
+  JwtDecoder.decode(yourToken);
+  log(decodedToken.toString());
+
+  String name = decodedToken['name'];
+  log(name);
+}
+
+class _OptionState extends State<Option> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,11 +40,29 @@ class Option extends StatelessWidget {
           child: ListView(
             children: [
               GestureDetector(
-                onTap: () {
+                onTap: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  String? token = prefs.getString("authToken");
+                  log(token!);
+
+                  String yourToken = token;
+                  Map<String, dynamic> decodedToken =
+                      JwtDecoder.decode(yourToken);
+                  log(decodedToken.toString());
+
+                  String userName = decodedToken['Username'];
+                  log(userName);
+
+                  Map<String, dynamic> profile = await getProfile(userName);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Profile(),
+                      builder: (context) => Profile(
+                        profile: ProfileModel.fromJson(
+                          profile,
+                        ),
+                      ),
                     ),
                   );
                 },
@@ -54,6 +98,7 @@ class Option extends StatelessWidget {
                         ),
                         child: Text(
                           'Ahmed Helmy',
+                          // widget.Profile.name,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,

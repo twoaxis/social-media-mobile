@@ -43,6 +43,7 @@ dependencies:
   fluentui_system_icons: ^1.1.260
   modal_progress_hud_nsn: ^0.5.1
   image_picker: ^1.1.2
+  jwt_decoder: ^2.0.1
   
   
 
