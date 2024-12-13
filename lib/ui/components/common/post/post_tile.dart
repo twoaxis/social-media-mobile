@@ -5,8 +5,8 @@ import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/services/post.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
-import 'package:social_media_mobile/ui/screens/app/friends/posting/comments_page.dart';
-import 'package:social_media_mobile/ui/screens/app/friends/posting/full_screen_image.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/comments_page.dart';
+import 'package:social_media_mobile/ui/screens/app/posting/full_screen_image.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class PostTile extends StatefulWidget {
