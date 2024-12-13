@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/ui/components/common/email_verification_input/email_verify_input.dart';
-import 'package:social_media_mobile/ui/screens/app/app.dart';
+import 'package:social_media_mobile/ui/components/common/misc/error_box.dart';
+import 'package:social_media_mobile/ui/screens/app/scaffold/main_scaffold.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({
@@ -20,6 +21,7 @@ class EmailVerificationScreen extends StatefulWidget {
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   bool isLoading = false;
   String code = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             ),
             child: Stack(
               children: [
+                if (error.isNotEmpty)
+                  Center(
+                    child: ErrorBox(content: error),
+                  )
+                else
+                  const SizedBox(
+                    height: 0,
+                  ),
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -105,16 +115,25 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                               sessionId: sessionId,
                               code: code,
                             );
-
-                            setState(() {
-                              isLoading = false;
-                            });
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const App(),
+                            if (code.isEmpty || code.length != 6) {
+                              setState(
+                                () {
+                                  error = 'Please enter a valid code.';
+                                },
+                              );
+                            } else {
+                              setState(
+                                () {
+                                  isLoading = false;
+                                },
+                              );
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MainScaffold(),
                               ),
-                            );
+                              );
+                            }
                           },
                           child: const Text(
                             'VERIFY CODE',
@@ -135,6 +154,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     onTap: () async {
                       AuthService().verifyEmail(
                         sessionId: sessionId,
+                        code: code,
                       );
                     },
                     child: Text(

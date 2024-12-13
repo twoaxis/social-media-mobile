@@ -4,9 +4,11 @@ class ProfileModel {
   int id;
   String name;
   String username;
+  String bio;
   int followerCount;
   int followingCount;
   List<Post> posts;
+  bool isFollowing;
 
   ProfileModel({
     required this.name,
@@ -15,20 +17,22 @@ class ProfileModel {
     required this.followingCount,
     required this.posts,
     required this.id,
+    this.isFollowing = false,
+    required this.bio,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
-      name: json['name'],
-      username: json['username'],
-      followerCount: json['followerCount'],
-      followingCount: json['followingCount'],
-      posts: List<Post>.from(
-        json['posts'].map(
-          (x) => Post.fromJson(x),
-        ),
-      ),
-      id: json['id'],
+      name: json['name'] ?? 'name',
+      username: json['username'] ?? 'username',
+      bio: json['bio'] ?? 'Hello, I am using TwoAxis Social Media App',
+      followerCount: json['followerCount'] ?? 0,
+      followingCount: json['followingCount'] ?? 0,
+      posts: (json['posts'] as List<dynamic>?)
+              ?.map((x) => Post.fromJson(x as Map<String, dynamic>))
+              .toList() ??
+          [],
+      id: json['id'] ?? 0,
     );
   }
 }

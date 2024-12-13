@@ -11,30 +11,20 @@ class Following extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 8.0,
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 8,
       ),
-      child: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 5,
-        ),
         constraints: BoxConstraints(
-          minHeight: 100,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white, // Optional background color
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        child: Row(
+        minHeight: 80,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
@@ -43,9 +33,9 @@ class Following extends StatelessWidget {
                 vertical: 5.0,
               ),
               child: CircleAvatar(
-                radius: 35,
-                backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
-              ),
+              radius: 30,
+              backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
+            ),
             ),
             SizedBox(
               width: 8,
@@ -59,7 +49,6 @@ class Following extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }
