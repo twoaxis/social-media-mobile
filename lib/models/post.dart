@@ -7,7 +7,7 @@ class Post {
   final String content;
   final int likeCount;
   final int commentCount;
-  final String imageUrl;
+  final bool isLiked;
   DateTime createdAt;
   User author;
 
@@ -16,7 +16,7 @@ class Post {
     required this.content,
     this.likeCount = 10,
     this.commentCount = 10,
-    this.imageUrl = '',
+    required this.isLiked,
     required this.id,
     required this.createdAt,
     required this.author,
@@ -30,7 +30,7 @@ class Post {
       author: User.fromJson(json['author']),
       likeCount: json['likeCount'] ?? 0,
       commentCount: json['commentCount'] ?? 0,
-      imageUrl: json['imageUrl'] = '',
+      isLiked: json['isLiked'],
       comments: json['comments'] != null
           ? List.generate(json['comments'].length,
               (index) => CommentModel.fromJson(json['comments'][index]))

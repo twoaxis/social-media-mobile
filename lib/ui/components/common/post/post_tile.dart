@@ -22,7 +22,19 @@ class PostTile extends StatefulWidget {
 }
 
 class _PostTileState extends State<PostTile> {
-  bool isLiked = false;
+  late bool isLiked;
+  late int likeCount;
+
+  @override
+  void initState() {
+
+    setState(() {
+      likeCount = widget.post.likeCount;
+      isLiked =  widget.post.isLiked;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -80,24 +92,6 @@ class _PostTileState extends State<PostTile> {
             overflow: TextOverflow.fade,
           ),
           SizedBox(height: 10),
-          widget.post.imageUrl.isNotEmpty
-              ? GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FullScreenImage(),
-                    ),
-                  ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.width,
-                    width: double.infinity,
-                    child: Image.network(
-                      widget.post.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
-              : SizedBox(),
           Divider(
             color: Colors.grey.withOpacity(0.3),
             thickness: 1,
@@ -108,17 +102,19 @@ class _PostTileState extends State<PostTile> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () async {
+                    onPressed: () {
                       if (isLiked) {
-                        await unlikePost(postId: widget.post.id);
                         setState(() {
+                          likeCount--;
                           isLiked = false;
                         });
+                        unlikePost(postId: widget.post.id);
                       } else {
-                        await likePost(postId: widget.post.id);
                         setState(() {
+                          likeCount++;
                           isLiked = true;
                         });
+                        likePost(postId: widget.post.id);
                       }
                     },
                     icon: Icon(
@@ -126,9 +122,7 @@ class _PostTileState extends State<PostTile> {
                       color: isLiked ? secondaryColor : Colors.grey,
                     ),
                   ),
-                  Text(isLiked
-                      ? '${widget.post.likeCount + 1}'
-                      : '${widget.post.likeCount}'),
+                  Text(likeCount.toString()),
                 ],
               ),
               Row(
