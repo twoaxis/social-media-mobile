@@ -105,7 +105,7 @@ class _OptionState extends State<Option> {
                               child: CircleAvatar(
                                 radius: 25,
                                 backgroundImage:
-                                    AssetImage('assets/images/Sillycat.jpeg'),
+                                    AssetImage('assets/images/icon-user.png'),
                               ),
                             ),
                             Padding(
@@ -136,8 +136,8 @@ class _OptionState extends State<Option> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onTap: () async {
-                        await AuthService().logOut();
+                      onTap: () {
+                        AuthService().logOut();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

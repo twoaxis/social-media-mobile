@@ -67,7 +67,6 @@ class AuthService {
       } else if (e.response?.statusCode == 401) {
         throw InvalidCredentialsExceptions();
       }
-      throw InvalidCredentialsExceptions();
     }
   }
 
@@ -75,8 +74,8 @@ class AuthService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString("authToken");
-      log(token!);
-      await dio.post(
+
+      dio.post(
         'http://18.193.81.175/auth/logout',
 
         options: Options(

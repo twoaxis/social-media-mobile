@@ -45,7 +45,7 @@ class _FriendState extends State<Friend> {
             ),
             child: CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
+              backgroundImage: AssetImage('assets/images/icon-user.png'),
             ),
           ),
           Column(

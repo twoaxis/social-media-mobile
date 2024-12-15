@@ -44,7 +44,7 @@ class _MyFriendState extends State<MyFriend> {
             ),
             child: CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
+              backgroundImage: AssetImage('assets/images/icon-user.png'),
             ),
           ),
           Text(

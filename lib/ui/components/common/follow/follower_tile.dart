@@ -41,7 +41,7 @@ class _FollowersState extends State<Followers> {
               ),
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage: AssetImage('assets/images/Sillycat.jpeg'),
+                backgroundImage: AssetImage('assets/images/icon-user.png'),
               ),
             ),
             SizedBox(
