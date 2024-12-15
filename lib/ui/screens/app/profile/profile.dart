@@ -41,6 +41,7 @@ class _ProfileState extends State<Profile> {
     log(username);
 
     if (username == widget.profile?.username) isMyProfile = true;
+    else isMyProfile = false;
     _initialized = true;
     setState(() {});
   }
