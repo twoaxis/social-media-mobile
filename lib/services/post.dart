@@ -8,6 +8,8 @@ import 'package:social_media_mobile/exceptions/users/didnot_like_this_post_excep
 import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields_exception.dart';
 import 'package:social_media_mobile/models/post.dart';
 
+import '../data/constants.dart';
+
 Dio dio = Dio();
 
 Future<String> createPost(String content) async {
@@ -23,7 +25,7 @@ Future<String> createPost(String content) async {
   log(userId);
   try {
     Response response = await dio.put(
-      'http://18.193.81.175/posts',
+      '$baseUrl/posts',
       data: {'content': content},
       options: Options(
         headers: {
@@ -47,11 +49,11 @@ Future<String> createPost(String content) async {
   return "";
 }
 
-Future<List<dynamic>> getPosts({required String token}) async {
+Future<List<Post>> getPosts({required String token}) async {
   List<Post> posts = [];
   try {
     Response response = await dio.get(
-      'http://18.193.81.175/posts',
+      '$baseUrl/posts',
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
@@ -70,7 +72,7 @@ Future<List<dynamic>> getPosts({required String token}) async {
       throw InvalidTokenException();
     }
   }
-  return [];
+  return posts;
 }
 
 // create the like function
@@ -80,7 +82,7 @@ Future<void> likePost({required int postId}) async {
 
   try {
     Response response = await dio.post(
-      'http://18.193.81.175/posts/${postId}/like',
+      '$baseUrl/posts/${postId}/like',
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
@@ -104,7 +106,7 @@ Future<void> unlikePost({required int postId}) async {
   String? token = prefs.getString("authToken");
   try {
     Response response = await dio.post(
-      'http://18.193.81.175/posts/${postId}/unlike',
+      '$baseUrl/posts/${postId}/unlike',
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
@@ -130,7 +132,7 @@ Future<String> createComment(String content, int postId) async {
 
   try {
     Response response = await dio.put(
-      'http://18.193.81.175/posts/${postId}/comment',
+      '$baseUrl/posts/${postId}/comment',
       data: {'content': content},
       options: Options(
         headers: {

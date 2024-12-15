@@ -36,9 +36,9 @@ class _HomeState extends State<Home> {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString("authToken");
-      final List<dynamic> response = await getPosts(token: token!);
+      final List<Post> response = await getPosts(token: token!);
 
-      posts = response.map((data) => Post.fromJson(data)).toList();
+      posts = response;
 
       String yourToken = token;
       Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);

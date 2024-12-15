@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:social_media_mobile/data/constants.dart';
 import 'package:social_media_mobile/exceptions/auth/email_not_verified_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/email_taken_exception.dart';
 import 'package:social_media_mobile/exceptions/auth/invalid_credentials_exception.dart';
@@ -21,7 +20,7 @@ class AuthService {
   ) async {
     try {
       Response response = await dio.post(
-        'http://18.193.81.175/auth/signup',
+        '$baseUrl/auth/signup',
         data: {
           'name': name,
           'username': username,
@@ -76,7 +75,7 @@ class AuthService {
       String? token = prefs.getString("authToken");
 
       dio.post(
-        'http://18.193.81.175/auth/logout',
+        '$baseUrl/auth/logout',
 
         options: Options(
           headers: {
@@ -99,7 +98,7 @@ class AuthService {
   }) async {
     try {
       Response response = await dio.post(
-        'http://18.193.81.175/auth/verifyemail',
+        '$baseUrl/auth/verifyemail',
         data: {
           'sessionId': sessionId,
           'code': code,

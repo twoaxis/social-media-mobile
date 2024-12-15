@@ -4,6 +4,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
+import 'package:social_media_mobile/services/api_followers.dart';
 import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
 import 'package:social_media_mobile/ui/components/common/post/post_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
@@ -42,6 +43,9 @@ class _ProfileState extends State<Profile> {
 
     if (username == widget.profile?.username) isMyProfile = true;
     else isMyProfile = false;
+
+    print(widget.profile!.isFollowing);
+    isFollowed = widget.profile!.isFollowing;
     _initialized = true;
     setState(() {});
   }
@@ -164,6 +168,12 @@ class _ProfileState extends State<Profile> {
                                                   const EdgeInsets.all(5.0),
                                               child: ElevatedButton(
                                                 onPressed: () {
+                                                  if(isFollowed) {
+                                                    unfollowUser(widget.profile!.username);
+                                                  }
+                                                  else {
+                                                    followUser(widget.profile!.username);
+                                                  }
                                                   setState(
                                                     () {
                                                       isFollowed = !isFollowed;
