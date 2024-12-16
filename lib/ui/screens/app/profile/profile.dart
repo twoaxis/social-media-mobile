@@ -4,9 +4,11 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
-import 'package:social_media_mobile/services/api_followers.dart';
-import 'package:social_media_mobile/ui/components/common/follow/follow.dart';
+import 'package:social_media_mobile/models/user.dart';
+import 'package:social_media_mobile/services/api_follow.dart';
 import 'package:social_media_mobile/ui/components/common/post/post_tile.dart';
+import 'package:social_media_mobile/ui/screens/app/follow/follower_page.dart';
+import 'package:social_media_mobile/ui/screens/app/follow/following_page.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/customize_profile.dart';
 
 class Profile extends StatefulWidget {
@@ -62,15 +64,7 @@ class _ProfileState extends State<Profile> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              // follow(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Follow(),
-                ),
-              );
-            },
+            onPressed: () {},
             icon: Icon(Icons.more_vert),
           ),
         ],
@@ -136,6 +130,66 @@ class _ProfileState extends State<Profile> {
                                       fontSize: 16,
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () async {
+                                            // openFollowers();
+                                            List<User> users =
+                                                await getFollowings(
+                                              widget.profile!.username,
+                                            );
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    FollowingPage(
+                                                  users: users,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'Following: ${widget.profile?.followingCount}',
+                                            style: const TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            List<User> users =
+                                                await getFollowers(
+                                              widget.profile!.username,
+                                            );
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    FollowerPage(
+                                                  users: users,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'Followers: ${widget.profile?.followerCount}',
+                                            style: const TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
                                   isMyProfile
                                       ? SizedBox()
                                       : Row(
@@ -170,12 +224,13 @@ class _ProfileState extends State<Profile> {
                                               padding:
                                                   const EdgeInsets.all(5.0),
                                               child: ElevatedButton(
-                                                onPressed: () {
-                                                  if(isFollowed) {
-                                                    unfollowUser(widget.profile!.username);
-                                                  }
-                                                  else {
-                                                    followUser(widget.profile!.username);
+                                                onPressed: () async {
+                                                  if (isFollowed) {
+                                                    await unfollowUser(widget
+                                                        .profile!.username);
+                                                  } else {
+                                                    await followUser(widget
+                                                        .profile!.username);
                                                   }
                                                   setState(
                                                     () {

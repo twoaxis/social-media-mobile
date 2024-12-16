@@ -10,6 +10,10 @@
 
   
 
+analyzer:
+  errors:
+    file_names: ignore
+    unused_field: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:
