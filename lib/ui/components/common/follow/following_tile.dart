@@ -6,10 +6,12 @@ bool isFollow = true;
 
 class Followings extends StatefulWidget {
   final User user;
+  final bool showButtons;
 
   const Followings({
     super.key,
     required this.user,
+    required this.showButtons,
   });
 
   @override
@@ -62,36 +64,38 @@ class _FollowingsState extends State<Followings> {
             ),
           ),
           Spacer(),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(
-                horizontal: 25,
-                vertical: 10,
-              ),
-              backgroundColor: const Color.fromARGB(255, 104, 168, 225),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            onPressed: () async {
-              if (isFollow) {
-                await unfollowUser(widget.user.username);
-              } else {
-                await followUser(widget.user.username);
-              }
-              setState(
-                () {
-                  isFollow = !isFollow;
-                },
-              );
-            },
-            child: Text(
-              isFollow ? 'UnFollow' : 'Follow',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
+          widget.showButtons
+              ? ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 10,
+                    ),
+                    backgroundColor: const Color.fromARGB(255, 104, 168, 225),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (isFollow) {
+                      await unfollowUser(widget.user.username);
+                    } else {
+                      await followUser(widget.user.username);
+                    }
+                    setState(
+                      () {
+                        isFollow = !isFollow;
+                      },
+                    );
+                  },
+                  child: Text(
+                    isFollow ? 'UnFollow' : 'Follow',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : SizedBox(),
           SizedBox(
             width: 20,
           ),

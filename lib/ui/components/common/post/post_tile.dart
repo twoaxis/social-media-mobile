@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/helpers/time_difference.dart';
 import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
@@ -78,9 +77,18 @@ class _PostTileState extends State<PostTile> {
                   ),
                 ),
                 SizedBox(width: 10),
-                Text(
-                  widget.post.author.name,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.post.author.name,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      timeDifference(
+                          widget.post.createdAt.toString(), 'yyyy-MM-dd HH:mm:ssZ'),
+                    ),
+                  ],
                 ),
               ],
             ),
