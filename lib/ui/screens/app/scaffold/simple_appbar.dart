@@ -21,10 +21,9 @@ class SimpleAppbar extends StatelessWidget implements PreferredSizeWidget {
       title: CustomText(
         text: title,
         fontSize: 20,
-        fontWeight: FontWeight.bold,
-        colorName: 'red',
+        fontWeight: FontWeight.w500,
+        colorName: 'black',
       ),
-      centerTitle: true,
       leading: Padding(
         padding: EdgeInsets.only(left: maxWidth * 0.01),
         child: Container(

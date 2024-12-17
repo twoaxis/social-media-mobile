@@ -13,7 +13,7 @@ class ProfileImage extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: ValueListenableBuilder<File?>(
-        valueListenable: selectedImage,
+        valueListenable: selectedProfileImage,
         builder: (context, File? imageFile, child) {
           return CircleAvatar(
             radius: radius,

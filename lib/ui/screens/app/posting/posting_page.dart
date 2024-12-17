@@ -34,9 +34,9 @@ class _PostingPageState extends State<PostingPage> {
   @override
   void initState() {
     super.initState();
-    selectedImage.addListener(() {
+    selectedPostImage.addListener(() {
       setState(() {
-        _imageFile = selectedImage.value;
+        _imageFile = selectedPostImage.value;
       });
     });
     _descriptionController.addListener(() {
@@ -49,7 +49,7 @@ class _PostingPageState extends State<PostingPage> {
 
   @override
   void dispose() {
-    selectedImage.removeListener(() {});
+    selectedPostImage.removeListener(() {});
     _descriptionController.dispose();
     super.dispose();
   }
@@ -93,10 +93,12 @@ class _PostingPageState extends State<PostingPage> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              onPressed: isButtonEnabled() ? () async{
-                await createPost(_descriptionController.text);
-                Navigator.pop(context);
-              } : null,
+              onPressed: isButtonEnabled()
+                  ? () async {
+                      await createPost(_descriptionController.text);
+                      Navigator.pop(context);
+                    }
+                  : null,
               child: Text(
                 'Post',
                 style: TextStyle(color: primaryColor),
@@ -139,7 +141,7 @@ class _PostingPageState extends State<PostingPage> {
                         vertical: maxHeight * 0.025),
                     child: GestureDetector(
                       child: ValueListenableBuilder<File?>(
-                        valueListenable: selectedImage,
+                        valueListenable: selectedPostImage,
                         builder: (context, File? imageFile, child) {
                           return imageFile == null
                               ? Container()
@@ -168,7 +170,7 @@ class _PostingPageState extends State<PostingPage> {
                                           child: IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                selectedImage.value = null;
+                                                selectedPostImage.value = null;
                                                 _imageFile = null;
                                               });
                                             },
@@ -185,7 +187,7 @@ class _PostingPageState extends State<PostingPage> {
                         },
                       ),
                       onTap: () {
-                        pickImage();
+                        pickPostImage();
                       },
                     ),
                   ),
@@ -219,7 +221,7 @@ class _PostingPageState extends State<PostingPage> {
                           fixedSize: Size(maxWidth * 0.75, 0),
                         ),
                         onPressed: () {
-                          pickImage();
+                          pickPostImage();
                         },
                         label: Text(
                           _imageFile == null ? 'Add a Photo' : 'Change Photo',

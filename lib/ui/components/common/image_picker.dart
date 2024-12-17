@@ -2,14 +2,26 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-ValueNotifier<File?> selectedImage = ValueNotifier<File?>(null);
+ValueNotifier<File?> selectedProfileImage = ValueNotifier<File?>(null);
 
-pickImage() async {
+pickProfileImage() async {
   XFile? xFile = await ImagePicker().pickImage(
     source: ImageSource.gallery,
   );
 
   if (xFile != null) {
-    selectedImage.value = File(xFile.path);
+    selectedProfileImage.value = File(xFile.path);
+  }
+}
+
+ValueNotifier<File?> selectedPostImage = ValueNotifier<File?>(null);
+
+pickPostImage() async {
+  XFile? xFile = await ImagePicker().pickImage(
+    source: ImageSource.gallery,
+  );
+
+  if (xFile != null) {
+    selectedPostImage.value = File(xFile.path);
   }
 }

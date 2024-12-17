@@ -94,7 +94,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                             text: 'Change',
                             colorName: 'red',
                             function: () {
-                              pickImage();
+                              pickProfileImage();
                             },
                           ),
                         ),
@@ -121,20 +121,6 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           title: widget.profile.username,
                           icon: Icon(FluentIcons.mention_24_filled),
                           maxLines: 1,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: maxHeight * 0.01,
-                          ),
-                          child: Center(
-                            child: Text(
-                              'This username is already taken !',
-                              style: TextStyle(
-                                color: secondaryColor,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(

@@ -3,6 +3,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
+import 'package:social_media_mobile/ui/components/common/dialog/profile_pic_dialog.dart';
 import 'package:social_media_mobile/ui/components/common/post/post_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/follow/follower_page.dart';
 import 'package:social_media_mobile/ui/screens/app/follow/following_page.dart';
@@ -82,42 +83,50 @@ class _ProfileState extends State<Profile> {
                             Positioned(
                               top: 8,
                               left: 8,
-                              child: IconButton(
-                                onPressed: widget.profile == null
-                                    ? null
-                                    : () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                CustomizeProfile(
-                                              profile: ProfileModel(
-                                                name: widget.profile?.name ??
-                                                    'Default Name',
-                                                username:
-                                                    widget.profile?.username ??
-                                                        'default_username',
-                                                bio: widget.profile?.bio ?? '',
-                                                followerCount: widget.profile
-                                                        ?.followerCount ??
-                                                    0, // Cast to int
-                                                followingCount: widget.profile
-                                                        ?.followingCount ??
-                                                    0, // Cast to int
-                                                posts:
-                                                    widget.profile?.posts ?? [],
-                                                id: widget.profile?.id ??
-                                                    0, // Ensure id is non-null
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                icon: Icon(
-                                  Icons.edit,
-                                  color: Colors.white,
-                                ),
-                              ),
+                              child: isMyProfile
+                                  ? IconButton(
+                                      onPressed: widget.profile == null
+                                          ? null
+                                          : () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CustomizeProfile(
+                                                    profile: ProfileModel(
+                                                      name: widget
+                                                              .profile?.name ??
+                                                          'Name',
+                                                      username: widget.profile
+                                                              ?.username ??
+                                                          'Username',
+                                                      bio: widget
+                                                              .profile?.bio ??
+                                                          'User Didnt Add Bio Yet.',
+                                                      followerCount: widget
+                                                              .profile
+                                                              ?.followerCount ??
+                                                          0, // Cast to int
+                                                      followingCount: widget
+                                                              .profile
+                                                              ?.followingCount ??
+                                                          0, // Cast to int
+                                                      posts: widget
+                                                              .profile?.posts ??
+                                                          [],
+                                                      id: widget.profile?.id ??
+                                                          0, // Ensure id is non-null
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  : SizedBox(),
                             ),
                             Center(
                               child: Column(
@@ -132,9 +141,19 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  const Padding(
+                                  Padding(
                                     padding: EdgeInsets.all(10.0),
-                                    child: BoundedProfileImage(45, 1),
+                                    child: GestureDetector(
+                                      child: BoundedProfileImage(45, 1),
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return ProfilePicDialog();
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ),
                                   Text(
                                     widget.profile?.bio ??

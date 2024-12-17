@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/comment_model.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
+import 'package:social_media_mobile/services/get_profile.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 class CommentTile extends StatelessWidget {
   const CommentTile({super.key, required this.commentModel});
@@ -20,14 +24,22 @@ class CommentTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 15,
-                backgroundColor: secondaryColor,
-                child: CircleAvatar(
-                  radius: 14,
-                  backgroundImage: NetworkImage(
-                      'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg'),
-                ),
+              GestureDetector(
+                child: BoundedProfileImage(14, 1),
+                onTap: () async {
+                  var profile = await getProfile(commentModel.author!.username);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Profile(
+                        profile: ProfileModel.fromJson(
+                          profile,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
               SizedBox(width: 10),
               Text(

@@ -70,7 +70,23 @@ class _PostTileState extends State<PostTile> {
             },
             child: Row(
               children: [
-                BoundedProfileImage(20, 2),
+                GestureDetector(
+                  child: BoundedProfileImage(20, 2),
+                  onTap: () async {
+                    var profile = await getProfile(widget.post.author.username);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Profile(
+                          profile: ProfileModel.fromJson(
+                            profile,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(width: 10),
                 Text(
                   widget.post.author.name,

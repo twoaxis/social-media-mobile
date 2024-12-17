@@ -46,7 +46,6 @@ class _AppState extends State<MainScaffold> {
       ),
       floatingActionButton: index == 0
           ? FloatingActionButton(
-              shape: const CircleBorder(),
               backgroundColor: colorScheme.primary,
               foregroundColor: colorScheme.onPrimary,
               child: Icon(
@@ -92,20 +91,33 @@ class _AppState extends State<MainScaffold> {
             label: screenTitles[1],
             tooltip: screenTitles[1],
             icon: index == 1
-                ? const Icon(FluentIcons.people_12_filled)
-                : const Icon(FluentIcons.people_12_regular),
+                ? const Icon(
+                    FluentIcons.people_12_filled,
+                    size: 25,
+                  )
+                : const Icon(
+                    FluentIcons.people_12_regular,
+                    size: 25,
+                  ),
           ),
           BottomNavigationBarItem(
             label: screenTitles[2],
             tooltip: screenTitles[2],
             icon: index == 2
-                ? const Icon(FluentIcons.alert_12_filled)
-                : const Icon(FluentIcons.alert_12_regular),
+                ? const Icon(FluentIcons.search_12_filled)
+                : const Icon(FluentIcons.search_12_regular),
           ),
           BottomNavigationBarItem(
             label: screenTitles[3],
             tooltip: screenTitles[3],
             icon: index == 3
+                ? const Icon(FluentIcons.alert_12_filled)
+                : const Icon(FluentIcons.alert_12_regular),
+          ),
+          BottomNavigationBarItem(
+            label: screenTitles[4],
+            tooltip: screenTitles[4],
+            icon: index == 4
                 ? const Icon(FluentIcons.navigation_16_filled)
                 : const Icon(FluentIcons.navigation_16_regular),
           ),
