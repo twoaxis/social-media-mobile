@@ -13,9 +13,10 @@ import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields
 Dio dio = Dio();
 
 class AuthService {
-  Future<String> signUp(String name,
-      String username,
-      String email,
+  Future<String> signUp(
+    String name,
+    String username,
+    String email,
     String password,
   ) async {
     try {
@@ -46,7 +47,7 @@ class AuthService {
   Future logIn(String email, String password) async {
     try {
       Response response = await dio.post(
-        'http://18.193.81.175/auth/login',
+        '$baseUrl/auth/login',
         data: {
           'email': email,
           'password': password,
@@ -76,7 +77,6 @@ class AuthService {
 
       dio.post(
         '$baseUrl/auth/logout',
-
         options: Options(
           headers: {
             'Content-Type': 'application/json',

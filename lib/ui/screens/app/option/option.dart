@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,16 +27,13 @@ class _OptionState extends State<Option> {
   Future<void> _initAsync() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("authToken");
-    log(token!);
 
-    String yourToken = token;
+    String yourToken = token!;
     Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
-    log(decodedToken.toString());
 
     String username = decodedToken['Username'];
     Map<String, dynamic> json = await getProfile(username);
     name = json['name'];
-    log(name);
     setState(() {
       _initialized = true;
     });
@@ -57,15 +53,12 @@ class _OptionState extends State<Option> {
                         SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         String? token = prefs.getString("authToken");
-                        log(token!);
 
-                        String yourToken = token;
+                        String yourToken = token!;
                         Map<String, dynamic> decodedToken =
                             JwtDecoder.decode(yourToken);
-                        log(decodedToken.toString());
 
                         String userName = decodedToken['Username'];
-                        log(userName);
 
                         Map<String, dynamic> profile =
                             await getProfile(userName);

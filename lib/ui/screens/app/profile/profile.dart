@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,14 +33,11 @@ class _ProfileState extends State<Profile> {
   void onProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("authToken");
-    log(token!);
 
-    String yourToken = token;
+    String yourToken = token!;
     Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
-    log(decodedToken.toString());
 
     String username = decodedToken['Username'];
-    log(username);
 
     if (username == widget.profile?.username) {
       isMyProfile = true;
@@ -49,7 +45,6 @@ class _ProfileState extends State<Profile> {
       isMyProfile = false;
     }
 
-    log(widget.profile!.isFollowing.toString());
     isFollowed = widget.profile!.isFollowing;
     _initialized = true;
     setState(() {});

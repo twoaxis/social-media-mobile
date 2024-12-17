@@ -53,15 +53,10 @@ Future<List<User>> getFollowers(String username) async {
   List<User> users = [];
 
   try {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("authToken");
-
     Response response = await dio.get(
       "$baseUrl/users/$username/followers",
       data: {'username': username},
     );
-
-    log(response.data.toString());
 
     if (response.statusCode == 200) {
       followers = response.data as List<dynamic>;
@@ -94,8 +89,6 @@ Future<List<User>> getFollowings(String username) async {
         },
       ),
     );
-
-    log(response.data.toString());
 
     if (response.statusCode == 200) {
       followings = response.data as List<dynamic>;

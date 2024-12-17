@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/constants.dart';
 import 'package:social_media_mobile/services/api.dart';
@@ -12,6 +11,5 @@ Future<Map<String, dynamic>> getProfile(String username) async {
     'Authorization': 'Bearer $token',
   });
 
-  log(profile.toString());
   return profile ?? {};
 }

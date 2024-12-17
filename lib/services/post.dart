@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/constants.dart';
 import 'package:social_media_mobile/exceptions/auth/invalid_token_exception.dart';
@@ -9,21 +8,17 @@ import 'package:social_media_mobile/exceptions/users/didnot_like_this_post_excep
 import 'package:social_media_mobile/exceptions/users/missing_or_incorrect_fields_exception.dart';
 import 'package:social_media_mobile/models/post.dart';
 
-
-
 Dio dio = Dio();
 
 Future<String> createPost(String content) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
-  log(token!);
 
-  String yourToken = token;
-  Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
-  log(decodedToken.toString());
+  // String yourToken = token!;
+  // Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
 
-  String userId = decodedToken['sub'];
-  log(userId);
+  // String userId = decodedToken['sub'];
+
   try {
     Response response = await dio.put(
       '$baseUrl/posts',
@@ -37,7 +32,6 @@ Future<String> createPost(String content) async {
     );
 
     if (response.statusCode == 200) {
-      log(response.data["postId"].toString());
       return response.data["postId"].toString();
     }
   } on DioException catch (e) {
@@ -82,6 +76,7 @@ Future<void> likePost({required int postId}) async {
   String? token = prefs.getString("authToken");
 
   try {
+    // ignore: unused_local_variable
     Response response = await dio.post(
       '$baseUrl/posts/$postId/like',
       options: Options(
@@ -91,7 +86,6 @@ Future<void> likePost({required int postId}) async {
         },
       ),
     );
-    log(response.statusCode.toString());
   } on DioException catch (e) {
     log(e.response!.statusCode.toString());
     if (e.response?.statusCode == 401) {
@@ -106,6 +100,7 @@ Future<void> unlikePost({required int postId}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
   try {
+    // ignore: unused_local_variable
     Response response = await dio.post(
       '$baseUrl/posts/$postId/unlike',
       options: Options(
@@ -115,7 +110,6 @@ Future<void> unlikePost({required int postId}) async {
         },
       ),
     );
-    log(response.statusCode.toString());
   } on DioException catch (e) {
     log(e.response!.statusCode.toString());
     if (e.response?.statusCode == 401) {
@@ -144,7 +138,6 @@ Future<String> createComment(String content, int postId) async {
     );
 
     if (response.statusCode == 200) {
-      log(response.data["commentId"].toString());
       return response.data["commentId"].toString();
     }
   } on DioException catch (e) {
