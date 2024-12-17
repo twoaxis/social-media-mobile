@@ -19,14 +19,16 @@ class Profile extends StatefulWidget {
 }
 
 bool isFriendAdded = false;
-bool isFollowed = false;
+
 bool isMyProfile = false;
 bool _initialized = false;
 
 class _ProfileState extends State<Profile> {
+  bool isFollowed = false;
   @override
   void initState() {
     super.initState();
+    isFollowed = widget.profile!.isFollowing;
     onProfile();
   }
 
@@ -134,7 +136,6 @@ class _ProfileState extends State<Profile> {
                                       children: [
                                         GestureDetector(
                                           onTap: () async {
-                                            // openFollowers();
                                             List<User> users =
                                                 await getFollowings(
                                               widget.profile!.username,
@@ -145,6 +146,8 @@ class _ProfileState extends State<Profile> {
                                                 builder: (context) =>
                                                     FollowingPage(
                                                   users: users,
+                                                  username:
+                                                      widget.profile!.username,
                                                 ),
                                               ),
                                             );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/helpers/time_difference.dart';
 import 'package:social_media_mobile/models/notification_model.dart';
 
 class Notificate extends StatelessWidget {
@@ -55,6 +56,21 @@ class Notificate extends StatelessWidget {
                   notification.description!,
                   style: TextStyle(
                     fontSize: 12,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+
+                  right: 8.0,
+                ),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    timeDifference(notification.createdAt!, 'yyyy-MM-ddTHH:mm:ssZ'),
+                    style: TextStyle(
+                      fontSize: 10,
+                    ),
                   ),
                 ),
               ),
