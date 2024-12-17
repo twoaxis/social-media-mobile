@@ -41,10 +41,13 @@ class _ProfileState extends State<Profile> {
     String username = decodedToken['Username'];
     log(username);
 
-    if (username == widget.profile?.username) isMyProfile = true;
-    else isMyProfile = false;
+    if (username == widget.profile?.username) {
+      isMyProfile = true;
+    } else {
+      isMyProfile = false;
+    }
 
-    print(widget.profile!.isFollowing);
+    log(widget.profile!.isFollowing.toString());
     isFollowed = widget.profile!.isFollowing;
     _initialized = true;
     setState(() {});

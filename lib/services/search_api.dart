@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:social_media_mobile/data/constants.dart';
-
-import '../models/user.dart';
-
+import 'package:social_media_mobile/models/user.dart';
 
 Future<List<User>> searchUsers(var query) async {
   var dio = Dio();
@@ -20,7 +18,7 @@ Future<List<User>> searchUsers(var query) async {
   }
   on Exception {
     if (kDebugMode) {
-      print("An error has occured.");
+      print("An error has occurred.");
     }
   }
 

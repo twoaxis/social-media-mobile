@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/models/user.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/services/search_api.dart';
+import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
-import '../../../../models/profile_model.dart';
-import '../profile/profile.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

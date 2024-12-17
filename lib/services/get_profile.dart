@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/data/constants.dart';
 import 'package:social_media_mobile/services/api.dart';

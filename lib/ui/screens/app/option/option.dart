@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
-import 'package:social_media_mobile/ui/components/common/loading/loading_screen.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 
