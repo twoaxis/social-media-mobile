@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/user.dart';
-import 'package:social_media_mobile/ui/components/common/follow/follower_tile.dart';
 import 'package:social_media_mobile/ui/components/common/follow/following_tile.dart';
+import 'package:social_media_mobile/ui/components/common/follow/follower_tile.dart';
 
 class Follow extends StatelessWidget {
   const Follow({super.key});
@@ -38,10 +38,10 @@ class Follow extends StatelessWidget {
               ),
               tabs: [
                 Tab(
-                  text: 'Followers',
+                  text: 'Following',
                 ),
                 Tab(
-                  text: 'Following',
+                  text: 'Followers',
                 ),
               ],
               dividerColor: Colors.grey.shade300,
@@ -56,7 +56,7 @@ class Follow extends StatelessWidget {
                 children: [
                   ListView.builder(
                     itemCount: 10,
-                    itemBuilder: (context, index) => Followers(
+                    itemBuilder: (context, index) => Followings(
                       user: User(
                         username: '',
                         name: 'Eldeeb',
@@ -66,7 +66,7 @@ class Follow extends StatelessWidget {
                   ),
                   ListView.builder(
                     itemCount: 10,
-                    itemBuilder: (context, index) => Following(
+                    itemBuilder: (context, index) => Followers(
                       user: User(
                         username: '',
                         name: 'Hegazy',
