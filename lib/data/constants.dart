@@ -1,1 +1,1 @@
-const baseUrl = 'http://18.193.81.175';
+const baseUrl = 'http://social.twoaxis.xyz/api';

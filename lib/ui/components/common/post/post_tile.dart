@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/post.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/services/post.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
@@ -27,10 +28,9 @@ class _PostTileState extends State<PostTile> {
 
   @override
   void initState() {
-
     setState(() {
       likeCount = widget.post.likeCount;
-      isLiked =  widget.post.isLiked;
+      isLiked = widget.post.isLiked;
     });
     super.initState();
   }
@@ -58,12 +58,11 @@ class _PostTileState extends State<PostTile> {
           GestureDetector(
             onTap: () async {
               Map<String, dynamic>? profile = await getProfile('ahmed');
-              log(profile.toString());
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Profile(
-                    profile: null,
+                    profile: ProfileModel.fromJson(profile),
                   ),
                 ),
               );

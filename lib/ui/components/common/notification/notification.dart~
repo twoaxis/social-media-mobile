@@ -16,7 +16,7 @@ class Notificate extends StatelessWidget {
         Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(
-            vertical: 5,
+            vertical: 8,
             horizontal: 10,
           ),
           constraints: BoxConstraints(

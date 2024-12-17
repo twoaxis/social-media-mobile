@@ -82,7 +82,7 @@ class _CommentsPageState extends State<CommentsPage> {
                   ),
                   onPressed: () async {
                     await createComment(_controller.text, widget.post.id);
-                    log(_controller.text);
+
                     _controller.clear();
                   },
                   child: const Icon(

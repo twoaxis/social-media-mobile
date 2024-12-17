@@ -42,10 +42,8 @@ class _HomeState extends State<Home> {
 
       String yourToken = token;
       Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
-      log(decodedToken.toString());
 
       String userName = decodedToken['Username'];
-      log(userName);
 
       Map<String, dynamic> profile = await getProfile(userName);
 
@@ -56,7 +54,6 @@ class _HomeState extends State<Home> {
       setState(() {
         isLoading = false;
       });
-
     } catch (error) {
       log('Error fetching posts: $error');
       setState(() {
