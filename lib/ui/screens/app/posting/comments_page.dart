@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/models/post.dart';

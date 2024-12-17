@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/auth_service.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 import 'package:social_media_mobile/ui/screens/onboarding/login_page.dart';
 
@@ -94,11 +95,7 @@ class _OptionState extends State<Option> {
                                 horizontal: 8.0,
                                 vertical: 5.0,
                               ),
-                              child: CircleAvatar(
-                                radius: 25,
-                                backgroundImage:
-                                    AssetImage('assets/images/icon-user.png'),
-                              ),
+                              child: ProfileImage(25),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(

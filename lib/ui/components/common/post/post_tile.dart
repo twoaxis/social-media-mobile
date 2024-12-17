@@ -6,6 +6,7 @@ import 'package:social_media_mobile/models/post.dart';
 import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/services/post.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/components/common/post/comment_tile.dart';
 import 'package:social_media_mobile/ui/screens/app/posting/comments_page.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
@@ -69,14 +70,7 @@ class _PostTileState extends State<PostTile> {
             },
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 21,
-                  backgroundColor: secondaryColor,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage('assets/images/icon-user.png'),
-                  ),
-                ),
+                BoundedProfileImage(20, 2),
                 SizedBox(width: 10),
                 Text(
                   widget.post.author.name,

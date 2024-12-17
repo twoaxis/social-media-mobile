@@ -1,6 +1,7 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/ui/components/common/button/custom_text_button.dart';
 import 'package:social_media_mobile/ui/components/common/image_picker.dart';
 import 'package:social_media_mobile/ui/components/common/input_fields/profile_text_field.dart';
@@ -11,7 +12,9 @@ import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 import 'package:social_media_mobile/ui/screens/app/scaffold/simple_appbar.dart';
 
 class CustomizeProfile extends StatefulWidget {
-  const CustomizeProfile({super.key});
+  final ProfileModel profile;
+
+  const CustomizeProfile({super.key, required this.profile});
 
   @override
   State<CustomizeProfile> createState() => _CustomizeProfileState();
@@ -115,7 +118,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         ProfileTextField(
                           TextAlign.left,
                           color: secondaryColor,
-                          title: 'BiiiiiM',
+                          title: widget.profile.username,
                           icon: Icon(FluentIcons.mention_24_filled),
                           maxLines: 1,
                         ),
@@ -152,7 +155,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                         ProfileTextField(
                           TextAlign.left,
                           color: secondaryColor,
-                          title: 'Ibrahim Abdulqader',
+                          title: widget.profile.name,
                           icon: Icon(FluentIcons.person_20_filled),
                           maxLines: 1,
                         ),
@@ -180,8 +183,7 @@ class _CustomizeProfileState extends State<CustomizeProfile> {
                           TextAlign.left,
                           color: secondaryColor,
                           maxLines: null,
-                          title:
-                              'Fonts shape how we perceive words. A bold, clean font may feel modern, while a classic serif adds warmth. Testing font styles side-by-side reveals the subtle impact each choice has on readability and tone',
+                          title: widget.profile.bio,
                           icon: Icon(FluentIcons.slide_text_28_filled),
                         ),
                         SizedBox(

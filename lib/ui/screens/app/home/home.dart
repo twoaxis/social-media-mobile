@@ -50,6 +50,7 @@ class _HomeState extends State<Home> {
       ProfileModel profileModel = ProfileModel.fromJson(profile);
       List<Post> ownPosts = profileModel.posts;
       posts += ownPosts;
+      posts.shuffle();
 
       setState(() {
         isLoading = false;

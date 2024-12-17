@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 
 class Friend extends StatefulWidget {
   const Friend({
@@ -43,10 +44,7 @@ class _FriendState extends State<Friend> {
               horizontal: 8.0,
               vertical: 5.0,
             ),
-            child: CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage('assets/images/icon-user.png'),
-            ),
+            child:ProfileImage(30)
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

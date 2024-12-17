@@ -4,9 +4,9 @@ import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/components/common/text/custom_text.dart';
 
 class SimpleAppbar extends StatelessWidget implements PreferredSizeWidget {
-  SimpleAppbar({required this.title, this.actions, super.key});
-  String title;
-  List<Widget>? actions;
+  const SimpleAppbar({required this.title, this.actions, super.key});
+  final String title;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
