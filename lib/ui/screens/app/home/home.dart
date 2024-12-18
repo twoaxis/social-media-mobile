@@ -132,9 +132,14 @@ class _HomeState extends State<Home> {
         ),
       );
     }
-    return ListView.builder(
-      itemBuilder: (context, index) => PostTile(post: posts[index]),
-      itemCount: posts.length,
+    return RefreshIndicator(
+      onRefresh: () async {
+        return _fetchPosts();
+      },
+      child: ListView.builder(
+        itemBuilder: (context, index) => PostTile(post: posts[index]),
+        itemCount: posts.length,
+      ),
     );
   }
 }
