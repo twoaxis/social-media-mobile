@@ -11,16 +11,15 @@ class ProfileImage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-
       ),
       child: ValueListenableBuilder<File?>(
-        valueListenable: selectedImage,
+        valueListenable: selectedProfileImage,
         builder: (context, File? imageFile, child) {
           return CircleAvatar(
             radius: radius,
             foregroundImage: imageFile != null
                 ? FileImage(imageFile) as ImageProvider
-                : const AssetImage('assets/images/icon-user.png'),
+                : const AssetImage('assets/images/Goofycat.jpeg'),
           );
         },
       ),

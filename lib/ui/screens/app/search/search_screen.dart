@@ -4,6 +4,7 @@ import 'package:social_media_mobile/models/profile_model.dart';
 import 'package:social_media_mobile/models/user.dart';
 import 'package:social_media_mobile/services/get_profile.dart';
 import 'package:social_media_mobile/services/search_api.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 import 'package:social_media_mobile/ui/screens/app/profile/profile.dart';
 
 
@@ -98,15 +99,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   },
                   child: Row(
                     children: [
-                      CircleAvatar(
-                        radius: 31,
-                        backgroundColor: secondaryColor,
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundImage:
-                              AssetImage('assets/images/icon-user.png'),
-                        ),
-                      ),
+                      BoundedProfileImage(30, 2),
                       SizedBox(
                         width: 20,
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media_mobile/data/color.dart';
+import 'package:social_media_mobile/ui/components/common/misc/profile_image.dart';
 
 class MyFriend extends StatefulWidget {
   const MyFriend({
@@ -42,10 +43,7 @@ class _MyFriendState extends State<MyFriend> {
               horizontal: 8.0,
               vertical: 10.0,
             ),
-            child: CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage('assets/images/icon-user.png'),
-            ),
+            child: ProfileImage(30)
           ),
           Text(
             widget.name,

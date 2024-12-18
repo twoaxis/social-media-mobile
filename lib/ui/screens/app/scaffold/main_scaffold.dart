@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_mobile/data/color.dart';
 import 'package:social_media_mobile/ui/screens/app/friends/friend_page.dart';
@@ -17,7 +18,13 @@ class MainScaffold extends StatefulWidget {
 class _AppState extends State<MainScaffold> {
   var index = 0;
 
-  static const screenTitles = ["Home", "Friends", "Search", "Notifications", "Options"];
+  static const screenTitles = [
+    "Home",
+    "Friends",
+    "Search",
+    "Notifications",
+    "Options"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +48,79 @@ class _AppState extends State<MainScaffold> {
           ? FloatingActionButton(
               backgroundColor: colorScheme.primary,
               foregroundColor: colorScheme.onPrimary,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PostingPage(),
-                  ),
-                );
-              },
               child: Icon(
                 Icons.add,
               ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        PostingPage(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(0.0, 1.0);
+                      const end = Offset.zero;
+                      const curve = Curves.easeInOut;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+                      var offsetAnimation = animation.drive(tween);
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+              },
             )
           : null,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.group), label: "Friends"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Notifications"),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Options")
+          BottomNavigationBarItem(
+            label: screenTitles[0],
+            tooltip: screenTitles[0],
+            icon: index == 0
+                ? const Icon(FluentIcons.home_12_filled)
+                : const Icon(FluentIcons.home_12_regular),
+          ),
+          BottomNavigationBarItem(
+            label: screenTitles[1],
+            tooltip: screenTitles[1],
+            icon: index == 1
+                ? const Icon(
+                    FluentIcons.people_12_filled,
+                    size: 25,
+                  )
+                : const Icon(
+                    FluentIcons.people_12_regular,
+                    size: 25,
+                  ),
+          ),
+          BottomNavigationBarItem(
+            label: screenTitles[2],
+            tooltip: screenTitles[2],
+            icon: index == 2
+                ? const Icon(FluentIcons.search_12_filled)
+                : const Icon(FluentIcons.search_12_regular),
+          ),
+          BottomNavigationBarItem(
+            label: screenTitles[3],
+            tooltip: screenTitles[3],
+            icon: index == 3
+                ? const Icon(FluentIcons.alert_12_filled)
+                : const Icon(FluentIcons.alert_12_regular),
+          ),
+          BottomNavigationBarItem(
+            label: screenTitles[4],
+            tooltip: screenTitles[4],
+            icon: index == 4
+                ? const Icon(FluentIcons.navigation_16_filled)
+                : const Icon(FluentIcons.navigation_16_regular),
+          ),
         ],
         onTap: (selection) {
           setState(
